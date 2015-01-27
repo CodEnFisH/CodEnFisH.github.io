@@ -103,6 +103,43 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/27/Sqrt-x/" >Sqrt(x)</a>
+			<span class="date"> Jan 27 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h1 id="Problem">Problem</h1>
+<blockquote>
+<p>Implemt sqrt(x)</p>
+</blockquote>
+<h1 id="Common_Pitfalls">Common Pitfalls</h1>
+<ol>
+<li>Use long to avoid overflow</li>
+<li>Return condition</li>
+</ol>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sqrt</span>(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">long</span> l = <span class="number">1</span>, r = x, t = x;</div><div class="line">    <span class="keyword">if</span>(x &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">long</span> m = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &lt;= t && (m + <span class="number">1</span>)*(m + <span class="number">1</span>) &gt; t) <span class="keyword">return</span> (<span class="keyword">int</span>)m;</div><div class="line">        <span class="keyword">if</span>(m * m &lt; t) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &gt; t) r = m - <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)l;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/27/Sqrt-x/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/27/Pow-x-n/" >Pow(x, n)</a>
 			<span class="date"> Jan 27 2015 </span>
 		</h3>
@@ -1321,13 +1358,13 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Math/">Math<span>2</span></a></li>
-		
 			<li><a href="/tags/Interview/">Interview<span>0</span></a></li>
 		
-			<li><a href="/tags/Math-String/">Math, String<span>0</span></a></li>
+			<li><a href="/tags/Math/">Math<span>2</span></a></li>
 		
 			<li><a href="/tags/String/">String<span>1</span></a></li>
+		
+			<li><a href="/tags/Math-String/">Math, String<span>0</span></a></li>
 		
 		 
 		</ul>
@@ -1339,6 +1376,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/27/Sqrt-x/" ><i class="fa fa-file-o"></i>Sqrt(x)</a>
+      </li>
     
       <li>
         <a href="/2015/01/27/Pow-x-n/" ><i class="fa fa-file-o"></i>Pow(x, n)</a>
