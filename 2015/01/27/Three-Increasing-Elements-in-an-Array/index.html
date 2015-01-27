@@ -113,7 +113,8 @@ Scan the whole array f">
 <p>Given an array of integers A, please find three indexes i, j, k, such that i&lt;j&lt;k and A[i]&lt;A[j]&lt;A[k].</p>
 </blockquote>
 <h3 id="Idea">Idea</h3>
-<p>Scan the whole array from left to right and try to locate A[i] and A[j] first.<br>The key observation is that A[j]’s position matters, but A[i]’s doesn’t. Based<br>on this observation, we just need to make j as small as possible, and search for<br>all element A[k], k &gt; j.</p>
+<p>Scan the whole array from left to right and try to locate A[i] and A[j] first.</p>
+<p>The key observation is that A[j]’s position matters, but A[i]’s doesn’t. Based on this observation, we just need scan from the left, keep track of the current A[i] and A[j]. If for the current position, pos, A[i] &lt; A[pos] &lt; A[j] then we need to update j to pos, since if j can be the answer, pos can also be: assume there is a k &gt; j such that A[j] &lt; A[k], we can guarantee that pos &lt; k, otherwise we have already found an answer and returned, contradiction. Plus, A[pos] &lt; A[j] &lt; A[k], it’s safe to update j to pos.</p>
 	  
 	</div>
 
