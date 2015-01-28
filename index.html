@@ -156,8 +156,14 @@
 <p>Given an array of integers A, please find three indexes i, j, k, such that i&lt;j&lt;k and A[i]&lt;A[j]&lt;A[k].</p>
 </blockquote>
 <h3 id="Idea">Idea</h3>
-<p>Scan the whole array from left to right and try to locate A[i] and A[j] first.</p>
-<p>The key observation is that A[j]’s position matters, but A[i]’s doesn’t. Based on this observation, we just need scan from the left, keep track of the current A[i] and A[j]. If for the current position, pos, A[i] &lt; A[pos] &lt; A[j] then we need to update j to pos, since if j can be the answer, pos can also be: assume there is a k &gt; j such that A[j] &lt; A[k], we can guarantee that pos &lt; k, otherwise we have already found an answer and returned, contradiction. Plus, A[pos] &lt; A[j] &lt; A[k], it’s safe to update j to pos.</p>
+<ul>
+<li><p>Using the idea of “find nearest larger element in array”, we can first scan the array and find out the nearest larger num on the right and store them in another array b[]. Then we can scan b to find out the answer</p>
+</li>
+<li><p>We can try to scan the array and update the candidate of i and j.</p>
+</li>
+</ul>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">findTreeIndexes</span>(<span class="keyword">int</span>[] a){</div><div class="line">  <span class="keyword">int</span> i = -<span class="number">1</span>, j = -<span class="number">1</span>, minIdx = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">1</span>; t &lt; a.length; t++){</div><div class="line">    <span class="keyword">if</span>(a[t] &lt; a[minIdx]) minIdx = t;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[t] &gt; a[minIdx]){</div><div class="line">      <span class="keyword">if</span>(j == -<span class="number">1</span>) {</div><div class="line">        i = minIdx;</div><div class="line">        j = t;</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">if</span>(a[t] &lt; a[j]) {</div><div class="line">          i = minIdx;</div><div class="line">          j = t;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(a[t] &gt; a[j]) { <span class="comment">// a[t] &gt; a[j]</span></div><div class="line">          <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</div><div class="line">          ret[<span class="number">0</span>] = i; ret[<span class="number">1</span>] = j; ret[<span class="number">2</span>] = t;</div><div class="line">          <span class="keyword">return</span> ret;</div><div class="line">        }</div><div class="line">      }</div><div class="line">    }</div><div class="line">  }</div><div class="line">  <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
 
 	
 	</div>
@@ -1427,11 +1433,11 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
 		
 			<li><a href="/tags/Array/">Array<span>1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+			<li><a href="/tags/String/">String<span>2</span></a></li>
 		
 		 
 		</ul>
