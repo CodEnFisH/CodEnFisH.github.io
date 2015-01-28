@@ -103,6 +103,46 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/28/Is-A-Graph-A-Tree/" >Is A Graph A Tree</a>
+			<span class="date"> Jan 28 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given the edge set of an undirected graph, return if it is a valid tree.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>The definition of a tree is connected graph with no loop. So we just need to check these two conditions respectively.</p>
+<h4 id="Idea_1_-_DFS">Idea 1 - DFS</h4>
+<p>First rebuild the graph from the given edge set. Then run a DFS to check if all nodes are connected and if there is a loop.</p>
+<h3 id="Idea_2_-_Union_Set">Idea 2 - Union Set</h3>
+<p>The basic idea is to use a union set to keep the connected component (CC). We can scan all edges and if both vertexes of an edge belongs to the same CC, then there is a loop. Finally we also need to check if there is only one CC after the scanning.</p>
+<h3 id="Variants">Variants</h3>
+<blockquote>
+<p>What if it’s directed graph?<br>The edge is given in a different way. One example is like:<br>Assume you are given a TreeNode class which has getParent() API. Given a set of such nodes, determine if they form a tree (<a href="http://www.mitbbs.com/article_t/JobHunting/32829537.html" target="_blank" rel="external">Interview Report</a>)</p>
+</blockquote>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/28/Is-A-Graph-A-Tree/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/28/PeekIterator/" >PeekIterator</a>
 			<span class="date"> Jan 28 2015 </span>
 		</h3>
@@ -1456,11 +1496,17 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>1</span></a></li>
 		
+			<li><a href="/categories/Google/">Google<span>1</span></a></li>
+		
 			<li><a href="/categories/Leetcode/">Leetcode<span>2</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>2</span></a></li>
 		
+			<li><a href="/categories/Google/Phone-Screen/Non-Leetcode/">Non-Leetcode<span>1</span></a></li>
+		
 			<li><a href="/categories/Non-Leetcode/Google/Onsite/">Onsite<span>1</span></a></li>
+		
+			<li><a href="/categories/Google/Phone-Screen/">Phone Screen<span>1</span></a></li>
 		
 		</ul>
 	</div>
@@ -1471,11 +1517,15 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/DFS/">DFS<span>1</span></a></li>
+		
 			<li><a href="/tags/String/">String<span>2</span></a></li>
 		
-			<li><a href="/tags/Array/">Array<span>1</span></a></li>
+			<li><a href="/tags/Tree/">Tree<span>1</span></a></li>
 		
 			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>1</span></a></li>
 		
 			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
 		
@@ -1491,6 +1541,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/01/28/Is-A-Graph-A-Tree/" ><i class="fa fa-file-o"></i>Is A Graph A Tree</a>
+      </li>
+    
+      <li>
         <a href="/2015/01/28/PeekIterator/" ><i class="fa fa-file-o"></i>PeekIterator</a>
       </li>
     
@@ -1504,10 +1558,6 @@
     
       <li>
         <a href="/2015/01/27/Sqrt-x/" ><i class="fa fa-file-o"></i>Sqrt(x)</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/27/Pow-x-n/" ><i class="fa fa-file-o"></i>Pow(x, n)</a>
       </li>
     
   </ul>

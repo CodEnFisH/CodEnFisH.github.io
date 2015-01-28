@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>PeekIterator | Codefish</title>
+  <title>Is A Graph A Tree | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Implement peek() and pop() from java iterator(). for   example [1,2,3,4,5], peek() = 1, pop() = 1, peek() = 2, peek() = 2, pop() = 2
+Given the edge set of an undirected graph, return if it is a valid tree.
 
-Solutio">
+Solution
+The definition of a tree is connected graph with no loop. ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="PeekIterator"/>
+  <meta property="og:title" content="Is A Graph A Tree"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -91,7 +92,7 @@ Solutio">
 
 	
 		<div class="page-header">		
-			<h1> PeekIterator</h1>
+			<h1> Is A Graph A Tree</h1>
 		</div>		
 	
 
@@ -109,12 +110,18 @@ Solutio">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Implement peek() and pop() from java iterator(). for   example [1,2,3,4,5], peek() = 1, pop() = 1, peek() = 2, peek() = 2, pop() = 2</p>
+<p>Given the edge set of an undirected graph, return if it is a valid tree.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<p>The idea is to use a normal iterator + an element to store the peek element.</p>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class PeekIterator&lt;T&gt; implements Iterator&lt;T&gt; {</div><div class="line">  <span class="keyword">private</span> T elem;</div><div class="line">  <span class="keyword">private</span> Iterator&lt;T&gt; itr;</div><div class="line">  PeekIterator(Iterator&lt;T&gt; itr){</div><div class="line">    <span class="keyword">this</span>.itr = itr;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span>() {</div><div class="line">    <span class="keyword">return</span> elem == <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> T <span class="title">next</span>() {</div><div class="line">    T ret = elem;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  }</div><div class="line">  <span class="keyword">public</span> T <span class="title">peek</span>() {</div><div class="line">    <span class="keyword">return</span> elem;</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
-
+<p>The definition of a tree is connected graph with no loop. So we just need to check these two conditions respectively.</p>
+<h4 id="Idea_1_-_DFS">Idea 1 - DFS</h4>
+<p>First rebuild the graph from the given edge set. Then run a DFS to check if all nodes are connected and if there is a loop.</p>
+<h3 id="Idea_2_-_Union_Set">Idea 2 - Union Set</h3>
+<p>The basic idea is to use a union set to keep the connected component (CC). We can scan all edges and if both vertexes of an edge belongs to the same CC, then there is a loop. Finally we also need to check if there is only one CC after the scanning.</p>
+<h3 id="Variants">Variants</h3>
+<blockquote>
+<p>What if it’s directed graph?<br>The edge is given in a different way. One example is like:<br>Assume you are given a TreeNode class which has getParent() API. Given a set of such nodes, determine if they form a tree (<a href="http://www.mitbbs.com/article_t/JobHunting/32829537.html" target="_blank" rel="external">Interview Report</a>)</p>
+</blockquote>
 	  
 	</div>
 
@@ -123,14 +130,14 @@ Solutio">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/28/Is-A-Graph-A-Tree/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/27/Valid-Palindrome/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/28/PeekIterator/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -168,7 +175,7 @@ Solutio">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>2</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>1</span></a></li> <li><a href="/categories/Non-Leetcode/Google/Onsite/">Onsite<span>1</span></a></li>
+    <li><a href="/categories/Google/">Google<span>1</span></a></li> <li><a href="/categories/Google/Phone-Screen/">Phone Screen<span>1</span></a></li> <li><a href="/categories/Google/Phone-Screen/Non-Leetcode/">Non-Leetcode<span>1</span></a></li>
   </li>
 
     </ul>
@@ -181,7 +188,7 @@ Solutio">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+  <li><a href="/tags/DFS/">DFS<span>1</span></a></li> <li><a href="/tags/Tree/">Tree<span>1</span></a></li>
     </ul>
 	</div>
 		
