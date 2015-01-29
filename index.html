@@ -103,6 +103,42 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/29/Search-in-Rotated-Sorted-Array/" >Search in Rotated Sorted Array</a>
+			<span class="date"> Jan 29 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>You may assume no duplicate exists in the array.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">return</span> bs(A, <span class="number">0</span>, A.length - <span class="number">1</span>, target);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bs</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]){</div><div class="line">            <span class="keyword">if</span>(a[m] &lt;= a[r] && target &gt; a[r]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> l = m + <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) {</div><div class="line">            <span class="keyword">if</span>(a[m] &gt;= a[r] && target &lt; a[l]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m - <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/29/Search-in-Rotated-Sorted-Array/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/29/Top-k-in-BST/" >Top-k in BST</a>
 			<span class="date"> Jan 29 2015 </span>
 		</h3>
@@ -464,43 +500,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/27/Pow-x-n/" >Pow(x, n)</a>
-			<span class="date"> Jan 27 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Implement pow(x, n).</p>
-</blockquote>
-<h3 id="Common_Pitfalls">Common Pitfalls</h3>
-<ol>
-<li>Negative n</li>
-<li>x or n might be 0</li>
-</ol>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">pow</span>(<span class="keyword">double</span> x, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">    <span class="keyword">if</span>(n == -<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>/x;</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> x == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">    <span class="keyword">double</span> result = pow(x, n / <span class="number">2</span>);</div><div class="line">    result *= result;</div><div class="line">    <span class="keyword">if</span>(n % <span class="number">2</span> != <span class="number">0</span>) result *= pow(x, n % <span class="number">2</span>);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/27/Pow-x-n/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -549,7 +548,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>5</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>6</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>6</span></a></li>
 		
@@ -566,27 +565,29 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
 			<li><a href="/tags/Array/">Array<span>2</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
 		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
 			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>1</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>2</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
 		 
 		</ul>
@@ -598,6 +599,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/29/Search-in-Rotated-Sorted-Array/" ><i class="fa fa-file-o"></i>Search in Rotated Sorted Array</a>
+      </li>
     
       <li>
         <a href="/2015/01/29/Top-k-in-BST/" ><i class="fa fa-file-o"></i>Top-k in BST</a>
@@ -613,10 +618,6 @@
     
       <li>
         <a href="/2015/01/28/Level-Order-Related/" ><i class="fa fa-file-o"></i>Level Order Related</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/28/Is-A-Graph-A-Tree/" ><i class="fa fa-file-o"></i>Is A Graph A Tree</a>
       </li>
     
   </ul>
