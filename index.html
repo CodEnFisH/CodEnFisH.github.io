@@ -103,6 +103,44 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/28/Wiggle-Sort/" >Wiggle Sort</a>
+			<span class="date"> Jan 28 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>We can scan the array and keep track of the last three elements and swap them if</p>
+<ul>
+<li>a[i-2] &lt; a[i-1] &amp;&amp; a[i-1] &lt; a[i]</li>
+<li>a[i-2] &gt; a[i-1] &amp;&amp; a[i-1]  &gt; a[i]</li>
+</ul>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> wiggleSort(<span class="keyword">int</span>[] a){</div><div class="line">    <span class="keyword">int</span> n = a.length;</div><div class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(a[<span class="number">0</span>] &gt; a[<span class="number">1</span>]) { <span class="comment">// we can remove this swap if we don't require a[1] &gt; a[0]</span></div><div class="line">        <span class="keyword">int</span> tmp = a[<span class="number">1</span>];</div><div class="line">        a[<span class="number">1</span>] = a[<span class="number">0</span>];</div><div class="line">        a[<span class="number">0</span>] = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++){</div><div class="line">        <span class="keyword">if</span>((a[i-<span class="number">2</span>] &lt; a[i-<span class="number">1</span>] && a[i] &gt; a[i-<span class="number">1</span>]) || a[i-<span class="number">2</span>] &gt; a[i-<span class="number">1</span>] && a[i] &lt; a[i-<span class="number">1</span>]){</div><div class="line">            <span class="keyword">int</span> tmp = a[i];</div><div class="line">            a[i] = a[i-<span class="number">1</span>];</div><div class="line">            a[i-<span class="number">1</span>] = tmp;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/28/Wiggle-Sort/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/28/Level-Order-Related/" >Level Order Related</a>
 			<span class="date"> Jan 28 2015 </span>
 		</h3>
@@ -142,6 +180,7 @@
 <p>The only difference is that we need to check even/odd level.</p>
 <figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">List&lt;List&lt;Integer&gt;&gt; ret = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title">zigzagLevelOrder</span>(TreeNode root) {</div><div class="line">    dfs(root, <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeNode root, <span class="keyword">int</span> lev){</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(ret.size() == lev - <span class="number">1</span>) ret.add(<span class="keyword">new</span> LinkedList&lt;Integer&gt;());</div><div class="line">    <span class="comment">// inorder access</span></div><div class="line">    List&lt;Integer&gt; nodeLevel = ret.get(lev - <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span>(lev % <span class="number">2</span> == <span class="number">1</span>) nodeLevel.add(root.val);</div><div class="line">    <span class="keyword">else</span> nodeLevel.add(<span class="number">0</span>, root.val);</div><div class="line">    <span class="comment">// recursion</span></div><div class="line">    dfs(root.left, lev + <span class="number">1</span>);</div><div class="line">    dfs(root.right, lev + <span class="number">1</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
 
+<h3 id="Variant_4-_Pretty_Print_Binary_Tree">Variant 4. Pretty Print Binary Tree</h3>
 
 	
 	</div>
@@ -1555,19 +1594,19 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>1</span></a></li>
 		
-			<li><a href="/categories/Google/">Google<span>1</span></a></li>
+			<li><a href="/categories/Google/">Google<span>2</span></a></li>
 		
 			<li><a href="/categories/Leetcode/">Leetcode<span>3</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>2</span></a></li>
 		
-			<li><a href="/categories/Google/Phone-Screen/Non-Leetcode/">Non-Leetcode<span>1</span></a></li>
+			<li><a href="/categories/Google/Phone-Screen/Non-Leetcode/">Non-Leetcode<span>2</span></a></li>
 		
 			<li><a href="/categories/Leetcode/Non-Leetcode/">Non-Leetcode<span>1</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/Google/Onsite/">Onsite<span>1</span></a></li>
 		
-			<li><a href="/categories/Google/Phone-Screen/">Phone Screen<span>1</span></a></li>
+			<li><a href="/categories/Google/Phone-Screen/">Phone Screen<span>2</span></a></li>
 		
 		</ul>
 	</div>
@@ -1578,19 +1617,19 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
 			<li><a href="/tags/DFS/">DFS<span>2</span></a></li>
 		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
 		
 			<li><a href="/tags/Array/">Array<span>1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>2</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
 		 
 		</ul>
@@ -1602,6 +1641,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/28/Wiggle-Sort/" ><i class="fa fa-file-o"></i>Wiggle Sort</a>
+      </li>
     
       <li>
         <a href="/2015/01/28/Level-Order-Related/" ><i class="fa fa-file-o"></i>Level Order Related</a>
@@ -1617,10 +1660,6 @@
     
       <li>
         <a href="/2015/01/27/Valid-Palindrome/" ><i class="fa fa-file-o"></i>Valid Palindrome</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/27/Three-Increasing-Elements-in-an-Array/" ><i class="fa fa-file-o"></i>Three Increasing Elements i...</a>
       </li>
     
   </ul>

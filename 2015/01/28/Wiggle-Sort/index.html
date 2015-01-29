@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Is A Graph A Tree | Codefish</title>
+  <title>Wiggle Sort | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Given the edge set of an undirected graph, return if it is a valid tree.
+The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)
 
 Solution
-The definition of a tree is connected graph with no loop. ">
+We can sca">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Is A Graph A Tree"/>
+  <meta property="og:title" content="Wiggle Sort"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -92,7 +92,7 @@ The definition of a tree is connected graph with no loop. ">
 
 	
 		<div class="page-header">		
-			<h1> Is A Graph A Tree</h1>
+			<h1> Wiggle Sort</h1>
 		</div>		
 	
 
@@ -110,22 +110,16 @@ The definition of a tree is connected graph with no loop. ">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given the edge set of an undirected graph, return if it is a valid tree.</p>
+<p>The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<p>The definition of a tree is connected graph with no loop. So we just need to check these two conditions respectively.</p>
-<h4 id="Idea_1_-_DFS">Idea 1 - DFS</h4>
-<p>First rebuild the graph from the given edge set. Then run a DFS to check if all nodes are connected and if there is a loop.</p>
-<h4 id="Idea_2_-_Union_Set">Idea 2 - Union Set</h4>
-<p>The basic idea is to use a union set to keep the connected component (CC). We can scan all edges and if both vertexes of an edge belongs to the same CC, then there is a loop. Finally we also need to check if there is only one CC after the scanning.</p>
-<h3 id="Variants">Variants</h3>
+<p>We can scan the array and keep track of the last three elements and swap them if</p>
 <ul>
-<li>What if it’s directed graph?</li>
-<li>The edge is given in a different way. One example is like:<blockquote>
-<p>Assume you are given a TreeNode class which has getParent() API. Given a set of such nodes, determine if they form a tree (<a href="http://www.mitbbs.com/article_t/JobHunting/32829537.html" target="_blank" rel="external">Interview Report</a>)</p>
-</blockquote>
-</li>
+<li>a[i-2] &lt; a[i-1] &amp;&amp; a[i-1] &lt; a[i]</li>
+<li>a[i-2] &gt; a[i-1] &amp;&amp; a[i-1]  &gt; a[i]</li>
 </ul>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> wiggleSort(<span class="keyword">int</span>[] a){</div><div class="line">    <span class="keyword">int</span> n = a.length;</div><div class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(a[<span class="number">0</span>] &gt; a[<span class="number">1</span>]) { <span class="comment">// we can remove this swap if we don't require a[1] &gt; a[0]</span></div><div class="line">        <span class="keyword">int</span> tmp = a[<span class="number">1</span>];</div><div class="line">        a[<span class="number">1</span>] = a[<span class="number">0</span>];</div><div class="line">        a[<span class="number">0</span>] = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++){</div><div class="line">        <span class="keyword">if</span>((a[i-<span class="number">2</span>] &lt; a[i-<span class="number">1</span>] && a[i] &gt; a[i-<span class="number">1</span>]) || a[i-<span class="number">2</span>] &gt; a[i-<span class="number">1</span>] && a[i] &lt; a[i-<span class="number">1</span>]){</div><div class="line">            <span class="keyword">int</span> tmp = a[i];</div><div class="line">            a[i] = a[i-<span class="number">1</span>];</div><div class="line">            a[i-<span class="number">1</span>] = tmp;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
 	  
 	</div>
 
@@ -134,14 +128,14 @@ The definition of a tree is connected graph with no loop. ">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/28/Level-Order-Related/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/28/PeekIterator/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/28/Level-Order-Related/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -187,14 +181,6 @@ The definition of a tree is connected graph with no loop. ">
 	
 
 	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/DFS/">DFS<span>2</span></a></li> <li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-    </ul>
-	</div>
 		
 
 	<!-- toc -->
