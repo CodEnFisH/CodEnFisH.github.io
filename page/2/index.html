@@ -103,6 +103,40 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/28/PeekIterator/" >PeekIterator</a>
+			<span class="date"> Jan 28 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Implement peek() and pop() from java iterator(). for   example [1,2,3,4,5], peek() = 1, pop() = 1, peek() = 2, peek() = 2, pop() = 2</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>The idea is to use a normal iterator + an element to store the peek element.</p>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class PeekIterator&lt;T&gt; implements Iterator&lt;T&gt; {</div><div class="line">  <span class="keyword">private</span> T elem;</div><div class="line">  <span class="keyword">private</span> Iterator&lt;T&gt; itr;</div><div class="line">  PeekIterator(Iterator&lt;T&gt; itr){</div><div class="line">    <span class="keyword">this</span>.itr = itr;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span>() {</div><div class="line">    <span class="keyword">return</span> elem == <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> T <span class="title">next</span>() {</div><div class="line">    T ret = elem;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  }</div><div class="line">  <span class="keyword">public</span> T <span class="title">peek</span>() {</div><div class="line">    <span class="keyword">return</span> elem;</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/28/PeekIterator/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/27/Valid-Palindrome/" >Valid Palindrome</a>
 			<span class="date"> Jan 27 2015 </span>
 		</h3>
@@ -1432,7 +1466,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>9</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>10</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>6</span></a></li>
 		
@@ -1449,29 +1483,29 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>4</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>2</span></a></li>
-		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
 			<li><a href="/tags/String/">String<span>2</span></a></li>
 		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>5</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>2</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
 		
 		 
 		</ul>
@@ -1483,6 +1517,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/29/Find-Local-Maximum-Minimum-aka-peek-element/" ><i class="fa fa-file-o"></i>Find Local Maximum/Minimum,...</a>
+      </li>
     
       <li>
         <a href="/2015/01/29/Search-2D-Matrix/" ><i class="fa fa-file-o"></i>Search 2D Matrix</a>
@@ -1498,10 +1536,6 @@
     
       <li>
         <a href="/2015/01/29/Search-in-Rotated-Sorted-Array/" ><i class="fa fa-file-o"></i>Search in Rotated Sorted Array</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/29/Top-k-in-BST/" ><i class="fa fa-file-o"></i>Top-k in BST</a>
       </li>
     
   </ul>

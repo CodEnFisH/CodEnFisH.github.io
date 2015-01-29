@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Search for a Range | Codefish</title>
+  <title>Find Local Maximum/Minimum, aka, peek element | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Given a sorted array of integers, find the starting and ending position of a given target value.
-Your algorithm’s runtime complexity must be ">
+A peak element is an element that is greater than its neighbors.
+Given an input array where num[i] ≠ num[i+1], find a peak element and return">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Search for a Range"/>
+  <meta property="og:title" content="Find Local Maximum/Minimum, aka, peek element"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -90,7 +90,7 @@ Your algorithm’s runtime complexity must be ">
 
 	
 		<div class="page-header">		
-			<h1> Search for a Range</h1>
+			<h1> Find Local Maximum/Minimum, aka, peek element</h1>
 		</div>		
 	
 
@@ -108,13 +108,15 @@ Your algorithm’s runtime complexity must be ">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a sorted array of integers, find the starting and ending position of a given target value.</p>
-<p>Your algorithm’s runtime complexity must be in the order of O(log n).</p>
-<p>If the target is not found in the array, return [-1, -1].</p>
-<p>For example, Given [5, 7, 7, 8, 8, 10] and target value 8, return [3, 4].</p>
-<h3 id="Solution">Solution</h3>
+<p>A peak element is an element that is greater than its neighbors.</p>
+<p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.</p>
+<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
+<p>You may imagine that num[-1] = num[n] = -∞.</p>
+<p>For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.</p>
 </blockquote>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findFirst</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) r = m - <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m - <span class="number">1</span>] == a[m]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLast</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) r = m - <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(m &lt; right && a[m + <span class="number">1</span>] == a[m]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="Solution">Solution</h3>
+<p>Binary search, if the mid point is in the “climbing half”, discard the left subarray; else it’s in the “decending half”, discard the right subarray.</p>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = num.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">if</span>(l == r) <span class="keyword">return</span> l;</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m &lt; num.length - <span class="number">1</span>){</div><div class="line">            <span class="keyword">if</span>(num[m] &lt; num[m+<span class="number">1</span>]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -124,14 +126,14 @@ Your algorithm’s runtime complexity must be ">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/29/Search-Insertion-Position/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/29/Search-in-Rotated-Sorted-Array/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/29/Search-2D-Matrix/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
