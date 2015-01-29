@@ -103,6 +103,43 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/27/Sqrt-x/" >Sqrt(x)</a>
+			<span class="date"> Jan 27 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Implemt sqrt(x)</p>
+</blockquote>
+<h3 id="Common_Pitfalls">Common Pitfalls</h3>
+<ol>
+<li>Use long to avoid overflow</li>
+<li>Return condition</li>
+</ol>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sqrt</span>(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">long</span> l = <span class="number">1</span>, r = x, t = x;</div><div class="line">    <span class="keyword">if</span>(x &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">long</span> m = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &lt;= t && (m + <span class="number">1</span>)*(m + <span class="number">1</span>) &gt; t) <span class="keyword">return</span> (<span class="keyword">int</span>)m;</div><div class="line">        <span class="keyword">if</span>(m * m &lt; t) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &gt; t) r = m - <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)l;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/27/Sqrt-x/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/27/Pow-x-n/" >Pow(x, n)</a>
 			<span class="date"> Jan 27 2015 </span>
 		</h3>
@@ -1320,7 +1357,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>6</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>7</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>6</span></a></li>
 		
@@ -1337,29 +1374,29 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>1</span></a></li>
+			<li><a href="/tags/Binary-Search/">Binary Search<span>2</span></a></li>
 		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+			<li><a href="/tags/String/">String<span>2</span></a></li>
 		
 			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
 		
 			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
-			<li><a href="/tags/Array/">Array<span>2</span></a></li>
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
 			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>2</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -1371,6 +1408,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/29/Search-for-a-Range/" ><i class="fa fa-file-o"></i>Search for a Range</a>
+      </li>
     
       <li>
         <a href="/2015/01/29/Search-in-Rotated-Sorted-Array/" ><i class="fa fa-file-o"></i>Search in Rotated Sorted Array</a>
@@ -1386,10 +1427,6 @@
     
       <li>
         <a href="/2015/01/28/Wiggle-Sort/" ><i class="fa fa-file-o"></i>Wiggle Sort</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/28/Level-Order-Related/" ><i class="fa fa-file-o"></i>Level Order Related</a>
       </li>
     
   </ul>
