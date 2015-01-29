@@ -3,24 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Pow(x, n) | Codefish</title>
+  <title>Search Insertion Position | Codefish</title>
   
   
-  <meta name="description" content="Problem
-
-Implement pow(x, n).
-
-Common Pitfalls
-
-Negative n
-x or n might be 0
-
-123456789public double pow(double x, int n) {    if(n == 1) return x;   ">
+  <meta name="description" content="12345678910111213public int searchInsert(int[] a, int target) {    int l = 0, r = a.length - 1, m;    while(l &amp;lt;= r){        m = l + (r - l)/2;     ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Pow(x, n)"/>
+  <meta property="og:title" content="Search Insertion Position"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -96,7 +87,7 @@ x or n might be 0
 
 	
 		<div class="page-header">		
-			<h1> Pow(x, n)</h1>
+			<h1> Search Insertion Position</h1>
 		</div>		
 	
 
@@ -112,16 +103,7 @@ x or n might be 0
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Implement pow(x, n).</p>
-</blockquote>
-<h3 id="Common_Pitfalls">Common Pitfalls</h3>
-<ol>
-<li>Negative n</li>
-<li>x or n might be 0</li>
-</ol>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">pow</span>(<span class="keyword">double</span> x, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">    <span class="keyword">if</span>(n == -<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>/x;</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> x == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">    <span class="keyword">double</span> result = pow(x, n / <span class="number">2</span>);</div><div class="line">    result *= result;</div><div class="line">    <span class="keyword">if</span>(n % <span class="number">2</span> != <span class="number">0</span>) result *= pow(x, n % <span class="number">2</span>);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div></pre></td></tr></table></figure>
+	    <figure class="highlight JAVA"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = a.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[m] == target) <span class="keyword">return</span> m;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; target) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m - <span class="number">1</span>] &gt;= target) r = m - <span class="number">1</span>; <span class="comment">// pitfall: it's &gt;= target</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> l;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -131,14 +113,14 @@ x or n might be 0
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/27/Sqrt-x/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/27/Multiply-Strings/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/29/Search-for-a-Range/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -165,7 +147,7 @@ x or n might be 0
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 27 2015 
+	Jan 29 2015 
 	</div>
 	
 
@@ -189,7 +171,7 @@ x or n might be 0
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Math/">Math<span>3</span></a></li>
+  <li><a href="/tags/Binary-Search/">Binary Search<span>3</span></a></li>
     </ul>
 	</div>
 		
