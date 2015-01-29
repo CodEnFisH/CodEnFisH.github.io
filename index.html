@@ -120,8 +120,8 @@
 <p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
 <p>You may assume no duplicates in the array.</p>
 <p>Here are few examples.<br>[1,3,5,6], 5 → 2<br>[1,3,5,6], 2 → 1<br>[1,3,5,6], 7 → 4<br>[1,3,5,6], 0 → 0</p>
-<h3 id="Solution">Solution</h3>
 </blockquote>
+<h3 id="Solution">Solution</h3>
 <figure class="highlight JAVA"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = a.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[m] == target) <span class="keyword">return</span> m;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; target) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m - <span class="number">1</span>] &gt;= target) r = m - <span class="number">1</span>; <span class="comment">// pitfall: it's &gt;= target</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> l;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 
@@ -567,27 +567,27 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
 			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>2</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
 		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
 			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>2</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>2</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
 		
 			<li><a href="/tags/Binary-Search/">Binary Search<span>3</span></a></li>
 		
