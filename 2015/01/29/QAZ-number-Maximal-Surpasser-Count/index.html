@@ -3,20 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Wiggle Sort | Codefish</title>
+  <title>QAZ number/Maximal Surpasser Count | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)
-
-Solution
-We can sca">
+qaz is a value for a number where this number is less than the other next values which have indexes larger than the index of this number.
+for">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Wiggle Sort"/>
+  <meta property="og:title" content="QAZ number/Maximal Surpasser Count"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -92,7 +90,7 @@ We can sca">
 
 	
 		<div class="page-header">		
-			<h1> Wiggle Sort</h1>
+			<h1> QAZ number/Maximal Surpasser Count</h1>
 		</div>		
 	
 
@@ -110,16 +108,21 @@ We can sca">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)</p>
+<p>qaz is a value for a number where this number is less than the other next values which have indexes larger than the index of this number.</p>
+<p>for example: 33 , 25 , 26 , 58 , 41 , 59 -&gt; qaz of (33) = 3 where 33 less than 3 numbers (58 , 41 , 59), qaz of (25) = 4 and not 5 because the index of 33 is less than the index of 25, qaz of (26) = 3 , qaz of (58) = 1 , qaz of (41) = 1 , qaz of (59) = 0.<br>the question is to find the max qaz.</p>
 </blockquote>
-<h3 id="Solution">Solution</h3>
-<p>We can scan the array and keep track of the last three elements and swap them if</p>
-<ul>
-<li>a[i-2] &lt; a[i-1] &amp;&amp; a[i-1] &lt; a[i]</li>
-<li>a[i-2] &gt; a[i-1] &amp;&amp; a[i-1]  &gt; a[i]</li>
-</ul>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> wiggleSort(<span class="keyword">int</span>[] a){</div><div class="line">    <span class="keyword">int</span> n = a.length;</div><div class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(a[<span class="number">0</span>] &gt; a[<span class="number">1</span>]) { <span class="comment">// we can remove this swap if we don't require a[1] &gt; a[0]</span></div><div class="line">        <span class="keyword">int</span> tmp = a[<span class="number">1</span>];</div><div class="line">        a[<span class="number">1</span>] = a[<span class="number">0</span>];</div><div class="line">        a[<span class="number">0</span>] = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++){</div><div class="line">        <span class="keyword">if</span>((a[i-<span class="number">2</span>] &lt; a[i-<span class="number">1</span>] && a[i] &gt; a[i-<span class="number">1</span>]) || a[i-<span class="number">2</span>] &gt; a[i-<span class="number">1</span>] && a[i] &lt; a[i-<span class="number">1</span>]){</div><div class="line">            <span class="keyword">int</span> tmp = a[i];</div><div class="line">            a[i] = a[i-<span class="number">1</span>];</div><div class="line">            a[i-<span class="number">1</span>] = tmp;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="Solutions">Solutions</h3>
+<p>This is a classicical problem, it has two basic format: 1) given original array, compute how many larger/smaller number on the left/right 2) given many larger/smaller number on the left/right, compute the original (see variant)</p>
+<h4 id="Idea_1">Idea 1</h4>
+<p>We can use a BST to solve the problem. We insert every element from last to first and during the insertion we count how many elements are larger than it.</p>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">```</div><div class="line">#### Idea <span class="number">2</span></div><div class="line">We can use a similar idea as merge-sort: we partition, solve the subproblem and when merge the subproblem, <span class="keyword">if</span> we can count the qaz number within O(n) then we can solve the problem in O(nlogn). It<span class="string">'s like the Reverse Pair Problem.</span></div></pre></td></tr></table></figure>
 
+<p>Java<br>```</p>
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>There is an array a[], now given another array b[] whose element is the number of larger element on the right of the corresponding position in a[]. Recover a[]</p>
+<p>Example: a = [3,1,6,4,2,5], b = [3,4,0,1,1,0]. Given b, compute a.</p>
+</blockquote>
 	  
 	</div>
 
@@ -128,14 +131,14 @@ We can sca">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/29/QAZ-number-Maximal-Surpasser-Count/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/28/Level-Order-Related/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/28/Wiggle-Sort/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -162,7 +165,7 @@ We can sca">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 28 2015 
+	Jan 29 2015 
 	</div>
 	
 
@@ -173,7 +176,7 @@ We can sca">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>5</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>5</span></a></li> <li><a href="/categories/Non-Leetcode/Google/Phone-Screen/">Phone Screen<span>3</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>5</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>5</span></a></li>
   </li>
 
     </ul>
@@ -186,7 +189,7 @@ We can sca">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Array/">Array<span>2</span></a></li> <li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+  <li><a href="/tags/BST/">BST<span>1</span></a></li> <li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li> <li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
     </ul>
 	</div>
 		
