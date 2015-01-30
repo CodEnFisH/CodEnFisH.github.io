@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Remove Element | Codefish</title>
+  <title>Remove Duplicated from Sorted Array | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Given an array and a value, remove all instances of that value in place and return the new length.
-The order of elements can be changed. It d">
+Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
+Do not allocate extra">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Remove Element"/>
+  <meta property="og:title" content="Remove Duplicated from Sorted Array"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -90,7 +90,7 @@ The order of elements can be changed. It d">
 
 	
 		<div class="page-header">		
-			<h1> Remove Element</h1>
+			<h1> Remove Duplicated from Sorted Array</h1>
 		</div>		
 	
 
@@ -108,11 +108,17 @@ The order of elements can be changed. It d">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given an array and a value, remove all instances of that value in place and return the new length.</p>
-<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
+<p>Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.</p>
+<p>Do not allocate extra space for another array, you must do this in place with constant memory.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Loop invariant: A[0...i] is the nums != elem A(j...n-1] is the elem</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> elem) {</div><div class="line">    <span class="keyword">int</span> i = -<span class="number">1</span>, j = A.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j && j &gt;= <span class="number">0</span>){</div><div class="line">        <span class="keyword">if</span>(A[i+<span class="number">1</span>] != elem) i++;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> tmp = A[j];</div><div class="line">            A[j] = A[i+<span class="number">1</span>];</div><div class="line">            A[i+<span class="number">1</span>] = tmp;</div><div class="line">            j--;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; A.length){</div><div class="line">        <span class="keyword">if</span>(A[j] != A[i]){</div><div class="line">            <span class="keyword">if</span>(j == i + <span class="number">1</span>){</div><div class="line">                i++; j++;</div><div class="line">            } <span class="keyword">else</span> A[++i] = A[j++];</div><div class="line">        } <span class="keyword">else</span> j++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> Math.min(i + <span class="number">1</span>, A.length);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>What if we allow elements to be duplicated at most twice?</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; A.length){</div><div class="line">        <span class="keyword">if</span>(A[j] != A[i] || (A[j] == A[i] && (i == <span class="number">0</span> || A[i-<span class="number">1</span>] != A[j]))) A[++i] = A[j++];</div><div class="line">        <span class="keyword">else</span> j++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> Math.min(i + <span class="number">1</span>, A.length);</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -122,14 +128,14 @@ The order of elements can be changed. It d">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/30/Remove-Nth-from-end-of-list/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/30/Remove-Element/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -162,27 +168,8 @@ The order of elements can be changed. It d">
 
 	<!-- categories -->
     
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>12</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
 
 	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/Array/">Array<span>4</span></a></li> <li><a href="/tags/Two-Pointers/">Two Pointers<span>2</span></a></li>
-    </ul>
-	</div>
 		
 
 	<!-- toc -->
