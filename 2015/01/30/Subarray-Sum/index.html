@@ -3,19 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>PeekIterator | Codefish</title>
+  <title>Subarray Sum | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Implement peek() and pop() from java iterator(). for   example [1,2,3,4,5], peek() = 1, pop() = 1, peek() = 2, peek() = 2, pop() = 2
-
-Solutio">
+Given an integer array, find a subarray where the sum of numbers is 0. Your code should return the index of the first number and the index of">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="PeekIterator"/>
+  <meta property="og:title" content="Subarray Sum"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -91,7 +89,7 @@ Solutio">
 
 	
 		<div class="page-header">		
-			<h1> PeekIterator</h1>
+			<h1> Subarray Sum</h1>
 		</div>		
 	
 
@@ -109,11 +107,12 @@ Solutio">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Implement peek() and pop() from java iterator(). for   example [1,2,3,4,5], peek() = 1, pop() = 1, peek() = 2, peek() = 2, pop() = 2</p>
+<p>Given an integer array, find a subarray where the sum of numbers is 0. Your code should return the index of the first number and the index of the last number.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<p>The idea is to use a normal iterator + an element to store the peek element.</p>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class PeekIterator&lt;T&gt; implements Iterator&lt;T&gt; {</div><div class="line">  <span class="keyword">private</span> T elem;</div><div class="line">  <span class="keyword">private</span> Iterator&lt;T&gt; itr;</div><div class="line">  PeekIterator(Iterator&lt;T&gt; itr){</div><div class="line">    <span class="keyword">this</span>.itr = itr;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span>() {</div><div class="line">    <span class="keyword">return</span> elem == <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> T <span class="title">next</span>() {</div><div class="line">    T ret = elem;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  }</div><div class="line">  <span class="keyword">public</span> T <span class="title">peek</span>() {</div><div class="line">    <span class="keyword">return</span> elem;</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>This problem has some variants: if the array only contains non-negative, we can have a linear solution with O(1) space; else we can scan from left to right and sum up a[0…i]. We can keep the subarray sum in a HashMap. During the later scan if we find that the current sum - target exists in the hashmap, then we found an answer.</p>
+<p>The following solution assume the target num is 0;</p>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">subarraySum</span>(<span class="keyword">int</span>[] nums) {</div><div class="line">    <span class="comment">// write your code here</span></div><div class="line">    HashMap&lt;Integer, Integer&gt; sums = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;(nums.length);</div><div class="line">    ArrayList&lt;Integer&gt; results = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    sums.put(<span class="number">0</span>, -<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++){</div><div class="line">        sum += nums[i];</div><div class="line">        <span class="keyword">if</span>(sums.containsKey(sum)){</div><div class="line">            results.add(sums.get(sum) + <span class="number">1</span>);</div><div class="line">            results.add(i);</div><div class="line">            <span class="keyword">return</span> results;</div><div class="line">        }</div><div class="line">        sums.put(sum, i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> results;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -123,14 +122,14 @@ Solutio">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/28/Is-A-Graph-A-Tree/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/27/Valid-Palindrome/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/29/Median-of-Two-Sorted-Arrays/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -157,7 +156,7 @@ Solutio">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 28 2015 
+	Jan 30 2015 
 	</div>
 	
 
@@ -168,7 +167,7 @@ Solutio">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li> <li><a href="/categories/Non-Leetcode/Google/Onsite/">Onsite<span>1</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li> <li><a href="/categories/Non-Leetcode/FB/">FB<span>1</span></a></li> <li><a href="/categories/Non-Leetcode/FB/Phone-Screen/">Phone Screen<span>1</span></a></li>
   </li>
 
     </ul>
@@ -181,7 +180,7 @@ Solutio">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+  <li><a href="/tags/Array/">Array<span>3</span></a></li> <li><a href="/tags/HashMap/">HashMap<span>1</span></a></li>
     </ul>
 	</div>
 		
