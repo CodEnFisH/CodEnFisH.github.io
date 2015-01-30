@@ -103,6 +103,41 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/30/2-Sum/" >2 Sum</a>
+			<span class="date"> Jan 30 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">twoSum</span>(<span class="keyword">int</span>[] numbers, <span class="keyword">int</span> target) {</div><div class="line">    HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numbers.length; i++) map.put(numbers[i], i);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numbers.length; i++) {</div><div class="line">        <span class="keyword">if</span>(map.containsKey(target - numbers[i]) && map.get(target - numbers[i]) != i){</div><div class="line">            <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">            ret[<span class="number">1</span>] = map.get(target - numbers[i]) + <span class="number">1</span>;</div><div class="line">            ret[<span class="number">0</span>] = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span> ret;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/30/2-Sum/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/" >Remove Duplicated from Sorted Array</a>
 			<span class="date"> Jan 30 2015 </span>
 		</h3>
@@ -462,62 +497,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/29/Search-in-Rotated-Sorted-Array/" >Search in Rotated Sorted Array</a>
-			<span class="date"> Jan 29 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
-<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
-<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
-<p>You may assume no duplicate exists in the array.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">return</span> bs(A, <span class="number">0</span>, A.length - <span class="number">1</span>, target);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bs</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]){</div><div class="line">            <span class="keyword">if</span>(a[m] &lt;= a[r] && target &gt; a[r]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> l = m + <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) {</div><div class="line">            <span class="keyword">if</span>(a[m] &gt;= a[r] && target &lt; a[l]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m - <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant_1:_Duplication_Allowed">Variant 1: Duplication Allowed</h3>
-<blockquote>
-<p>What if duplication is allowed</p>
-</blockquote>
-<p>The tricky part is that when a[m] == a[r], no subarray can be directly discard, the best we can do is to shrink the array by 1.</p>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">return</span> bs(A, <span class="number">0</span>, A.length - <span class="number">1</span>, target);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">bs</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]){</div><div class="line">            <span class="keyword">if</span>(a[m] == a[r]) r--;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; a[r] && target &gt; a[r]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> l = m + <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) {</div><div class="line">            <span class="keyword">if</span>(a[m] == a[r]) r--;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &gt; a[r] && target &lt; a[l]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m - <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant_2:_Find_Min_in_Rotated_Array">Variant 2: Find Min in Rotated Array</h3>
-<blockquote>
-<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand. Find the minimum element. (No duplication)</p>
-</blockquote>
-<h3 id="Solution-1">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span>(<span class="keyword">int</span>[] a) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = a.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[m] &gt; a[r]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; a[r]){</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m] &gt; a[m-<span class="number">1</span>]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> a[m];</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> a[l];</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<blockquote>
-<p>What if duplication is allowed?</p>
-</blockquote>
-<h3 id="Solution-2">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span>(<span class="keyword">int</span>[] a) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = a.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">if</span>(l == r) <span class="keyword">return</span> a[l];</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[m] &gt; a[r]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; a[r]){</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m] &gt;= a[m-<span class="number">1</span>]) r = m - <span class="number">1</span>; <span class="comment">// again, don't forget &gt;=</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> a[m];</div><div class="line">        }  <span class="keyword">else</span> r--;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/29/Search-in-Rotated-Sorted-Array/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -568,7 +547,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>12</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>13</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -587,33 +566,33 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>4</span></a></li>
 		
 			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
-			<li><a href="/tags/HashMap/">HashMap<span>1</span></a></li>
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
 			<li><a href="/tags/Two-Pointers/">Two Pointers<span>2</span></a></li>
 		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+			<li><a href="/tags/Array/">Array<span>4</span></a></li>
 		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
 		
 			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+			<li><a href="/tags/HashMap/">HashMap<span>2</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>2</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -625,6 +604,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/30/2-Sum/" ><i class="fa fa-file-o"></i>2 Sum</a>
+      </li>
     
       <li>
         <a href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/" ><i class="fa fa-file-o"></i>Remove Duplicated from Sort...</a>
@@ -640,10 +623,6 @@
     
       <li>
         <a href="/2015/01/30/Subarray-Sum/" ><i class="fa fa-file-o"></i>Subarray Sum</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/29/Median-of-Two-Sorted-Arrays/" ><i class="fa fa-file-o"></i>Median of Two Sorted Arrays</a>
       </li>
     
   </ul>
