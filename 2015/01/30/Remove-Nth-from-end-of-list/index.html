@@ -6,7 +6,12 @@
   <title>Remove Nth from end of list | Codefish</title>
   
   
-  <meta name="description" content="123456789101112public ListNode removeNthFromEnd(ListNode head, int n) {    ListNode dummy = new ListNode(-1);    dummy.next = head;    ListNode first ">
+  <meta name="description" content="Problem
+
+Given a linked list, remove the nth node from the end of list and return its head.
+Solution
+
+123456789101112public ListNode removeNthFromEnd(">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -103,7 +108,12 @@
 
 	<!-- content -->
 	<div class="mypage">		
-	    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</div><div class="line">    dummy.next = head;</div><div class="line">    ListNode first = dummy, second = dummy;</div><div class="line">    <span class="keyword">while</span>(n-- &gt;<span class="number">0</span>) second = second.next;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    first.next = first.next.next;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a linked list, remove the nth node from the end of list and return its head.</p>
+<h3 id="Solution">Solution</h3>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</div><div class="line">    dummy.next = head;</div><div class="line">    ListNode first = dummy, second = dummy;</div><div class="line">    <span class="keyword">while</span>(n-- &gt;<span class="number">0</span>) second = second.next;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    first.next = first.next.next;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>

@@ -115,7 +115,12 @@
 	<div class="col-md-12">
 	  
 	
-	  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</div><div class="line">    dummy.next = head;</div><div class="line">    ListNode first = dummy, second = dummy;</div><div class="line">    <span class="keyword">while</span>(n-- &gt;<span class="number">0</span>) second = second.next;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    first.next = first.next.next;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a linked list, remove the nth node from the end of list and return its head.</p>
+<h3 id="Solution">Solution</h3>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</div><div class="line">    dummy.next = head;</div><div class="line">    ListNode first = dummy, second = dummy;</div><div class="line">    <span class="keyword">while</span>(n-- &gt;<span class="number">0</span>) second = second.next;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    first.next = first.next.next;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 
 	
@@ -591,31 +596,31 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>1</span></a></li>
-		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
-		
-			<li><a href="/tags/HashMap/">HashMap<span>1</span></a></li>
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
 			<li><a href="/tags/Math/">Math<span>3</span></a></li>
 		
 			<li><a href="/tags/Array/">Array<span>3</span></a></li>
 		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+			<li><a href="/tags/HashMap/">HashMap<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
 		
 			<li><a href="/tags/String/">String<span>2</span></a></li>
 		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>1</span></a></li>
 		
 			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
 			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
 		
