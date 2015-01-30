@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Median of Two Sorted Arrays | Codefish</title>
+  
+  
+  <meta name="description" content="Problem
+
+There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity s">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Median of Two Sorted Arrays"/>
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Median of Two Sorted Arrays</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>The idea here is similar to the top-k, we pick two pivots in the two arrays and check the pivot elements. According to the comparison result we discard subarrays.</p>
+<p>The key here is to make sure that we make sure there are k elements in the subarray that we are trying to continue to solve.</p>
+<p>There are several tricks: first, we take pa from a and pb from b where pa + pb = k; second, there are several return conditions, remember to list all of them; 3rd, we always let the length of a &lt; b, this makes the choice of pa pb simpler (remember the min operation too).</p>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span>(<span class="keyword">int</span> A[], <span class="keyword">int</span> B[]) {</div><div class="line">    <span class="keyword">int</span> m = A.length, n = B.length;</div><div class="line">    <span class="keyword">if</span>((m + n) % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> (findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n)/<span class="number">2</span>) +</div><div class="line">                                 findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n )/<span class="number">2</span> + <span class="number">1</span> )) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n) / <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findK</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> la, <span class="keyword">int</span> ra, <span class="keyword">int</span>[] b, <span class="keyword">int</span> lb, <span class="keyword">int</span> rb, <span class="keyword">int</span> k){</div><div class="line">    <span class="keyword">if</span>(la &gt; ra) <span class="keyword">return</span> b[lb+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(lb &gt; rb) <span class="keyword">return</span> a[la+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(k == <span class="number">1</span>) <span class="keyword">return</span> Math.min(a[la], b[lb]);</div><div class="line">    <span class="keyword">int</span> m = ra - la + <span class="number">1</span>, n = rb - lb + <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(m + n == k) <span class="keyword">return</span> Math.max(a[ra], b[rb]);</div><div class="line">    <span class="keyword">if</span>(m &gt; n) <span class="keyword">return</span> findK(b, lb, rb, a, la, ra, k);</div><div class="line">    <span class="keyword">int</span> pa = Math.min(k/<span class="number">2</span>, m), pb = k - pa;</div><div class="line">    <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &gt; b[lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la, la + pa - <span class="number">1</span>, b, lb + pb, rb, k - pb);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &lt; b [lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la + pa, ra, b, lb, lb +pb - <span class="number">1</span>, k - pa);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> a[la + pa - <span class="number">1</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/01/29/Find-Local-Maximum-Minimum-aka-peek-element/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Jan 29 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>11</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Codefish
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+   </html>
