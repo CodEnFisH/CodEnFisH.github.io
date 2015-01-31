@@ -3,17 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Container With Most Water | Codefish</title>
+  <title>Minimum Window Substring | Codefish</title>
   
   
-  <meta name="description" content="Problem
-
-Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the tw">
+  <meta name="description" content="123456789101112131415161718192021222324252627public String minWindow(String S, String T) {    int[] counter = new int[256], goal = new int[256];    ch">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Container With Most Water"/>
+  <meta property="og:title" content="Minimum Window Substring"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -89,7 +87,7 @@ Given n non-negative integers a1, a2, …, an, where each represents a point at 
 
 	
 		<div class="page-header">		
-			<h1> Container With Most Water</h1>
+			<h1> Minimum Window Substring</h1>
 		</div>		
 	
 
@@ -105,29 +103,8 @@ Given n non-negative integers a1, a2, …, an, where each represents a point at 
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p>Note: You may not slant the container.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>We can use a two pointer algorithm to keep track of all potential optimal solution, as follows:</p>
-<p>We first put the two bars of at the two end of the array and try to slide them to the middle to see if we can do better. The key finding that when we slide the bar toward the middle we can make it better only when we get higher bars, since the width is shrinking during the bar sliding.</p>
-<p>At one potential position, which bar of the two should we move? Well, intuition tells us that we should move the shorter bar, since it has more space to improve. Here, I’m gonna prove that this intuition is correct.</p>
-<p>Without lossing generality, we can assume left bar l is the shorter than right bar r. The key is that, at any position, sliding higher bar toward the middle won’t get better result since the shorter bar decide the volume of the container.</p>
-<p>The Two-Pointer technique can be used in all these kind of problems where there are <span>$n^2$</span> possible choices, deciding by two sliding pointers. But if we can find some sort of “monotonicity” when fixing one pointer, say p1, we don’t have to “backtrace” the other pointer p2 to enumerate all possible choices. By doing this we can reduce the complexity from <span>$n^2$</span> to n.</p>
-<p>The key steps is to</p>
-<ol>
-<li>design some sort of status of the sliding pointer</li>
-<li>based on the status, decide how to slide the pointer</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span>(<span class="keyword">int</span>[] height) {</div><div class="line">    <span class="comment">// the key is always try to move the shorter bar</span></div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = height.length - <span class="number">1</span>, max = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j){</div><div class="line">        max = Math.max(max, Math.min(height[i], height[j]) * (j - i));</div><div class="line">        <span class="keyword">if</span>(height[i] &lt; height[j]) i++;</div><div class="line">        <span class="keyword">else</span> j--;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div></pre></td></tr></table></figure>
+	    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> String <span class="title">minWindow</span>(String S, String T) {</div><div class="line">    <span class="keyword">int</span>[] counter = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>], goal = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="keyword">char</span>[] s = S.toCharArray();</div><div class="line">    <span class="keyword">int</span> m = s.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.length(); i++) goal[(<span class="keyword">int</span>)T.charAt(i)]++;</div><div class="line">    <span class="keyword">int</span> start = -<span class="number">1</span>, end = -<span class="number">1</span>, min = Integer.MAX_VALUE;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = -<span class="number">1</span>; <span class="comment">// the range is [i,j]</span></div><div class="line">    <span class="keyword">while</span>(j &lt; m){</div><div class="line">        <span class="keyword">if</span>(hasAll(counter, goal)){</div><div class="line">            <span class="keyword">if</span>(j - i + <span class="number">1</span> &lt; min){</div><div class="line">                min = j - i + <span class="number">1</span>;</div><div class="line">                start = i;</div><div class="line">                end = j + <span class="number">1</span>;</div><div class="line">            }</div><div class="line">            counter[(<span class="keyword">int</span>)s[i++]]--;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(j == m - <span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">            counter[(<span class="keyword">int</span>)s[++j]]++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(start == -<span class="number">1</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> S.substring(start, end);</div><div class="line">}</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">hasAll</span>(<span class="keyword">int</span>[] counter, <span class="keyword">int</span>[] goal){</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; counter.length; i++) <span class="keyword">if</span>(counter[i] &lt; goal[i]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<h3 id="Variants">Variants</h3>
-<ul>
-<li><a href="http://codenfish.github.io/2015/01/30/Subarray-Sum/" target="_blank" rel="external">Subarray Sum</a><br>The status is the sum from 0 to the current position.</li>
-<li><a>Minimum Window Substring</a><br>The status is the char counter of the substring of the current window substring.</li>
-</ul>
 	  
 	</div>
 
@@ -136,14 +113,14 @@ Given n non-negative integers a1, a2, …, an, where each represents a point at 
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/31/Minimum-Window-Substring/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/30/3-Sum/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/30/Container-With-Most-Water/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -170,7 +147,7 @@ Given n non-negative integers a1, a2, …, an, where each represents a point at 
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 30 2015 
+	Jan 31 2015 
 	</div>
 	
 
@@ -194,7 +171,7 @@ Given n non-negative integers a1, a2, …, an, where each represents a point at 
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Two-Pointers/">Two Pointers<span>5</span></a></li>
+  <li><a href="/tags/Two-Pointers/">Two Pointers<span>5</span></a></li> <li><a href="/tags/String/">String<span>3</span></a></li>
     </ul>
 	</div>
 		

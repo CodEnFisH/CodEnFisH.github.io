@@ -103,6 +103,42 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/27/Valid-Palindrome/" >Valid Palindrome</a>
+			<span class="date"> Jan 27 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.</p>
+<p>For example,<br>“A man, a plan, a canal: Panama” is a palindrome.<br>“race a car” is not a palindrome.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>If reg is allowed, we can use it to replace every “don’t care” char with empty string and then convert to lower case.</p>
+<p>If we have to keep the original string and use constant space, we can use two pointers to skip the chars that we don’t care.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPalindrome</span>(String s) {</div><div class="line">        <span class="keyword">return</span> reg(s);</div><div class="line">    }</div><div class="line">    <span class="comment">// if reg is allowed</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">reg</span>(String s){</div><div class="line">        <span class="keyword">if</span>(s == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        s = s.replaceAll(<span class="string">"[^A-Za-z0-9]"</span>,<span class="string">""</span>).toLowerCase();</div><div class="line">        <span class="keyword">if</span>(s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= (s.length()-<span class="number">1</span>)&gt;&gt;<span class="number">1</span>; i++){</div><div class="line">            <span class="keyword">if</span>(s.charAt(i) != s.charAt(s.length() - <span class="number">1</span> - i)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    }</div><div class="line">    <span class="comment">// if no change of the original string is allowed</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">keepOriginal</span>(String s){</div><div class="line">        <span class="keyword">int</span> l = <span class="number">0</span>, r = s.length() - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(l &lt; r){</div><div class="line">            <span class="keyword">while</span>(l &lt; r && !care(s.charAt(l))) l++;</div><div class="line">            <span class="keyword">while</span>(l &lt; r && !care(s.charAt(r))) r--;</div><div class="line">            <span class="keyword">if</span>(l == r) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">if</span>(!match(s.charAt(l), s.charAt(r))) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            <span class="keyword">else</span>{</div><div class="line">                l++; r--;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">care</span>(<span class="keyword">char</span> c){</div><div class="line">        <span class="keyword">return</span> (<span class="string">'0'</span> &lt;= c && c &lt;= <span class="string">'9'</span>) || (<span class="string">'a'</span> &lt;= c && c &lt;= <span class="string">'z'</span>) || (<span class="string">'A'</span> &lt;= c && c &lt;= <span class="string">'Z'</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">match</span>(<span class="keyword">char</span> a, <span class="keyword">char</span> b){</div><div class="line">        <span class="keyword">if</span>(<span class="string">'0'</span> &lt;= a && a &lt;= <span class="string">'9'</span>) <span class="keyword">return</span> a == b;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">'a'</span> &lt;= a && a &lt;= <span class="string">'z'</span>) <span class="keyword">return</span> a == b || (<span class="keyword">int</span>)a == (<span class="keyword">int</span>)b + <span class="number">32</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">'A'</span> &lt;= a && a &lt;= <span class="string">'Z'</span>) <span class="keyword">return</span> a == b || (<span class="keyword">int</span>)a == (<span class="keyword">int</span>)b - <span class="number">32</span>;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/27/Valid-Palindrome/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/27/Three-Increasing-Elements-in-an-Array/" >Three Increasing Elements in an Array</a>
 			<span class="date"> Jan 27 2015 </span>
 		</h3>
@@ -1398,7 +1434,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>15</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>16</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -1417,33 +1453,33 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>4</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>4</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/HashMap/">HashMap<span>2</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
 			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
 			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
 		
 			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
 		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+			<li><a href="/tags/String/">String<span>3</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>4</span></a></li>
 		
 			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>5</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>2</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -1455,6 +1491,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/31/Minimum-Window-Substring/" ><i class="fa fa-file-o"></i>Minimum Window Substring</a>
+      </li>
     
       <li>
         <a href="/2015/01/30/Container-With-Most-Water/" ><i class="fa fa-file-o"></i>Container With Most Water</a>
@@ -1470,10 +1510,6 @@
     
       <li>
         <a href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/" ><i class="fa fa-file-o"></i>Remove Duplicated from Sort...</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/30/Remove-Element/" ><i class="fa fa-file-o"></i>Remove Element</a>
       </li>
     
   </ul>
