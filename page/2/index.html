@@ -103,6 +103,42 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/29/Median-of-Two-Sorted-Arrays/" >Median of Two Sorted Arrays</a>
+			<span class="date"> Jan 29 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>The idea here is similar to the top-k, we pick two pivots in the two arrays and check the pivot elements. According to the comparison result we discard subarrays.</p>
+<p>The key here is to make sure that we make sure there are k elements in the subarray that we are trying to continue to solve.</p>
+<p>There are several tricks: first, we take pa from a and pb from b where pa + pb = k; second, there are several return conditions, remember to list all of them; 3rd, we always let the length of a &lt; b, this makes the choice of pa pb simpler (remember the min operation too).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span>(<span class="keyword">int</span> A[], <span class="keyword">int</span> B[]) {</div><div class="line">    <span class="keyword">int</span> m = A.length, n = B.length;</div><div class="line">    <span class="keyword">if</span>((m + n) % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> (findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n)/<span class="number">2</span>) +</div><div class="line">                                 findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n )/<span class="number">2</span> + <span class="number">1</span> )) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n) / <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findK</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> la, <span class="keyword">int</span> ra, <span class="keyword">int</span>[] b, <span class="keyword">int</span> lb, <span class="keyword">int</span> rb, <span class="keyword">int</span> k){</div><div class="line">    <span class="keyword">if</span>(la &gt; ra) <span class="keyword">return</span> b[lb+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(lb &gt; rb) <span class="keyword">return</span> a[la+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(k == <span class="number">1</span>) <span class="keyword">return</span> Math.min(a[la], b[lb]);</div><div class="line">    <span class="keyword">int</span> m = ra - la + <span class="number">1</span>, n = rb - lb + <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(m + n == k) <span class="keyword">return</span> Math.max(a[ra], b[rb]);</div><div class="line">    <span class="keyword">if</span>(m &gt; n) <span class="keyword">return</span> findK(b, lb, rb, a, la, ra, k);</div><div class="line">    <span class="keyword">int</span> pa = Math.min(k/<span class="number">2</span>, m), pb = k - pa;</div><div class="line">    <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &gt; b[lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la, la + pa - <span class="number">1</span>, b, lb + pb, rb, k - pb);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &lt; b [lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la + pa, ra, b, lb, lb +pb - <span class="number">1</span>, k - pa);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> a[la + pa - <span class="number">1</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/29/Median-of-Two-Sorted-Arrays/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/29/Find-Local-Maximum-Minimum-aka-peek-element/" >Find Local Maximum/Minimum, aka, peek element</a>
 			<span class="date"> Jan 29 2015 </span>
 		</h3>
@@ -407,7 +443,7 @@
 <p>There is an array a[], now given another array b[] whose element is the number of larger element on the right of the corresponding position in a[]. Recover a[]</p>
 <p>Example: a = [3,1,6,4,2,5], b = [3,4,0,1,1,0]. Given b, compute a.</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> nonleet;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"><span class="keyword">import</span> java.util.LinkedList;</div><div class="line"></div><div class="line">class TreeNode {</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    TreeNode left, right;</div><div class="line">    <span class="keyword">public</span> <span class="title">TreeNode</span>(<span class="keyword">int</span> val){</div><div class="line">        <span class="keyword">this</span>.val = val;</div><div class="line">        <span class="keyword">this</span>.leftSize = <span class="number">0</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// augmentation</span></div><div class="line">    <span class="keyword">int</span> leftSize;</div><div class="line">    <span class="keyword">int</span> rightSize;</div><div class="line">}</div><div class="line">class BST {</div><div class="line">    TreeNode root;</div><div class="line">    <span class="keyword">public</span> <span class="title">BST</span>(){</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span>(<span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) root = <span class="keyword">new</span> TreeNode(v);</div><div class="line">        <span class="keyword">else</span> insertToNode(root, v);</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertToNode</span>(TreeNode root, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(v &lt;= root.val) {</div><div class="line">            <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) {</div><div class="line">                root.left = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                root.leftSize = <span class="number">1</span>;</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                insertToNode(root.left, v);</div><div class="line">                root.leftSize++;</div><div class="line">            }</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(root.right == <span class="keyword">null</span>){</div><div class="line">                root.right = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                root.rightSize = <span class="number">1</span>;</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                insertToNode(root.right, v);</div><div class="line">                root.rightSize++;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// insert the k-th smallest element into the bst</span></div><div class="line">    <span class="comment">// k is 1-based, v is assosiated value</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertKth</span>(<span class="keyword">int</span> k, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) {</div><div class="line">            root = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        insertKth(root, k, v);</div><div class="line">    }</div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insertKth</span>(TreeNode root, <span class="keyword">int</span> k, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(k == <span class="number">1</span>) {</div><div class="line">            <span class="keyword">while</span>(root.left != <span class="keyword">null</span>){</div><div class="line">                root.leftSize++;</div><div class="line">                root = root.left;</div><div class="line">            }</div><div class="line">            root.left = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            root.leftSize = <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(k == root.leftSize + root.rightSize + <span class="number">2</span>){</div><div class="line">            <span class="keyword">while</span>(root.right != <span class="keyword">null</span>){</div><div class="line">                root.rightSize++;</div><div class="line">                root = root.right;</div><div class="line">            }</div><div class="line">            root.right = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            root.rightSize = <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(root.leftSize &lt; k - <span class="number">1</span>){</div><div class="line">            insertKth(root.right, k - root.leftSize - <span class="number">1</span>, v);</div><div class="line">            root.rightSize++;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            insertKth(root.left, k, v);</div><div class="line">            root.leftSize++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="comment">/*</span></div><div class="line">    public void printAll(){</div><div class="line">        StringBuffer buf = new StringBuffer();</div><div class="line">        dfs(root, buf);</div><div class="line">        System.out.println(buf.toString());</div><div class="line">    }</div><div class="line">    */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeNode root, LinkedList&lt;Integer&gt; result){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        dfs(root.left, result);</div><div class="line">        result.add(root.val);</div><div class="line">        dfs(root.right, result);</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RecoverCounterArray</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recover</span>(<span class="keyword">int</span>[] a){</div><div class="line">        <span class="keyword">int</span> n = a.length;</div><div class="line">        BST tree = <span class="keyword">new</span> BST();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">            tree.insertKth(a[i] + <span class="number">1</span>, i );</div><div class="line">        }</div><div class="line">        LinkedList&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        tree.dfs(tree.root, ret);</div><div class="line">        <span class="keyword">int</span>[] b = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++){</div><div class="line">            b[ret.get(i)] = n - i;</div><div class="line">        }</div><div class="line">        System.out.println(Arrays.toString(b));</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line">class TreeNode {</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    TreeNode left, right;</div><div class="line">    <span class="keyword">public</span> <span class="title">TreeNode</span>(<span class="keyword">int</span> val){</div><div class="line">        <span class="keyword">this</span>.val = val;</div><div class="line">        <span class="keyword">this</span>.leftSize = <span class="number">0</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// augmentation</span></div><div class="line">    <span class="keyword">int</span> leftSize;</div><div class="line">    <span class="keyword">int</span> rightSize;</div><div class="line">}</div><div class="line">class BST {</div><div class="line">    TreeNode root;</div><div class="line">    <span class="keyword">public</span> <span class="title">BST</span>(){</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span>(<span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) root = <span class="keyword">new</span> TreeNode(v);</div><div class="line">        <span class="keyword">else</span> insertToNode(root, v);</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertToNode</span>(TreeNode root, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(v &lt;= root.val) {</div><div class="line">            <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) {</div><div class="line">                root.left = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                root.leftSize = <span class="number">1</span>;</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                insertToNode(root.left, v);</div><div class="line">                root.leftSize++;</div><div class="line">            }</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(root.right == <span class="keyword">null</span>){</div><div class="line">                root.right = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                root.rightSize = <span class="number">1</span>;</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                insertToNode(root.right, v);</div><div class="line">                root.rightSize++;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// insert the k-th smallest element into the bst</span></div><div class="line">    <span class="comment">// k is 1-based, v is assosiated value</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertKth</span>(<span class="keyword">int</span> k, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) {</div><div class="line">            root = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        insertKth(root, k, v);</div><div class="line">    }</div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insertKth</span>(TreeNode root, <span class="keyword">int</span> k, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(k == <span class="number">1</span>) {</div><div class="line">            <span class="keyword">while</span>(root.left != <span class="keyword">null</span>){</div><div class="line">                root.leftSize++;</div><div class="line">                root = root.left;</div><div class="line">            }</div><div class="line">            root.left = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            root.leftSize = <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(k == root.leftSize + root.rightSize + <span class="number">2</span>){</div><div class="line">            <span class="keyword">while</span>(root.right != <span class="keyword">null</span>){</div><div class="line">                root.rightSize++;</div><div class="line">                root = root.right;</div><div class="line">            }</div><div class="line">            root.right = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            root.rightSize = <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(root.leftSize &lt; k - <span class="number">1</span>){</div><div class="line">            insertKth(root.right, k - root.leftSize - <span class="number">1</span>, v);</div><div class="line">            root.rightSize++;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            insertKth(root.left, k, v);</div><div class="line">            root.leftSize++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="comment">/*</span></div><div class="line">    public void printAll(){</div><div class="line">        StringBuffer buf = new StringBuffer();</div><div class="line">        dfs(root, buf);</div><div class="line">        System.out.println(buf.toString());</div><div class="line">    }</div><div class="line">    */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeNode root, LinkedList&lt;Integer&gt; result){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        dfs(root.left, result);</div><div class="line">        result.add(root.val);</div><div class="line">        dfs(root.right, result);</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RecoverCounterArray</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recover</span>(<span class="keyword">int</span>[] a){</div><div class="line">        <span class="keyword">int</span> n = a.length;</div><div class="line">        BST tree = <span class="keyword">new</span> BST();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">            tree.insertKth(a[i] + <span class="number">1</span>, i );</div><div class="line">        }</div><div class="line">        LinkedList&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        tree.dfs(tree.root, ret);</div><div class="line">        <span class="keyword">int</span>[] b = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++){</div><div class="line">            b[ret.get(i)] = n - i;</div><div class="line">        }</div><div class="line">        System.out.println(Arrays.toString(b));</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 
 	
@@ -511,50 +547,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/28/Is-A-Graph-A-Tree/" >Is A Graph A Tree</a>
-			<span class="date"> Jan 28 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given the edge set of an undirected graph, return if it is a valid tree.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>The definition of a tree is connected graph with no loop. So we just need to check these two conditions respectively.</p>
-<h4 id="Idea_1_-_DFS">Idea 1 - DFS</h4>
-<p>First rebuild the graph from the given edge set. Then run a DFS to check if all nodes are connected and if there is a loop.</p>
-<h4 id="Idea_2_-_Union_Set">Idea 2 - Union Set</h4>
-<p>The basic idea is to use a union set to keep the connected component (CC). We can scan all edges and if both vertexes of an edge belongs to the same CC, then there is a loop. Finally we also need to check if there is only one CC after the scanning.</p>
-<h3 id="Variants">Variants</h3>
-<ul>
-<li>What if it’s directed graph?</li>
-<li>The edge is given in a different way. One example is like:<blockquote>
-<p>Assume you are given a TreeNode class which has getParent() API. Given a set of such nodes, determine if they form a tree (<a href="http://www.mitbbs.com/article_t/JobHunting/32829537.html" target="_blank" rel="external">Interview Report</a>)</p>
-</blockquote>
-</li>
-</ul>
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/28/Is-A-Graph-A-Tree/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -605,7 +597,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>17</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>18</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -624,37 +616,37 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/String/">String<span>3</span></a></li>
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
 		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
-			<li><a href="/tags/List/">List<span>1</span></a></li>
+			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
 		
 			<li><a href="/tags/Array/">Array<span>4</span></a></li>
 		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>5</span></a></li>
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
 		
 			<li><a href="/tags/HashMap/">HashMap<span>2</span></a></li>
 		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>6</span></a></li>
 		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
 		
 			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
-			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
 		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>4</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -666,6 +658,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/01/31/Longest-Substring-Without-Repeating-Characters/" ><i class="fa fa-file-o"></i>Longest Substring Without R...</a>
+      </li>
     
       <li>
         <a href="/2015/01/31/Linked-List-Cycle-II/" ><i class="fa fa-file-o"></i>Linked List Cycle II</a>
@@ -681,10 +677,6 @@
     
       <li>
         <a href="/2015/01/30/3-Sum/" ><i class="fa fa-file-o"></i>3 Sum</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/30/2-Sum/" ><i class="fa fa-file-o"></i>2 Sum</a>
       </li>
     
   </ul>
