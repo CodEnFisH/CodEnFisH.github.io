@@ -126,6 +126,13 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title">threeSum</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="comment">// k + i + j = 0, fix k</span></div><div class="line">    Arrays.sort(num);</div><div class="line">    List&lt;List&lt;Integer&gt;&gt; ret = <span class="keyword">new</span> LinkedList&lt;List&lt;Integer&gt;&gt;();</div><div class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(k &lt;= num.length - <span class="number">3</span>){</div><div class="line">        <span class="keyword">int</span> target = -num[k], i = k + <span class="number">1</span>, j = num.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i &lt; j){</div><div class="line">            <span class="keyword">if</span>(num[i] + num[j] &gt; target) j--;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(num[i] + num[j] &lt; target) i++;</div><div class="line">            <span class="keyword">else</span> {</div><div class="line">                ret.add(<span class="keyword">new</span> LinkedList&lt;Integer&gt;(Arrays.asList(num[k], num[i], num[j])));</div><div class="line">                do{i++;} <span class="keyword">while</span>(i &lt; j && num[i] == num[i-<span class="number">1</span>]);</div><div class="line">                do{j--;} <span class="keyword">while</span>(i &lt; j && num[j] == num[j+<span class="number">1</span>]);</div><div class="line">            }</div><div class="line">        }</div><div class="line">        do{k++;} <span class="keyword">while</span>(k &lt;= num.length - <span class="number">3</span> && num[k] == num[k-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
 
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+</blockquote>
+<h3 id="Solution-1">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">threeSumClosest</span>(<span class="keyword">int</span>[] num, <span class="keyword">int</span> t) {</div><div class="line">    <span class="comment">// k + i + j = 0, fix k</span></div><div class="line">    Arrays.sort(num);</div><div class="line">    <span class="keyword">int</span> k = <span class="number">0</span>, closest = num[<span class="number">0</span>] + num[<span class="number">1</span>] + num[<span class="number">2</span>];</div><div class="line">    <span class="keyword">while</span>(k &lt;= num.length - <span class="number">3</span>){</div><div class="line">        <span class="keyword">int</span> target = t - num[k], i = k + <span class="number">1</span>, j = num.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(i &lt; j){</div><div class="line">            <span class="keyword">if</span>(num[i] + num[j] == target) <span class="keyword">return</span> t;</div><div class="line">            <span class="keyword">else</span> {</div><div class="line">                closest = Math.abs(num[i] + num[j] + num[k] - t) &lt; Math.abs(closest - t) ?</div><div class="line">                    num[i] + num[j] + num[k] : closest;</div><div class="line">                <span class="keyword">if</span>(num[i] + num[j] &gt; target) j--;</div><div class="line">                <span class="keyword">else</span> i++;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        do{k++;} <span class="keyword">while</span>(k &lt;= num.length - <span class="number">3</span> && num[k] == num[k-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> closest;</div><div class="line">}</div></pre></td></tr></table></figure>
+
 
 	
 	</div>
@@ -567,33 +574,33 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/HashMap/">HashMap<span>2</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>2</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>2</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
 			<li><a href="/tags/Array/">Array<span>4</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span>3</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
 		
 			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
 		
+			<li><a href="/tags/String/">String<span>2</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
 			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>2</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>2</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>3</span></a></li>
 		
 		 
 		</ul>
