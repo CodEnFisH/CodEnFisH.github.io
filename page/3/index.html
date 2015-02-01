@@ -103,6 +103,98 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/29/Search-for-a-Range/" >Search for a Range</a>
+			<span class="date"> Jan 29 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a sorted array of integers, find the starting and ending position of a given target value.</p>
+<p>Your algorithm’s runtime complexity must be in the order of O(log n).</p>
+<p>If the target is not found in the array, return [-1, -1].</p>
+<p>For example, Given [5, 7, 7, 8, 8, 10] and target value 8, return [3, 4].</p>
+<h3 id="Solution">Solution</h3>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findFirst</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) r = m - <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m - <span class="number">1</span>] == a[m]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLast</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) r = m - <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(m &lt; right && a[m + <span class="number">1</span>] == a[m]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/29/Search-for-a-Range/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/29/Search-in-Rotated-Sorted-Array/" >Search in Rotated Sorted Array</a>
+			<span class="date"> Jan 29 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand.</p>
+<p>(i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).</p>
+<p>You are given a target value to search. If found in the array return its index, otherwise return -1.</p>
+<p>You may assume no duplicate exists in the array.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">return</span> bs(A, <span class="number">0</span>, A.length - <span class="number">1</span>, target);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">bs</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]){</div><div class="line">            <span class="keyword">if</span>(a[m] &lt;= a[r] && target &gt; a[r]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> l = m + <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) {</div><div class="line">            <span class="keyword">if</span>(a[m] &gt;= a[r] && target &lt; a[l]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m - <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variant_1:_Duplication_Allowed">Variant 1: Duplication Allowed</h3>
+<blockquote>
+<p>What if duplication is allowed</p>
+</blockquote>
+<p>The tricky part is that when a[m] == a[r], no subarray can be directly discard, the best we can do is to shrink the array by 1.</p>
+<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">return</span> bs(A, <span class="number">0</span>, A.length - <span class="number">1</span>, target);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">bs</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> l = left, r = right, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(target &gt; a[m]){</div><div class="line">            <span class="keyword">if</span>(a[m] == a[r]) r--;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; a[r] && target &gt; a[r]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> l = m + <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(target &lt; a[m]) {</div><div class="line">            <span class="keyword">if</span>(a[m] == a[r]) r--;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &gt; a[r] && target &lt; a[l]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m - <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variant_2:_Find_Min_in_Rotated_Array">Variant 2: Find Min in Rotated Array</h3>
+<blockquote>
+<p>Suppose a sorted array is rotated at some pivot unknown to you beforehand. Find the minimum element. (No duplication)</p>
+</blockquote>
+<h3 id="Solution-1">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span>(<span class="keyword">int</span>[] a) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = a.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[m] &gt; a[r]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; a[r]){</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m] &gt; a[m-<span class="number">1</span>]) r = m - <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> a[m];</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> a[l];</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>What if duplication is allowed?</p>
+</blockquote>
+<h3 id="Solution-2">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMin</span>(<span class="keyword">int</span>[] a) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = a.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">if</span>(l == r) <span class="keyword">return</span> a[l];</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[m] &gt; a[r]) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; a[r]){</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m] &gt;= a[m-<span class="number">1</span>]) r = m - <span class="number">1</span>; <span class="comment">// again, don't forget &gt;=</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> a[m];</div><div class="line">        }  <span class="keyword">else</span> r--;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/29/Search-in-Rotated-Sorted-Array/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/29/Top-k-in-BST/" >Top-k in BST</a>
 			<span class="date"> Jan 29 2015 </span>
 		</h3>
@@ -427,80 +519,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/27/Sqrt-x/" >Sqrt(x)</a>
-			<span class="date"> Jan 27 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Implemt sqrt(x)</p>
-</blockquote>
-<h3 id="Common_Pitfalls">Common Pitfalls</h3>
-<ol>
-<li>Use long to avoid overflow</li>
-<li>Return condition</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sqrt</span>(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">long</span> l = <span class="number">1</span>, r = x, t = x;</div><div class="line">    <span class="keyword">if</span>(x &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">long</span> m = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &lt;= t && (m + <span class="number">1</span>)*(m + <span class="number">1</span>) &gt; t) <span class="keyword">return</span> (<span class="keyword">int</span>)m;</div><div class="line">        <span class="keyword">if</span>(m * m &lt; t) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &gt; t) r = m - <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)l;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/27/Sqrt-x/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/27/Pow-x-n/" >Pow(x, n)</a>
-			<span class="date"> Jan 27 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Implement pow(x, n).</p>
-</blockquote>
-<h3 id="Common_Pitfalls">Common Pitfalls</h3>
-<ol>
-<li>Negative n</li>
-<li>x or n might be 0</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">pow</span>(<span class="keyword">double</span> x, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> x;</div><div class="line">    <span class="keyword">if</span>(n == -<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>/x;</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> x == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">    <span class="keyword">double</span> result = pow(x, n / <span class="number">2</span>);</div><div class="line">    result *= result;</div><div class="line">    <span class="keyword">if</span>(n % <span class="number">2</span> != <span class="number">0</span>) result *= pow(x, n % <span class="number">2</span>);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/27/Pow-x-n/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -551,7 +569,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>22</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>24</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -570,39 +588,39 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>5</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/List/">List<span>2</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+			<li><a href="/tags/Math/">Math<span>5</span></a></li>
 		
 			<li><a href="/tags/HashMap/">HashMap<span>2</span></a></li>
 		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+			<li><a href="/tags/DFS/">DFS<span>3</span></a></li>
 		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>4</span></a></li>
+			<li><a href="/tags/String/">String<span>5</span></a></li>
 		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+			<li><a href="/tags/List/">List<span>2</span></a></li>
 		
 			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
 		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
 			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>6</span></a></li>
 		
 		 
 		</ul>
@@ -616,6 +634,14 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/02/01/Valid-Sudoku/" ><i class="fa fa-file-o"></i>Valid Sudoku</a>
+      </li>
+    
+      <li>
+        <a href="/2015/02/01/Plus-One/" ><i class="fa fa-file-o"></i>Plus One</a>
+      </li>
+    
+      <li>
         <a href="/2015/02/01/Longest-Common-Prefix/" ><i class="fa fa-file-o"></i>Longest Common Prefix</a>
       </li>
     
@@ -625,14 +651,6 @@
     
       <li>
         <a href="/2015/01/31/Rotate-List/" ><i class="fa fa-file-o"></i>Rotate List</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/31/Trap-Rain-Water/" ><i class="fa fa-file-o"></i>Trap Rain Water</a>
-      </li>
-    
-      <li>
-        <a href="/2015/01/31/Longest-Substring-Without-Repeating-Characters/" ><i class="fa fa-file-o"></i>Longest Substring Without R...</a>
       </li>
     
   </ul>
