@@ -103,6 +103,44 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/29/Find-Local-Maximum-Minimum-aka-peek-element/" >Find Local Maximum/Minimum, aka, peek element</a>
+			<span class="date"> Jan 29 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>A peak element is an element that is greater than its neighbors.</p>
+<p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.</p>
+<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
+<p>You may imagine that num[-1] = num[n] = -∞.</p>
+<p>For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>Binary search, if the mid point is in the “climbing half”, discard the left subarray; else it’s in the “decending half”, discard the right subarray.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = num.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">if</span>(l == r) <span class="keyword">return</span> l;</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m &lt; num.length - <span class="number">1</span>){</div><div class="line">            <span class="keyword">if</span>(num[m] &lt; num[m+<span class="number">1</span>]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/29/Find-Local-Maximum-Minimum-aka-peek-element/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/29/Search-2D-Matrix/" >Search 2D Matrix</a>
 			<span class="date"> Jan 29 2015 </span>
 		</h3>
@@ -517,40 +555,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/28/PeekIterator/" >PeekIterator</a>
-			<span class="date"> Jan 28 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Implement peek() and pop() from java iterator(). for   example [1,2,3,4,5], peek() = 1, pop() = 1, peek() = 2, peek() = 2, pop() = 2</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>The idea is to use a normal iterator + an element to store the peek element.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class PeekIterator&lt;T&gt; implements Iterator&lt;T&gt; {</div><div class="line">  <span class="keyword">private</span> T elem;</div><div class="line">  <span class="keyword">private</span> Iterator&lt;T&gt; itr;</div><div class="line">  PeekIterator(Iterator&lt;T&gt; itr){</div><div class="line">    <span class="keyword">this</span>.itr = itr;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span>() {</div><div class="line">    <span class="keyword">return</span> elem == <span class="keyword">null</span>;</div><div class="line">  }</div><div class="line">  <span class="annotation">@Override</span></div><div class="line">  <span class="keyword">public</span> T <span class="title">next</span>() {</div><div class="line">    T ret = elem;</div><div class="line">    elem = itr.hasNext() ? itr.next() : <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">  }</div><div class="line">  <span class="keyword">public</span> T <span class="title">peek</span>() {</div><div class="line">    <span class="keyword">return</span> elem;</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/28/PeekIterator/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -601,7 +605,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>26</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>27</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -620,45 +624,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Math/">Math<span>5</span></a></li>
-		
-			<li><a href="/tags/List/">List<span>2</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>6</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
-		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+			<li><a href="/tags/DP/">DP<span>1</span></a></li>
 		
 			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
 		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>1</span></a></li>
+			<li><a href="/tags/Array/">Array<span>6</span></a></li>
 		
 			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
 		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>5</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>2</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+		
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>5</span></a></li>
 		
 		 
 		</ul>
@@ -670,6 +674,10 @@
 <div class="widget">
   <h4>Recent Posts</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/02/01/Word-Ladder/" ><i class="fa fa-file-o"></i>Word Ladder</a>
+      </li>
     
       <li>
         <a href="/2015/02/01/Palindrome-Partition/" ><i class="fa fa-file-o"></i>Palindrome Partition</a>
@@ -685,10 +693,6 @@
     
       <li>
         <a href="/2015/02/01/Plus-One/" ><i class="fa fa-file-o"></i>Plus One</a>
-      </li>
-    
-      <li>
-        <a href="/2015/02/01/Longest-Common-Prefix/" ><i class="fa fa-file-o"></i>Longest Common Prefix</a>
       </li>
     
   </ul>
