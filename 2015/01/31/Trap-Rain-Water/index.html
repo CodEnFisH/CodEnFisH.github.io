@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Remove Element | Codefish</title>
+  <title>Trap Rain Water | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Given an array and a value, remove all instances of that value in place and return the new length.
-The order of elements can be changed. It d">
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Remove Element"/>
+  <meta property="og:title" content="Trap Rain Water"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -90,7 +89,7 @@ The order of elements can be changed. It d">
 
 	
 		<div class="page-header">		
-			<h1> Remove Element</h1>
+			<h1> Trap Rain Water</h1>
 		</div>		
 	
 
@@ -108,11 +107,12 @@ The order of elements can be changed. It d">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given an array and a value, remove all instances of that value in place and return the new length.</p>
-<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
+<p>Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.</p>
+<p>For example, Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Loop invariant: A[0...i] is the nums != elem A(j...n-1] is the elem</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> elem) {</div><div class="line">    <span class="keyword">int</span> i = -<span class="number">1</span>, j = A.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j && j &gt;= <span class="number">0</span>){</div><div class="line">        <span class="keyword">if</span>(A[i+<span class="number">1</span>] != elem) i++;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> tmp = A[j];</div><div class="line">            A[j] = A[i+<span class="number">1</span>];</div><div class="line">            A[i+<span class="number">1</span>] = tmp;</div><div class="line">            j--;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>Moving the shorter one can guarantee it will hit a higher bar, where we can stop and accumulate.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, n = A.length, j = n - <span class="number">1</span>, ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j){</div><div class="line">        <span class="keyword">if</span>(A[i] &lt;= A[j]){</div><div class="line">            <span class="keyword">int</span> k = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &lt; j && A[k] &lt; A[i]) ret += (A[i] - A[k++]);</div><div class="line">            i = k;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> k = j - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &gt; i && A[k] &lt; A[j]) ret += (A[j] - A[k--]);</div><div class="line">            j = k;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -122,14 +122,14 @@ The order of elements can be changed. It d">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/30/Remove-Nth-from-end-of-list/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/31/Longest-Substring-Without-Repeating-Characters/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -156,7 +156,7 @@ The order of elements can be changed. It d">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 30 2015 
+	Jan 31 2015 
 	</div>
 	
 
@@ -180,7 +180,7 @@ The order of elements can be changed. It d">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Array/">Array<span>5</span></a></li> <li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+  <li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li> <li><a href="/tags/Array/">Array<span>5</span></a></li>
     </ul>
 	</div>
 		
