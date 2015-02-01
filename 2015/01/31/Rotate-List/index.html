@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Trap Rain Water | Codefish</title>
+  <title>Codefish</title>
   
   
-  <meta name="description" content="Problem
+  <meta name="description" content="title: Rotate Listdate: 2015-01-31 22:39:46tags:
 
-Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after">
+Listcategories:
+LeetcodeProblem
+
+Given a list, rotate the list to the right by k places, where k is ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Trap Rain Water"/>
+  
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -89,7 +92,7 @@ Given n non-negative integers representing an elevation map where the width of e
 
 	
 		<div class="page-header">		
-			<h1> Trap Rain Water</h1>
+			<h1> </h1>
 		</div>		
 	
 
@@ -105,15 +108,22 @@ Given n non-negative integers representing an elevation map where the width of e
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h3 id="Problem">Problem</h3>
+	    <p>title: Rotate List<br>date: 2015-01-31 22:39:46<br>tags:</p>
+<ul>
+<li>List<br>categories:</li>
+<li>Leetcode<h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.</p>
-<p>For example, Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.</p>
+<p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
 </blockquote>
+</li>
+</ul>
+<blockquote>
+<p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2, return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
 <h3 id="Solution">Solution</h3>
-<p>Moving the shorter one can guarantee it will hit a higher bar, where we can stop and accumulate.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, n = A.length, j = n - <span class="number">1</span>, ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j){</div><div class="line">        <span class="keyword">if</span>(A[i] &lt;= A[j]){</div><div class="line">            <span class="keyword">int</span> k = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &lt; j && A[k] &lt; A[i]) ret += (A[i] - A[k++]);</div><div class="line">            i = k;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> k = j - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &gt; i && A[k] &lt; A[j]) ret += (A[j] - A[k--]);</div><div class="line">            j = k;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">// corner cases: n &gt;= len, head = null</span></div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    ListNode second = head;</div><div class="line">    <span class="keyword">int</span> cnt = n;</div><div class="line">    <span class="keyword">while</span>(cnt&gt;<span class="number">0</span>){</div><div class="line">        cnt--;</div><div class="line">        <span class="keyword">if</span>(second.next == <span class="keyword">null</span>) {</div><div class="line">            second = head;</div><div class="line">            cnt = n % (n - cnt);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> second = second.next;</div><div class="line">    }</div><div class="line">    ListNode first = head;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(first.next != <span class="keyword">null</span>) {</div><div class="line">        second.next = head;</div><div class="line">        head = first.next;</div><div class="line">        first.next = <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> head;</div><div class="line">}</div></pre></td></tr></table></figure>
 
+<hr>
 	  
 	</div>
 
@@ -122,14 +132,14 @@ Given n non-negative integers representing an elevation map where the width of e
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/31/Rotate-List/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/31/Longest-Substring-Without-Repeating-Characters/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/01/31/Trap-Rain-Water/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -162,27 +172,8 @@ Given n non-negative integers representing an elevation map where the width of e
 
 	<!-- categories -->
     
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>19</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
 
 	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li> <li><a href="/tags/Array/">Array<span>5</span></a></li>
-    </ul>
-	</div>
 		
 
 	<!-- toc -->
