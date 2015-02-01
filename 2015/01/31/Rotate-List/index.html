@@ -6,10 +6,8 @@
   <title>Codefish</title>
   
   
-  <meta name="description" content="title: Rotate Listdate: 2015-01-31 22:39:46tags:
-
-Listcategories:
-LeetcodeProblem
+  <meta name="description" content="title: Rotate Listdate: 2015-01-31 22:39:46tags: Listcategories: Leetcode
+Problem
 
 Given a list, rotate the list to the right by k places, where k is ">
   
@@ -108,19 +106,13 @@ Given a list, rotate the list to the right by k places, where k is ">
 
 	<!-- content -->
 	<div class="mypage">		
-	    <p>title: Rotate List<br>date: 2015-01-31 22:39:46<br>tags:</p>
-<ul>
-<li>List<br>categories:</li>
-<li>Leetcode<h3 id="Problem">Problem</h3>
+	    <p>title: Rotate List<br>date: 2015-01-31 22:39:46<br>tags: List<br>categories: Leetcode</p>
+<h3 id="Problem">Problem</h3>
 <blockquote>
 <p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
-</blockquote>
-</li>
-</ul>
-<blockquote>
 <p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2, return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
-<h3 id="Solution">Solution</h3>
 </blockquote>
+<h3 id="Solution">Solution</h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">// corner cases: n &gt;= len, head = null</span></div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    ListNode second = head;</div><div class="line">    <span class="keyword">int</span> cnt = n;</div><div class="line">    <span class="keyword">while</span>(cnt&gt;<span class="number">0</span>){</div><div class="line">        cnt--;</div><div class="line">        <span class="keyword">if</span>(second.next == <span class="keyword">null</span>) {</div><div class="line">            second = head;</div><div class="line">            cnt = n % (n - cnt);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> second = second.next;</div><div class="line">    }</div><div class="line">    ListNode first = head;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(first.next != <span class="keyword">null</span>) {</div><div class="line">        second.next = head;</div><div class="line">        head = first.next;</div><div class="line">        first.next = <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> head;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <hr>
