@@ -103,39 +103,6 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
-			<a href="/2015/02/02/Reorder-List/" >Reorder List</a>
-			<span class="date"> Feb 2 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ListNode <span class="title">findMid</span>(ListNode head){</div><div class="line">    ListNode fast = head, slow = head;</div><div class="line">    <span class="keyword">while</span>(fast != <span class="keyword">null</span>){</div><div class="line">        fast = fast.next;</div><div class="line">        <span class="keyword">if</span>(fast != <span class="keyword">null</span>){</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> slow;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> ListNode <span class="title">reverse</span>(ListNode head){</div><div class="line">    ListNode prev = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">while</span>(head != <span class="keyword">null</span>){</div><div class="line">        ListNode tmp = head.next;</div><div class="line">        head.next = prev;</div><div class="line">        prev = head;</div><div class="line">        head = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> prev;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span>(ListNode head) {</div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    ListNode mid = findMid(head), secondHalf = reverse(mid), p = head, q = secondHalf;</div><div class="line">    <span class="keyword">while</span>(p.next != q && p != q){</div><div class="line">        ListNode t1 = p.next, t2 = q.next;</div><div class="line">        p.next = q;</div><div class="line">        q.next = t1;</div><div class="line">        p = t1;</div><div class="line">        q = t2;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/02/Reorder-List/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
 			<a href="/2015/02/02/Reverse-Linked-List/" ></a>
 			<span class="date"> Feb 2 2015 </span>
 		</h3>
@@ -167,6 +134,39 @@
   
 </div>
 	<a type="button" href="/2015/02/02/Reverse-Linked-List/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/02/02/Reorder-List/" >Reorder List</a>
+			<span class="date"> Feb 2 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ListNode <span class="title">findMid</span>(ListNode head){</div><div class="line">    ListNode fast = head, slow = head;</div><div class="line">    <span class="keyword">while</span>(fast != <span class="keyword">null</span>){</div><div class="line">        fast = fast.next;</div><div class="line">        <span class="keyword">if</span>(fast != <span class="keyword">null</span>){</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> slow;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> ListNode <span class="title">reverse</span>(ListNode head){</div><div class="line">    ListNode prev = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">while</span>(head != <span class="keyword">null</span>){</div><div class="line">        ListNode tmp = head.next;</div><div class="line">        head.next = prev;</div><div class="line">        prev = head;</div><div class="line">        head = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> prev;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span>(ListNode head) {</div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    ListNode mid = findMid(head), secondHalf = reverse(mid), p = head, q = secondHalf;</div><div class="line">    <span class="keyword">while</span>(p.next != q && p != q){</div><div class="line">        ListNode t1 = p.next, t2 = q.next;</div><div class="line">        p.next = q;</div><div class="line">        q.next = t1;</div><div class="line">        p = t1;</div><div class="line">        q = t2;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/02/Reorder-List/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -546,45 +546,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+			<li><a href="/tags/String/">String<span>5</span></a></li>
 		
 			<li><a href="/tags/DP/">DP<span>1</span></a></li>
 		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
 			<li><a href="/tags/List/">List<span>3</span></a></li>
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
 		
 			<li><a href="/tags/Array/">Array<span>7</span></a></li>
 		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
 		
 			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
 			<li><a href="/tags/Math/">Math<span>5</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>21</span></a></li>
@@ -600,11 +600,11 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2015/02/02/Reorder-List/" ><i class="fa fa-file-o"></i>Reorder List</a>
+        <a href="/2015/02/02/Reverse-Linked-List/" ><i class="fa fa-file-o"></i></a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Reverse-Linked-List/" ><i class="fa fa-file-o"></i></a>
+        <a href="/2015/02/02/Reorder-List/" ><i class="fa fa-file-o"></i>Reorder List</a>
       </li>
     
       <li>
