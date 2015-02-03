@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Best Time to Buy and Sell Stock I | Codefish</title>
+  <title>Best Time to Buy and Sell Stock | Codefish</title>
   
   
   <meta name="description" content="Problem
@@ -13,7 +13,7 @@ Say you have an array for which the ith element is the price of a given stock on
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Best Time to Buy and Sell Stock I"/>
+  <meta property="og:title" content="Best Time to Buy and Sell Stock"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -89,7 +89,7 @@ Say you have an array for which the ith element is the price of a given stock on
 
 	
 		<div class="page-header">		
-			<h1> Best Time to Buy and Sell Stock I</h1>
+			<h1> Best Time to Buy and Sell Stock</h1>
 		</div>		
 	
 
@@ -111,6 +111,13 @@ Say you have an array for which the ith element is the price of a given stock on
 </blockquote>
 <h3 id="Solution">Solution</h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span>(<span class="keyword">int</span>[] prices) {</div><div class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE, maxProfit = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++){</div><div class="line">        maxProfit = Math.max(maxProfit, prices[i] - min);</div><div class="line">        min = Math.min(min, prices[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> maxProfit;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>What if we allow at most two transactions?</p>
+</blockquote>
+<h3 id="Solution-1">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span>(<span class="keyword">int</span>[] prices) {</div><div class="line">    <span class="keyword">if</span>(prices.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> maxProfit = <span class="number">0</span>, min = prices[<span class="number">0</span>], max = prices[prices.length-<span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length], g = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++){</div><div class="line">        min = Math.min(min, prices[i]);</div><div class="line">        <span class="keyword">if</span>(prices[i] &gt;= min) f[i] = Math.max(f[i-<span class="number">1</span>], prices[i] - min);</div><div class="line">        maxProfit = Math.max(maxProfit, f[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = prices.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">        max = Math.max(max, prices[i]);</div><div class="line">        <span class="keyword">if</span>(prices[i] &lt;= max) g[i] = Math.max(g[i+<span class="number">1</span>], max - prices[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length - <span class="number">1</span>; i++){</div><div class="line">        maxProfit = Math.max(maxProfit, f[i] + g[i+<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> maxProfit;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>

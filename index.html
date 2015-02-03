@@ -247,7 +247,7 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
-			<a href="/2015/02/03/Best-Time-to-Buy-and-Sell-Stock-I/" >Best Time to Buy and Sell Stock I</a>
+			<a href="/2015/02/03/Best-Time-to-Buy-and-Sell-Stock-I/" >Best Time to Buy and Sell Stock</a>
 			<span class="date"> Feb 3 2015 </span>
 		</h3>
 	
@@ -265,6 +265,13 @@
 </blockquote>
 <h3 id="Solution">Solution</h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span>(<span class="keyword">int</span>[] prices) {</div><div class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE, maxProfit = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++){</div><div class="line">        maxProfit = Math.max(maxProfit, prices[i] - min);</div><div class="line">        min = Math.min(min, prices[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> maxProfit;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>What if we allow at most two transactions?</p>
+</blockquote>
+<h3 id="Solution-1">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span>(<span class="keyword">int</span>[] prices) {</div><div class="line">    <span class="keyword">if</span>(prices.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> maxProfit = <span class="number">0</span>, min = prices[<span class="number">0</span>], max = prices[prices.length-<span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length], g = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++){</div><div class="line">        min = Math.min(min, prices[i]);</div><div class="line">        <span class="keyword">if</span>(prices[i] &gt;= min) f[i] = Math.max(f[i-<span class="number">1</span>], prices[i] - min);</div><div class="line">        maxProfit = Math.max(maxProfit, f[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = prices.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">        max = Math.max(max, prices[i]);</div><div class="line">        <span class="keyword">if</span>(prices[i] &lt;= max) g[i] = Math.max(g[i+<span class="number">1</span>], max - prices[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length - <span class="number">1</span>; i++){</div><div class="line">        maxProfit = Math.max(maxProfit, f[i] + g[i+<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> maxProfit;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 
 	
@@ -507,43 +514,43 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
-		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/List/">List<span>10</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>7</span></a></li>
-		
 			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
 		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>10</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+			<li><a href="/tags/Math/">Math<span>6</span></a></li>
 		
 			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>5</span></a></li>
 		
 			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
 		
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/DP/">DP<span>7</span></a></li>
+		
 			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>10</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
 		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
