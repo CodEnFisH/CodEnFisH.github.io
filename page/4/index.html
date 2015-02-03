@@ -103,6 +103,188 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/" >Remove Duplicated from Sorted Array</a>
+			<span class="date"> Jan 30 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.</p>
+<p>Do not allocate extra space for another array, you must do this in place with constant memory.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; A.length){</div><div class="line">        <span class="keyword">if</span>(A[j] != A[i]) A[++i] = A[j];</div><div class="line">        j++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> Math.min(i + <span class="number">1</span>, A.length);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>What if we allow elements to be duplicated at most twice?</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; A.length){</div><div class="line">        <span class="keyword">if</span>(A[j] != A[i] || (A[j] == A[i] && (i == <span class="number">0</span> || A[i-<span class="number">1</span>] != A[j]))) A[++i] = A[j++];</div><div class="line">        <span class="keyword">else</span> j++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> Math.min(i + <span class="number">1</span>, A.length);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/30/Remove-Element/" >Remove Element</a>
+			<span class="date"> Jan 30 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given an array and a value, remove all instances of that value in place and return the new length.</p>
+<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Loop invariant: A[0...i] is the nums != elem A(j...n-1] is the elem</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> elem) {</div><div class="line">    <span class="keyword">int</span> i = -<span class="number">1</span>, j = A.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j && j &gt;= <span class="number">0</span>){</div><div class="line">        <span class="keyword">if</span>(A[i+<span class="number">1</span>] != elem) i++;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> tmp = A[j];</div><div class="line">            A[j] = A[i+<span class="number">1</span>];</div><div class="line">            A[i+<span class="number">1</span>] = tmp;</div><div class="line">            j--;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/30/Remove-Element/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/30/Remove-Nth-from-end-of-list/" >Remove Nth from end of list</a>
+			<span class="date"> Jan 30 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a linked list, remove the nth node from the end of list and return its head.</p>
+<h3 id="Solution">Solution</h3>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</div><div class="line">    dummy.next = head;</div><div class="line">    ListNode first = dummy, second = dummy;</div><div class="line">    <span class="keyword">while</span>(n-- &gt;<span class="number">0</span>) second = second.next;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    first.next = first.next.next;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/30/Remove-Nth-from-end-of-list/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/30/Subarray-Sum/" >Subarray Sum</a>
+			<span class="date"> Jan 30 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given an integer array, find a subarray where the sum of numbers is 0. Your code should return the index of the first number and the index of the last number.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>This problem has some variants: if the array only contains non-negative, we can have a linear solution with O(1) space; else we can scan from left to right and sum up a[0…i]. We can keep the subarray sum in a HashMap. During the later scan if we find that the current sum - target exists in the hashmap, then we found an answer.</p>
+<p>The following solution assume the target num is 0;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">subarraySum</span>(<span class="keyword">int</span>[] nums) {</div><div class="line">    HashMap&lt;Integer, Integer&gt; sums = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;(nums.length);</div><div class="line">    ArrayList&lt;Integer&gt; results = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    sums.put(<span class="number">0</span>, -<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++){</div><div class="line">        sum += nums[i];</div><div class="line">        <span class="keyword">if</span>(sums.containsKey(sum)){</div><div class="line">            results.add(sums.get(sum) + <span class="number">1</span>);</div><div class="line">            results.add(i);</div><div class="line">            <span class="keyword">return</span> results;</div><div class="line">        }</div><div class="line">        sums.put(sum, i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> results;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variant_1:_What_if_the_array_contains_only_non-negative?">Variant 1: What if the array contains only non-negative?</h3>
+<p>We can use a window method to keep track of the subarray sum: if the current window sum is already larger than the target, sliding to the right makes no good since all elements are non-negative.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">subarraySum</span>(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> i = -<span class="number">1</span>, j = -<span class="number">1</span>, sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">    <span class="keyword">while</span>(i &lt;= j && j &lt; nums.length - <span class="number">1</span>){</div><div class="line">        <span class="keyword">if</span>(sum + nums[j+<span class="number">1</span>] &lt; target){</div><div class="line">            sum += nums[j+<span class="number">1</span>];</div><div class="line">            <span class="keyword">if</span>(i == -<span class="number">1</span>) i = j + <span class="number">1</span>;</div><div class="line">            j++;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(sum + nums[j+<span class="number">1</span>] == target){</div><div class="line">            ret[<span class="number">0</span>] = i; ret[<span class="number">1</span>] = j + <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span> ret;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            sum -= nums[i];</div><div class="line">            i++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/30/Subarray-Sum/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/29/Median-of-Two-Sorted-Arrays/" >Median of Two Sorted Arrays</a>
+			<span class="date"> Jan 29 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>The idea here is similar to the top-k, we pick two pivots in the two arrays and check the pivot elements. According to the comparison result we discard subarrays.</p>
+<p>The key here is to make sure that we make sure there are k elements in the subarray that we are trying to continue to solve.</p>
+<p>There are several tricks: first, we take pa from a and pb from b where pa + pb = k; second, there are several return conditions, remember to list all of them; 3rd, we always let the length of a &lt; b, this makes the choice of pa pb simpler (remember the min operation too).</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span>(<span class="keyword">int</span> A[], <span class="keyword">int</span> B[]) {</div><div class="line">    <span class="keyword">int</span> m = A.length, n = B.length;</div><div class="line">    <span class="keyword">if</span>((m + n) % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> (findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n)/<span class="number">2</span>) +</div><div class="line">                                 findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n )/<span class="number">2</span> + <span class="number">1</span> )) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n) / <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findK</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> la, <span class="keyword">int</span> ra, <span class="keyword">int</span>[] b, <span class="keyword">int</span> lb, <span class="keyword">int</span> rb, <span class="keyword">int</span> k){</div><div class="line">    <span class="keyword">if</span>(la &gt; ra) <span class="keyword">return</span> b[lb+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(lb &gt; rb) <span class="keyword">return</span> a[la+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(k == <span class="number">1</span>) <span class="keyword">return</span> Math.min(a[la], b[lb]);</div><div class="line">    <span class="keyword">int</span> m = ra - la + <span class="number">1</span>, n = rb - lb + <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(m + n == k) <span class="keyword">return</span> Math.max(a[ra], b[rb]);</div><div class="line">    <span class="keyword">if</span>(m &gt; n) <span class="keyword">return</span> findK(b, lb, rb, a, la, ra, k);</div><div class="line">    <span class="keyword">int</span> pa = Math.min(k/<span class="number">2</span>, m), pb = k - pa;</div><div class="line">    <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &gt; b[lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la, la + pa - <span class="number">1</span>, b, lb + pb, rb, k - pb);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &lt; b [lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la + pa, ra, b, lb, lb +pb - <span class="number">1</span>, k - pa);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> a[la + pa - <span class="number">1</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/29/Median-of-Two-Sorted-Arrays/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/29/Find-Local-Maximum-Minimum-aka-peek-element/" >Find Local Maximum/Minimum, aka, peek element</a>
 			<span class="date"> Jan 29 2015 </span>
 		</h3>
@@ -336,225 +518,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/29/Top-k-in-BST/" >Top-k in BST</a>
-			<span class="date"> Jan 29 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<p>Find the kth smallest/largest element in BST</p>
-<h3 id="Solution">Solution</h3>
-<ul>
-<li>If we are not allowed to augment the BST, we can just DFS the BST and count the number of element in subtree</li>
-<li>If we are allowed to augment the BST, we can add counter to each node, w/o having to do DFS</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>, ans = <span class="number">0</span>;</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">topKInBST</span>(TreeNode root, <span class="keyword">int</span> k){</div><div class="line">  dfs(root, k);</div><div class="line">  <span class="keyword">return</span> cnt;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeNode root, <span class="keyword">int</span> k){</div><div class="line">  <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">  dfs(root.left, k);</div><div class="line">  <span class="keyword">if</span>(++cnt == k) {</div><div class="line">    ans = root.val;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  }</div><div class="line">  dfs(root.right);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/29/Top-k-in-BST/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/29/QAZ-number-Maximal-Surpasser-Count/" >QAZ number/Maximal Surpasser Count</a>
-			<span class="date"> Jan 29 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>qaz is a value for a number where this number is less than the other next values which have indexes larger than the index of this number.</p>
-<p>for example: 33 , 25 , 26 , 58 , 41 , 59 -&gt; qaz of (33) = 3 where 33 less than 3 numbers (58 , 41 , 59), qaz of (25) = 4 and not 5 because the index of 33 is less than the index of 25, qaz of (26) = 3 , qaz of (58) = 1 , qaz of (41) = 1 , qaz of (59) = 0.<br>the question is to find the max qaz.</p>
-</blockquote>
-<h3 id="Solutions">Solutions</h3>
-<p>This is a classicical problem, it has two basic format: 1) given original array, compute how many larger/smaller number on the left/right 2) given many larger/smaller number on the left/right, compute the original (see variant)</p>
-<h4 id="Idea_1">Idea 1</h4>
-<p>We can use a BST to solve the problem. We insert every element from last to first and during the insertion we count how many elements are larger than it.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findSurpasser</span>(<span class="keyword">int</span>[] a){</div><div class="line">  <span class="comment">//todo</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h4 id="Idea_2">Idea 2</h4>
-<p>We can use a similar idea as merge-sort: we partition, solve the subproblem and when merge the subproblem, if we can count the qaz number within O(n) then we can solve the problem in O(nlogn). It’s like the Reverse Pair Problem.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findSurpasser</span>(<span class="keyword">int</span>[] a){</div><div class="line">  <span class="comment">//todo</span></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant">Variant</h3>
-<blockquote>
-<p>There is an array a[], now given another array b[] whose element is the number of larger element on the right of the corresponding position in a[]. Recover a[]</p>
-<p>Example: a = [3,1,6,4,2,5], b = [3,4,0,1,1,0]. Given b, compute a.</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div></pre></td><td class="code"><pre><div class="line">class TreeNode {</div><div class="line">    <span class="keyword">int</span> val;</div><div class="line">    TreeNode left, right;</div><div class="line">    <span class="keyword">public</span> <span class="title">TreeNode</span>(<span class="keyword">int</span> val){</div><div class="line">        <span class="keyword">this</span>.val = val;</div><div class="line">        <span class="keyword">this</span>.leftSize = <span class="number">0</span>;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// augmentation</span></div><div class="line">    <span class="keyword">int</span> leftSize;</div><div class="line">    <span class="keyword">int</span> rightSize;</div><div class="line">}</div><div class="line">class BST {</div><div class="line">    TreeNode root;</div><div class="line">    <span class="keyword">public</span> <span class="title">BST</span>(){</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span>(<span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) root = <span class="keyword">new</span> TreeNode(v);</div><div class="line">        <span class="keyword">else</span> insertToNode(root, v);</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertToNode</span>(TreeNode root, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(v &lt;= root.val) {</div><div class="line">            <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) {</div><div class="line">                root.left = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                root.leftSize = <span class="number">1</span>;</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                insertToNode(root.left, v);</div><div class="line">                root.leftSize++;</div><div class="line">            }</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(root.right == <span class="keyword">null</span>){</div><div class="line">                root.right = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                root.rightSize = <span class="number">1</span>;</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                insertToNode(root.right, v);</div><div class="line">                root.rightSize++;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="comment">// insert the k-th smallest element into the bst</span></div><div class="line">    <span class="comment">// k is 1-based, v is assosiated value</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertKth</span>(<span class="keyword">int</span> k, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) {</div><div class="line">            root = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        insertKth(root, k, v);</div><div class="line">    }</div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">insertKth</span>(TreeNode root, <span class="keyword">int</span> k, <span class="keyword">int</span> v){</div><div class="line">        <span class="keyword">if</span>(k == <span class="number">1</span>) {</div><div class="line">            <span class="keyword">while</span>(root.left != <span class="keyword">null</span>){</div><div class="line">                root.leftSize++;</div><div class="line">                root = root.left;</div><div class="line">            }</div><div class="line">            root.left = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            root.leftSize = <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(k == root.leftSize + root.rightSize + <span class="number">2</span>){</div><div class="line">            <span class="keyword">while</span>(root.right != <span class="keyword">null</span>){</div><div class="line">                root.rightSize++;</div><div class="line">                root = root.right;</div><div class="line">            }</div><div class="line">            root.right = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            root.rightSize = <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(root.leftSize &lt; k - <span class="number">1</span>){</div><div class="line">            insertKth(root.right, k - root.leftSize - <span class="number">1</span>, v);</div><div class="line">            root.rightSize++;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            insertKth(root.left, k, v);</div><div class="line">            root.leftSize++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="comment">/*</span></div><div class="line">    public void printAll(){</div><div class="line">        StringBuffer buf = new StringBuffer();</div><div class="line">        dfs(root, buf);</div><div class="line">        System.out.println(buf.toString());</div><div class="line">    }</div><div class="line">    */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeNode root, LinkedList&lt;Integer&gt; result){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        dfs(root.left, result);</div><div class="line">        result.add(root.val);</div><div class="line">        dfs(root.right, result);</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RecoverCounterArray</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recover</span>(<span class="keyword">int</span>[] a){</div><div class="line">        <span class="keyword">int</span> n = a.length;</div><div class="line">        BST tree = <span class="keyword">new</span> BST();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = n-<span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">            tree.insertKth(a[i] + <span class="number">1</span>, i );</div><div class="line">        }</div><div class="line">        LinkedList&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        tree.dfs(tree.root, ret);</div><div class="line">        <span class="keyword">int</span>[] b = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++){</div><div class="line">            b[ret.get(i)] = n - i;</div><div class="line">        }</div><div class="line">        System.out.println(Arrays.toString(b));</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/29/QAZ-number-Maximal-Surpasser-Count/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/28/Wiggle-Sort/" >Wiggle Sort</a>
-			<span class="date"> Jan 28 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>We can scan the array and keep track of the last three elements and swap them if</p>
-<ul>
-<li>a[i-2] &lt; a[i-1] &amp;&amp; a[i-1] &lt; a[i]</li>
-<li>a[i-2] &gt; a[i-1] &amp;&amp; a[i-1]  &gt; a[i]</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> wiggleSort(<span class="keyword">int</span>[] a){</div><div class="line">    <span class="keyword">int</span> n = a.length;</div><div class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(a[<span class="number">0</span>] &gt; a[<span class="number">1</span>]) { <span class="comment">// we can remove this swap if we don't require a[1] &gt; a[0]</span></div><div class="line">        <span class="keyword">int</span> tmp = a[<span class="number">1</span>];</div><div class="line">        a[<span class="number">1</span>] = a[<span class="number">0</span>];</div><div class="line">        a[<span class="number">0</span>] = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++){</div><div class="line">        <span class="keyword">if</span>((a[i-<span class="number">2</span>] &lt; a[i-<span class="number">1</span>] && a[i] &gt; a[i-<span class="number">1</span>]) || a[i-<span class="number">2</span>] &gt; a[i-<span class="number">1</span>] && a[i] &lt; a[i-<span class="number">1</span>]){</div><div class="line">            <span class="keyword">int</span> tmp = a[i];</div><div class="line">            a[i] = a[i-<span class="number">1</span>];</div><div class="line">            a[i-<span class="number">1</span>] = tmp;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/28/Wiggle-Sort/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/28/Level-Order-Related/" >Level Order Related</a>
-			<span class="date"> Jan 28 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>Level order traversal can be done in two ways: DFS or BFS: DFS access nodes of each level from left to right (in-order); BFS explicitly expand level-by-level</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DFS</span></div><div class="line">List&lt;List&lt;Integer&gt;&gt; ret = <span class="keyword">new</span> LinkedList&lt;List&lt;Integer&gt;&gt;();</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeNode root, <span class="keyword">int</span> lev) {</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(ret.size() &lt; lev){</div><div class="line">        List&lt;Integer&gt; newLev = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        ret.add(newLev);</div><div class="line">    }</div><div class="line">    ret.get(lev - <span class="number">1</span>).add(root.val);</div><div class="line">    dfs(root.left, lev + <span class="number">1</span>);</div><div class="line">    dfs(root.right, lev + <span class="number">1</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//BFS</span></div><div class="line">List&lt;List&lt;Integer&gt;&gt; ret = <span class="keyword">new</span> LinkedList&lt;List&lt;Integer&gt;&gt;();</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span>(TreeNode root){</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    LinkedList&lt;TreeNode&gt; q = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</div><div class="line">    TreeNode dummy = <span class="keyword">new</span> TreeNode(-<span class="number">1</span>), next;</div><div class="line">    q.add(root); q.add(dummy);</div><div class="line">    LinkedList&lt;Integer&gt; newLev = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">    <span class="keyword">while</span>(!q.isEmpty()){</div><div class="line">        next = q.removeFirst();</div><div class="line">        <span class="keyword">if</span>(next == dummy){</div><div class="line">            <span class="keyword">if</span>(!q.isEmpty()){</div><div class="line">                ret.add(newLev);</div><div class="line">                newLev = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">                q.add(dummy);</div><div class="line">            } <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            newLev.add(next.val);</div><div class="line">            <span class="keyword">if</span>(next.left != <span class="keyword">null</span>) q.add(next.left);</div><div class="line">            <span class="keyword">if</span>(next.right != <span class="keyword">null</span>) q.add(next.right);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(!newLev.isEmpty()) ret.add(newLev);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variants_1-_Populating_Next_Pointer_in_Perfect_Binary_Tree">Variants 1. Populating Next Pointer in Perfect Binary Tree</h3>
-<blockquote>
-<p>Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to NULL.</p>
-</blockquote>
-<p>We just need to level-order traversal the tree. During the traversal, if we find that we are accessing a left child, then we link next to the parent’s right child, otherwise we link next to parent’s next’s left child.</p>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * Definition for binary tree with next pointer.</div><div class="line"> * public class TreeLinkNode {</div><div class="line"> *     int val;</div><div class="line"> *     TreeLinkNode left, right, next;</div><div class="line"> *     TreeLinkNode(int x) { val = x; }</div><div class="line"> * }</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeLinkNode root, TreeLinkNode parent){</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(parent != <span class="keyword">null</span>) {</div><div class="line">        <span class="comment">// access</span></div><div class="line">        <span class="keyword">if</span>(root == parent.left) root.next = parent.right;</div><div class="line">        <span class="keyword">else</span> root.next = parent.next == <span class="keyword">null</span> ? <span class="keyword">null</span> : parent.next.left;</div><div class="line">    }</div><div class="line">    <span class="comment">// recursion</span></div><div class="line">    dfs(root.left, root);</div><div class="line">    dfs(root.right, root);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variants_2-_Populating_Next_Pointer_in_Any_Binary_Tree">Variants 2. Populating Next Pointer in Any Binary Tree</h3>
-<p>The simplest solution is to use iterative version of BFS w/o Queue.</p>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">connect</span>(TreeLinkNode root) {</div><div class="line">    TreeLinkNode parent = root;</div><div class="line">    <span class="keyword">while</span>(parent != <span class="keyword">null</span>) {</div><div class="line">        TreeLinkNode dummy = <span class="keyword">new</span> TreeLinkNode(-<span class="number">1</span>), prev = dummy;</div><div class="line">        <span class="keyword">while</span>(parent != <span class="keyword">null</span>){</div><div class="line">            <span class="keyword">if</span>(parent.left != <span class="keyword">null</span>){</div><div class="line">                prev.next = parent.left;</div><div class="line">                prev = prev.next;</div><div class="line">            }</div><div class="line">            <span class="keyword">if</span>(parent.right != <span class="keyword">null</span>){</div><div class="line">                prev.next = parent.right;</div><div class="line">                prev = prev.next;</div><div class="line">            }</div><div class="line">            parent = parent.next;</div><div class="line">        }</div><div class="line">        parent = dummy.next;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant_3-_ZigZag_Order_Traversal">Variant 3. ZigZag Order Traversal</h3>
-<p>The only difference is that we need to check even/odd level.</p>
-<figure class="highlight Java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">List&lt;List&lt;Integer&gt;&gt; ret = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</div><div class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="title">zigzagLevelOrder</span>(TreeNode root) {</div><div class="line">    dfs(root, <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TreeNode root, <span class="keyword">int</span> lev){</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(ret.size() == lev - <span class="number">1</span>) ret.add(<span class="keyword">new</span> LinkedList&lt;Integer&gt;());</div><div class="line">    <span class="comment">// inorder access</span></div><div class="line">    List&lt;Integer&gt; nodeLevel = ret.get(lev - <span class="number">1</span>);</div><div class="line">    <span class="keyword">if</span>(lev % <span class="number">2</span> == <span class="number">1</span>) nodeLevel.add(root.val);</div><div class="line">    <span class="keyword">else</span> nodeLevel.add(<span class="number">0</span>, root.val);</div><div class="line">    <span class="comment">// recursion</span></div><div class="line">    dfs(root.left, lev + <span class="number">1</span>);</div><div class="line">    dfs(root.right, lev + <span class="number">1</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant_4-_Pretty_Print_Binary_Tree">Variant 4. Pretty Print Binary Tree</h3>
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/28/Level-Order-Related/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/28/Is-A-Graph-A-Tree/" >Is A Graph A Tree</a>
-			<span class="date"> Jan 28 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given the edge set of an undirected graph, return if it is a valid tree.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>The definition of a tree is connected graph with no loop. So we just need to check these two conditions respectively.</p>
-<h4 id="Idea_1_-_DFS">Idea 1 - DFS</h4>
-<p>First rebuild the graph from the given edge set. Then run a DFS to check if all nodes are connected and if there is a loop.</p>
-<h4 id="Idea_2_-_Union_Set">Idea 2 - Union Set</h4>
-<p>The basic idea is to use a union set to keep the connected component (CC). We can scan all edges and if both vertexes of an edge belongs to the same CC, then there is a loop. Finally we also need to check if there is only one CC after the scanning.</p>
-<h3 id="Variants">Variants</h3>
-<ul>
-<li>What if it’s directed graph?</li>
-<li>The edge is given in a different way. One example is like:<blockquote>
-<p>Assume you are given a TreeNode class which has getParent() API. Given a set of such nodes, determine if they form a tree (<a href="http://www.mitbbs.com/article_t/JobHunting/32829537.html" target="_blank" rel="external">Interview Report</a>)</p>
-</blockquote>
-</li>
-</ul>
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/28/Is-A-Graph-A-Tree/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -605,7 +568,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>37</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>42</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -624,45 +587,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
+			<li><a href="/tags/Array/">Array<span>10</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>5</span></a></li>
+		
 			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
 		
 			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
 		
-			<li><a href="/tags/List/">List<span>10</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>5</span></a></li>
+			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
 		
-			<li><a href="/tags/DP/">DP<span>1</span></a></li>
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
 		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
 		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>8</span></a></li>
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
 		
 			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
 		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
+			<li><a href="/tags/DP/">DP<span>6</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>10</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>22</span></a></li>
@@ -678,23 +641,23 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2015/02/02/Swap-Node-In-Pair/" ><i class="fa fa-file-o"></i>Swap Node In Pair</a>
+        <a href="/2015/02/03/Minimum-Path-Sum/" ><i class="fa fa-file-o"></i>Minimum Path Sum</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-I/" ><i class="fa fa-file-o"></i>Delete Duplicated From Sort...</a>
+        <a href="/2015/02/03/Triangle/" ><i class="fa fa-file-o"></i>Triangle</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Insertion-Sort-List/" ><i class="fa fa-file-o"></i>Insertion Sort List</a>
+        <a href="/2015/02/03/Decode-Ways/" ><i class="fa fa-file-o"></i>Decode Ways</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Merge-Sort-List/" ><i class="fa fa-file-o"></i>Merge Sort List</a>
+        <a href="/2015/02/03/Best-Time-to-Buy-and-Sell-Stock-I/" ><i class="fa fa-file-o"></i>Best Time to Buy and Sell S...</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" ><i class="fa fa-file-o"></i>Delete Duplicated From Sort...</a>
+        <a href="/2015/02/03/Maximum-Subarray/" ><i class="fa fa-file-o"></i>Maximum Subarray</a>
       </li>
     
   </ul>

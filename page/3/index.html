@@ -103,6 +103,177 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/02/01/Longest-Common-Prefix/" >Longest Common Prefix</a>
+			<span class="date"> Feb 1 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>Trie tree is overkill for this simple problem, but I will practice Trie anyway.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUM_OF_CHAR = <span class="number">256</span>;</div><div class="line">    class TrieNode {</div><div class="line">        TrieNode[] children = <span class="keyword">new</span> TrieNode[NUM_OF_CHAR];</div><div class="line">        String prefix;</div><div class="line">        TrieNode(String prefix){</div><div class="line">            <span class="keyword">this</span>.prefix = prefix;</div><div class="line">            <span class="comment">// augmentation</span></div><div class="line">        }</div><div class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span>(String str){</div><div class="line">            <span class="comment">// augmentation</span></div><div class="line">            cnt++;</div><div class="line">            <span class="keyword">if</span>(str.equals(<span class="string">""</span>)){</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            }</div><div class="line">            <span class="keyword">char</span> first = str.charAt(<span class="number">0</span>);</div><div class="line">            <span class="keyword">if</span>(children[(<span class="keyword">int</span>)first] == <span class="keyword">null</span>) children[(<span class="keyword">int</span>)first] = <span class="keyword">new</span> TrieNode(prefix + first);</div><div class="line">            children[(<span class="keyword">int</span>)first].insert(str.substring(<span class="number">1</span>));</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="comment">// augmentation field</span></div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">    }</div><div class="line">    String longest = <span class="string">""</span>;</div><div class="line">    <span class="keyword">public</span> String <span class="title">longestCommonPrefix</span>(String[] strs) {</div><div class="line">        TrieNode root = <span class="keyword">new</span> TrieNode(<span class="string">""</span>);</div><div class="line">        <span class="keyword">for</span>(String s: strs) root.insert(s);</div><div class="line">        dfs(root, strs.length);</div><div class="line">        <span class="keyword">return</span> longest;</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(TrieNode root, <span class="keyword">int</span> total){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; NUM_OF_CHAR; i++){</div><div class="line">            <span class="keyword">if</span>(root.children[i] != <span class="keyword">null</span>){</div><div class="line">                <span class="keyword">if</span>(root.children[i].cnt != total) <span class="keyword">return</span>;</div><div class="line">                longest = root.children[i].prefix;</div><div class="line">                dfs(root.children[i], total);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/01/Longest-Common-Prefix/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/02/01/Reverse-Int/" >Reverse Int</a>
+			<span class="date"> Feb 1 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Reverse digits of an integer.</p>
+<p>Example1: x = 123, return 321; Example2: x = -123, return -321</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// overflow</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span>(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">boolean</span> isPositive = x &gt; <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(x != <span class="number">0</span>) {</div><div class="line">        <span class="keyword">int</span> d = x % <span class="number">10</span>;</div><div class="line">        <span class="keyword">if</span>(isPositive && sum &gt; (Integer.MAX_VALUE - d) / <span class="number">10</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(!isPositive && sum &lt; (Integer.MIN_VALUE - d) / <span class="number">10</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        sum = sum * <span class="number">10</span> + d;</div><div class="line">        x /= <span class="number">10</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/01/Reverse-Int/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/31/Rotate-List/" >Rotate List</a>
+			<span class="date"> Jan 31 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
+<p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2, return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">// corner cases: n &gt;= len, head = null</span></div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    ListNode second = head;</div><div class="line">    <span class="keyword">int</span> cnt = n;</div><div class="line">    <span class="keyword">while</span>(cnt&gt;<span class="number">0</span>){</div><div class="line">        cnt--;</div><div class="line">        <span class="keyword">if</span>(second.next == <span class="keyword">null</span>) {</div><div class="line">            second = head;</div><div class="line">            cnt = n % (n - cnt);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> second = second.next;</div><div class="line">    }</div><div class="line">    ListNode first = head;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(first.next != <span class="keyword">null</span>) {</div><div class="line">        second.next = head;</div><div class="line">        head = first.next;</div><div class="line">        first.next = <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> head;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<hr>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/31/Rotate-List/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/31/Trap-Rain-Water/" >Trap Rain Water</a>
+			<span class="date"> Jan 31 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.</p>
+<p>For example, Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>Moving the shorter one can guarantee it will hit a higher bar, where we can stop and accumulate.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, n = A.length, j = n - <span class="number">1</span>, ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j){</div><div class="line">        <span class="keyword">if</span>(A[i] &lt;= A[j]){</div><div class="line">            <span class="keyword">int</span> k = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &lt; j && A[k] &lt; A[i]) ret += (A[i] - A[k++]);</div><div class="line">            i = k;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> k = j - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &gt; i && A[k] &lt; A[j]) ret += (A[j] - A[k--]);</div><div class="line">            j = k;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/31/Trap-Rain-Water/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/31/Longest-Substring-Without-Repeating-Characters/" >Longest Substring Without Repeating Characters</a>
+			<span class="date"> Jan 31 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating letters for “abcabcbb” is “abc”, which the length is 3. For “bbbbb” the longest substring is “b”, with the length of 1.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span>(String s) {</div><div class="line">    <span class="keyword">char</span>[] str = s.toCharArray();</div><div class="line">    <span class="keyword">int</span>[] counter = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="keyword">int</span> m = s.length(), i = <span class="number">0</span>, j = -<span class="number">1</span>, max = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; m){</div><div class="line">        <span class="keyword">if</span>(repeated(counter)){</div><div class="line">            counter[(<span class="keyword">int</span>)str[i++]]--;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            max = Math.max(max, j - i + <span class="number">1</span>);</div><div class="line">            <span class="keyword">if</span>(j == m - <span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">            counter[(<span class="keyword">int</span>)str[++j]]++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">repeated</span>(<span class="keyword">int</span>[] counter){</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; counter.length; i++) <span class="keyword">if</span>(counter[i] &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/31/Longest-Substring-Without-Repeating-Characters/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/31/Linked-List-Cycle-II/" >Linked List Cycle II</a>
 			<span class="date"> Jan 31 2015 </span>
 		</h3>
@@ -295,188 +466,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/" >Remove Duplicated from Sorted Array</a>
-			<span class="date"> Jan 30 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.</p>
-<p>Do not allocate extra space for another array, you must do this in place with constant memory.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; A.length){</div><div class="line">        <span class="keyword">if</span>(A[j] != A[i]) A[++i] = A[j];</div><div class="line">        j++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> Math.min(i + <span class="number">1</span>, A.length);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant">Variant</h3>
-<blockquote>
-<p>What if we allow elements to be duplicated at most twice?</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; A.length){</div><div class="line">        <span class="keyword">if</span>(A[j] != A[i] || (A[j] == A[i] && (i == <span class="number">0</span> || A[i-<span class="number">1</span>] != A[j]))) A[++i] = A[j++];</div><div class="line">        <span class="keyword">else</span> j++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> Math.min(i + <span class="number">1</span>, A.length);</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/30/Remove-Duplicated-from-Sorted-Array/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/30/Remove-Element/" >Remove Element</a>
-			<span class="date"> Jan 30 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given an array and a value, remove all instances of that value in place and return the new length.</p>
-<p>The order of elements can be changed. It doesn’t matter what you leave beyond the new length.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Loop invariant: A[0...i] is the nums != elem A(j...n-1] is the elem</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeElement</span>(<span class="keyword">int</span>[] A, <span class="keyword">int</span> elem) {</div><div class="line">    <span class="keyword">int</span> i = -<span class="number">1</span>, j = A.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j && j &gt;= <span class="number">0</span>){</div><div class="line">        <span class="keyword">if</span>(A[i+<span class="number">1</span>] != elem) i++;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> tmp = A[j];</div><div class="line">            A[j] = A[i+<span class="number">1</span>];</div><div class="line">            A[i+<span class="number">1</span>] = tmp;</div><div class="line">            j--;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/30/Remove-Element/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/30/Remove-Nth-from-end-of-list/" >Remove Nth from end of list</a>
-			<span class="date"> Jan 30 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a linked list, remove the nth node from the end of list and return its head.</p>
-<h3 id="Solution">Solution</h3>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">removeNthFromEnd</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</div><div class="line">    dummy.next = head;</div><div class="line">    ListNode first = dummy, second = dummy;</div><div class="line">    <span class="keyword">while</span>(n-- &gt;<span class="number">0</span>) second = second.next;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    first.next = first.next.next;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/30/Remove-Nth-from-end-of-list/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/30/Subarray-Sum/" >Subarray Sum</a>
-			<span class="date"> Jan 30 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given an integer array, find a subarray where the sum of numbers is 0. Your code should return the index of the first number and the index of the last number.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>This problem has some variants: if the array only contains non-negative, we can have a linear solution with O(1) space; else we can scan from left to right and sum up a[0…i]. We can keep the subarray sum in a HashMap. During the later scan if we find that the current sum - target exists in the hashmap, then we found an answer.</p>
-<p>The following solution assume the target num is 0;</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ArrayList&lt;Integer&gt; <span class="title">subarraySum</span>(<span class="keyword">int</span>[] nums) {</div><div class="line">    HashMap&lt;Integer, Integer&gt; sums = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;(nums.length);</div><div class="line">    ArrayList&lt;Integer&gt; results = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    sums.put(<span class="number">0</span>, -<span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++){</div><div class="line">        sum += nums[i];</div><div class="line">        <span class="keyword">if</span>(sums.containsKey(sum)){</div><div class="line">            results.add(sums.get(sum) + <span class="number">1</span>);</div><div class="line">            results.add(i);</div><div class="line">            <span class="keyword">return</span> results;</div><div class="line">        }</div><div class="line">        sums.put(sum, i);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> results;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant_1:_What_if_the_array_contains_only_non-negative?">Variant 1: What if the array contains only non-negative?</h3>
-<p>We can use a window method to keep track of the subarray sum: if the current window sum is already larger than the target, sliding to the right makes no good since all elements are non-negative.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">subarraySum</span>(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> i = -<span class="number">1</span>, j = -<span class="number">1</span>, sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</div><div class="line">    <span class="keyword">while</span>(i &lt;= j && j &lt; nums.length - <span class="number">1</span>){</div><div class="line">        <span class="keyword">if</span>(sum + nums[j+<span class="number">1</span>] &lt; target){</div><div class="line">            sum += nums[j+<span class="number">1</span>];</div><div class="line">            <span class="keyword">if</span>(i == -<span class="number">1</span>) i = j + <span class="number">1</span>;</div><div class="line">            j++;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(sum + nums[j+<span class="number">1</span>] == target){</div><div class="line">            ret[<span class="number">0</span>] = i; ret[<span class="number">1</span>] = j + <span class="number">1</span>;</div><div class="line">            <span class="keyword">return</span> ret;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            sum -= nums[i];</div><div class="line">            i++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/30/Subarray-Sum/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/29/Median-of-Two-Sorted-Arrays/" >Median of Two Sorted Arrays</a>
-			<span class="date"> Jan 29 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>The idea here is similar to the top-k, we pick two pivots in the two arrays and check the pivot elements. According to the comparison result we discard subarrays.</p>
-<p>The key here is to make sure that we make sure there are k elements in the subarray that we are trying to continue to solve.</p>
-<p>There are several tricks: first, we take pa from a and pb from b where pa + pb = k; second, there are several return conditions, remember to list all of them; 3rd, we always let the length of a &lt; b, this makes the choice of pa pb simpler (remember the min operation too).</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findMedianSortedArrays</span>(<span class="keyword">int</span> A[], <span class="keyword">int</span> B[]) {</div><div class="line">    <span class="keyword">int</span> m = A.length, n = B.length;</div><div class="line">    <span class="keyword">if</span>((m + n) % <span class="number">2</span> == <span class="number">0</span>) <span class="keyword">return</span> (findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n)/<span class="number">2</span>) +</div><div class="line">                                 findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n )/<span class="number">2</span> + <span class="number">1</span> )) / <span class="number">2</span>;</div><div class="line">    <span class="keyword">return</span> findK(A, <span class="number">0</span>, m - <span class="number">1</span>, B, <span class="number">0</span>, n - <span class="number">1</span>, (m + n) / <span class="number">2</span> + <span class="number">1</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">findK</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> la, <span class="keyword">int</span> ra, <span class="keyword">int</span>[] b, <span class="keyword">int</span> lb, <span class="keyword">int</span> rb, <span class="keyword">int</span> k){</div><div class="line">    <span class="keyword">if</span>(la &gt; ra) <span class="keyword">return</span> b[lb+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(lb &gt; rb) <span class="keyword">return</span> a[la+k-<span class="number">1</span>];</div><div class="line">    <span class="keyword">if</span>(k == <span class="number">1</span>) <span class="keyword">return</span> Math.min(a[la], b[lb]);</div><div class="line">    <span class="keyword">int</span> m = ra - la + <span class="number">1</span>, n = rb - lb + <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(m + n == k) <span class="keyword">return</span> Math.max(a[ra], b[rb]);</div><div class="line">    <span class="keyword">if</span>(m &gt; n) <span class="keyword">return</span> findK(b, lb, rb, a, la, ra, k);</div><div class="line">    <span class="keyword">int</span> pa = Math.min(k/<span class="number">2</span>, m), pb = k - pa;</div><div class="line">    <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &gt; b[lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la, la + pa - <span class="number">1</span>, b, lb + pb, rb, k - pb);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[la + pa - <span class="number">1</span>] &lt; b [lb + pb - <span class="number">1</span>])</div><div class="line">        <span class="keyword">return</span> findK(a, la + pa, ra, b, lb, lb +pb - <span class="number">1</span>, k - pa);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> a[la + pa - <span class="number">1</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/29/Median-of-Two-Sorted-Arrays/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -527,7 +516,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>37</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>42</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -546,45 +535,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
 			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
 		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
 		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
 		
-			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
 		
-			<li><a href="/tags/Array/">Array<span>8</span></a></li>
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
+		
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>5</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
 		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
 			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
 		
 			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
 		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>1</span></a></li>
-		
-			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
 			<li><a href="/tags/List/">List<span>10</span></a></li>
 		
+			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>10</span></a></li>
+		
 			<li><a href="/tags/Math/">Math<span>5</span></a></li>
 		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+			<li><a href="/tags/DP/">DP<span>6</span></a></li>
 		
-			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>22</span></a></li>
@@ -600,23 +589,23 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2015/02/02/Swap-Node-In-Pair/" ><i class="fa fa-file-o"></i>Swap Node In Pair</a>
+        <a href="/2015/02/03/Minimum-Path-Sum/" ><i class="fa fa-file-o"></i>Minimum Path Sum</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-I/" ><i class="fa fa-file-o"></i>Delete Duplicated From Sort...</a>
+        <a href="/2015/02/03/Triangle/" ><i class="fa fa-file-o"></i>Triangle</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Insertion-Sort-List/" ><i class="fa fa-file-o"></i>Insertion Sort List</a>
+        <a href="/2015/02/03/Decode-Ways/" ><i class="fa fa-file-o"></i>Decode Ways</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Merge-Sort-List/" ><i class="fa fa-file-o"></i>Merge Sort List</a>
+        <a href="/2015/02/03/Best-Time-to-Buy-and-Sell-Stock-I/" ><i class="fa fa-file-o"></i>Best Time to Buy and Sell S...</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" ><i class="fa fa-file-o"></i>Delete Duplicated From Sort...</a>
+        <a href="/2015/02/03/Maximum-Subarray/" ><i class="fa fa-file-o"></i>Maximum Subarray</a>
       </li>
     
   </ul>

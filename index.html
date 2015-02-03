@@ -103,6 +103,172 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/02/03/Minimum-Path-Sum/" >Minimum Path Sum</a>
+			<span class="date"> Feb 3 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.<br>Note: You can only move either down or right at any point in time.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>For DP that f[i][j] only depends on the previous row/col, we can just init the first row/col and do 2d-scan over the rest of the array.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span>(<span class="keyword">int</span>[][] grid) {</div><div class="line">    <span class="keyword">int</span> m = grid.length, n = grid[<span class="number">0</span>].length;</div><div class="line">    <span class="keyword">if</span>(m == <span class="number">1</span> && n == <span class="number">1</span>) <span class="keyword">return</span> grid[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m][n];</div><div class="line">    f[<span class="number">0</span>][<span class="number">0</span>] = grid[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++) f[i][<span class="number">0</span>] = f[i-<span class="number">1</span>][<span class="number">0</span>] + grid[i][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) f[<span class="number">0</span>][j] = f[<span class="number">0</span>][j-<span class="number">1</span>] + grid[<span class="number">0</span>][j];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)</div><div class="line">            f[i][j] = grid[i][j] + Math.min(f[i-<span class="number">1</span>][j], f[i][j-<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/03/Minimum-Path-Sum/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/02/03/Triangle/" >Triangle</a>
+			<span class="date"> Feb 3 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<h3 id="Solution">Solution</h3>
+<p>Two method: one with <span>$O(n^2)$</span> space, one with O(n)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumTotal</span>(List&lt;List&lt;Integer&gt;&gt; triangle) {</div><div class="line">    <span class="keyword">return</span> dpN(triangle);</div><div class="line">}</div><div class="line"><span class="comment">// O(N^2)</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dpNSqr</span>(List&lt;List&lt;Integer&gt;&gt; triangle) {</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[triangle.size()][triangle.size()];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span>[] arr: f) Arrays.fill(arr, Integer.MAX_VALUE);</div><div class="line">    f[<span class="number">0</span>][<span class="number">0</span>] = triangle.get(<span class="number">0</span>).get(<span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; triangle.size(); i++){</div><div class="line">        Iterator&lt;Integer&gt; itr = triangle.get(i).iterator();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++){</div><div class="line">            <span class="keyword">int</span> val = itr.next();</div><div class="line">            <span class="keyword">if</span>(j &lt; i) f[i][j] = f[i-<span class="number">1</span>][j] + val;</div><div class="line">            <span class="keyword">if</span>(j &gt; <span class="number">0</span>) f[i][j] = Math.min(f[i][j], f[i-<span class="number">1</span>][j-<span class="number">1</span>] + val);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i: f[triangle.size()-<span class="number">1</span>]) min = Math.min(min, i);</div><div class="line">    <span class="keyword">return</span> min;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dpN</span>(List&lt;List&lt;Integer&gt;&gt; triangle) {</div><div class="line">    <span class="comment">//int[][] f = new int[triangle.size()][triangle.size()];</span></div><div class="line">    <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span>[triangle.size()], g = <span class="keyword">new</span> <span class="keyword">int</span>[triangle.size()];</div><div class="line">    Arrays.fill(f, Integer.MAX_VALUE); Arrays.fill(g, Integer.MAX_VALUE);</div><div class="line">    f[<span class="number">0</span>] = triangle.get(<span class="number">0</span>).get(<span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; triangle.size(); i++){</div><div class="line">        Iterator&lt;Integer&gt; itr = triangle.get(i).iterator();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++){</div><div class="line">            <span class="keyword">int</span> val = itr.next();</div><div class="line">            g[j] = Integer.MAX_VALUE;</div><div class="line">            <span class="keyword">if</span>(j &lt; i) g[j] = f[j] + val;</div><div class="line">            <span class="keyword">if</span>(j &gt; <span class="number">0</span>) g[j] = Math.min(g[j], f[j-<span class="number">1</span>] + val);</div><div class="line">        }</div><div class="line">        <span class="keyword">int</span>[] tmp = f;</div><div class="line">        f = g;</div><div class="line">        g = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i: f) min = Math.min(min, i);</div><div class="line">    <span class="keyword">return</span> min;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/03/Triangle/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/02/03/Decode-Ways/" >Decode Ways</a>
+			<span class="date"> Feb 3 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>A message containing letters from A-Z is being encoded to numbers using the following mapping:</p>
+<p>‘A’ -&gt; 1<br>‘B’ -&gt; 2<br>…<br>‘Z’ -&gt; 26<br>Given an encoded message containing digits, determine the total number of ways to decode it.</p>
+<h3 id="Solution">Solution</h3>
+<p>The DP function is f[i] = f[i-1] or f[i-2], depending on the current digit.<br>So we can optimize the space complexity from O(n) to O(1);</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDecodings</span>(String s) {</div><div class="line">    <span class="keyword">if</span>(s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> dp1(s);</div><div class="line">}</div><div class="line"><span class="comment">// O(n) space</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dpN</span>(String s){</div><div class="line">    <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++){</div><div class="line">        <span class="keyword">if</span>(s.charAt(i) &gt;= <span class="string">'1'</span> && s.charAt(i) &lt;= <span class="string">'9'</span>)</div><div class="line">            f[i] += i &gt; <span class="number">0</span> ? f[i-<span class="number">1</span>] : <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i &gt; <span class="number">0</span> && s.charAt(i - <span class="number">1</span>) != <span class="string">'0'</span> && Integer.parseInt(s.substring(i - <span class="number">1</span>, i + <span class="number">1</span>)) &lt;= <span class="number">26</span>)</div><div class="line">            f[i] += i &gt; <span class="number">1</span> ? f[i-<span class="number">2</span>]: <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[s.length()-<span class="number">1</span>];</div><div class="line">}</div><div class="line"><span class="comment">// O(1) space</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dp1</span>(String s){</div><div class="line">    <span class="keyword">int</span> twoDigit = <span class="number">1</span>, oneDigit = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++){</div><div class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(s.charAt(i) &gt;= <span class="string">'1'</span> && s.charAt(i) &lt;= <span class="string">'9'</span>)</div><div class="line">            sum += i &gt; <span class="number">0</span> ? oneDigit : <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(i &gt; <span class="number">0</span> && s.charAt(i - <span class="number">1</span>) != <span class="string">'0'</span> && Integer.parseInt(s.substring(i - <span class="number">1</span>, i + <span class="number">1</span>)) &lt;= <span class="number">26</span>)</div><div class="line">            sum += i &gt; <span class="number">1</span> ? twoDigit: <span class="number">1</span>;</div><div class="line">        twoDigit = oneDigit;</div><div class="line">        oneDigit = sum;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> oneDigit;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/03/Decode-Ways/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/02/03/Best-Time-to-Buy-and-Sell-Stock-I/" >Best Time to Buy and Sell Stock I</a>
+			<span class="date"> Feb 3 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span>(<span class="keyword">int</span>[] prices) {</div><div class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE, maxProfit = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++){</div><div class="line">        maxProfit = Math.max(maxProfit, prices[i] - min);</div><div class="line">        min = Math.min(min, prices[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> maxProfit;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/03/Best-Time-to-Buy-and-Sell-Stock-I/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/02/03/Maximum-Subarray/" >Maximum Subarray</a>
+			<span class="date"> Feb 3 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Find the contiguous subarray within an array (containing at least one number) which has the largest sum.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> max = Integer.MIN_VALUE, lastMax = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; A.length; i++){</div><div class="line">        lastMax = lastMax &gt; <span class="number">0</span> ? lastMax + A[i] : A[i];</div><div class="line">        max = Math.max(max, lastMax);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/03/Maximum-Subarray/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/02/02/Swap-Node-In-Pair/" >Swap Node In Pair</a>
 			<span class="date"> Feb 2 2015 </span>
 		</h3>
@@ -261,197 +427,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/02/02/Convert-Sorted-List-to-Binary-Search-Tree/" >Convert Sorted List to Binary Search Tree</a>
-			<span class="date"> Feb 2 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">ListNode pos;</div><div class="line"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span>(ListNode head) {</div><div class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</div><div class="line">    ListNode p = head;</div><div class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span>){</div><div class="line">        p = p.next;</div><div class="line">        n++;</div><div class="line">    }</div><div class="line">    pos = head;</div><div class="line">    <span class="keyword">return</span> dfs(head, n);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> TreeNode <span class="title">dfs</span>(ListNode head, <span class="keyword">int</span> n){</div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span> || n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    TreeNode left = dfs(head, n / <span class="number">2</span>);</div><div class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(pos.val);</div><div class="line">    root.left = left;</div><div class="line">    pos = pos.next;</div><div class="line">    <span class="keyword">if</span>(pos != <span class="keyword">null</span>) root.right = dfs(pos, n - n / <span class="number">2</span> - <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/02/Convert-Sorted-List-to-Binary-Search-Tree/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/02/02/Reorder-List/" >Reorder List</a>
-			<span class="date"> Feb 2 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ListNode <span class="title">findMid</span>(ListNode head){</div><div class="line">    ListNode fast = head, slow = head;</div><div class="line">    <span class="keyword">while</span>(fast != <span class="keyword">null</span>){</div><div class="line">        fast = fast.next;</div><div class="line">        <span class="keyword">if</span>(fast != <span class="keyword">null</span>){</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> slow;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> ListNode <span class="title">reverse</span>(ListNode head){</div><div class="line">    ListNode prev = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">while</span>(head != <span class="keyword">null</span>){</div><div class="line">        ListNode tmp = head.next;</div><div class="line">        head.next = prev;</div><div class="line">        prev = head;</div><div class="line">        head = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> prev;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span>(ListNode head) {</div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    ListNode mid = findMid(head), secondHalf = reverse(mid), p = head, q = secondHalf;</div><div class="line">    <span class="keyword">while</span>(p.next != q && p != q){</div><div class="line">        ListNode t1 = p.next, t2 = q.next;</div><div class="line">        p.next = q;</div><div class="line">        q.next = t1;</div><div class="line">        p = t1;</div><div class="line">        q = t2;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/02/Reorder-List/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/02/02/Reverse-Linked-List/" >Reverse Linked List</a>
-			<span class="date"> Feb 2 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Reverse a linked list from position m to n. Do it in-place and in one-pass.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span>(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(m == n) <span class="keyword">return</span> head;</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), from = dummy, prev = <span class="keyword">null</span>, tail = <span class="keyword">null</span>;</div><div class="line">    dummy.next = head;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(++i &lt; m) from = from.next;</div><div class="line">    tail = from.next;</div><div class="line">    <span class="keyword">while</span>(i++ &lt;= n) {</div><div class="line">        ListNode toMove = from.next;</div><div class="line">        from.next = toMove.next;</div><div class="line">        toMove.next = prev;</div><div class="line">        prev = toMove;</div><div class="line">    }</div><div class="line">    tail.next = from.next;</div><div class="line">    from.next = prev;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/02/Reverse-Linked-List/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/02/02/Largest-Rectangle-in-Histogram/" >Largest Rectangle in Histogram</a>
-			<span class="date"> Feb 2 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given n non-negative integers representing the histogram’s bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>The basic idea is: for every bar, we find the max rectangle whose min bar is this bar. Then we calculate the max of them.</p>
-<p>How to find the max rectangle whose min bar is a given bar? Easy: just expand from that bar to the left and right till we find a lower bar. But this requires O(n) scanning.</p>
-<p>A better way is to use a stack with a O(n) scan to calculate all nearest smaller on the left/right, aka, the <a href="http://en.wikipedia.org/wiki/All_nearest_smaller_values#Sequential_algorithm" target="_blank" rel="external">ANSV Problem</a></p>
-<p>Another optimization is that we don’t need to scan the array twice to get both the nearest smaller on the left and right: when push into stack, we can determine the nearest smaller on the left, when pop, we can determine the nearest smaller on the right.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">largestRectangleArea</span>(<span class="keyword">int</span>[] height) {</div><div class="line">     <span class="keyword">int</span>[] nls = <span class="keyword">new</span> <span class="keyword">int</span>[height.length]; <span class="comment">// nearest left smaller</span></div><div class="line">     <span class="keyword">int</span>[] nrs = <span class="keyword">new</span> <span class="keyword">int</span>[height.length]; <span class="comment">// nearest right smaller</span></div><div class="line">     Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length; i++){</div><div class="line">         <span class="keyword">while</span>(!stack.isEmpty() && height[stack.peek()] &gt;= height[i]) nrs[stack.pop()] = i;</div><div class="line">         nls[i] = stack.isEmpty()? -<span class="number">1</span> : stack.peek();</div><div class="line">         stack.push(i);</div><div class="line">     }</div><div class="line">     <span class="keyword">while</span>(!stack.isEmpty()) nrs[stack.pop()] = height.length; <span class="comment">// pitfall</span></div><div class="line">     <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length; i++){</div><div class="line">         <span class="keyword">int</span> left = nls[i] + <span class="number">1</span>, right = nrs[i] - <span class="number">1</span>; <span class="comment">// pitfall</span></div><div class="line">         max = Math.max(max, height[i] * (right - left + <span class="number">1</span>));</div><div class="line">     }</div><div class="line">     <span class="keyword">return</span> max;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant">Variant</h3>
-<p>This problem has a 2D version.</p>
-<blockquote>
-<p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest rectangle containing all ones and return its area.</p>
-</blockquote>
-<h3 id="Solution-1">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalRectangle</span>(<span class="keyword">char</span>[][] matrix) {</div><div class="line">    <span class="keyword">if</span>(matrix.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> m = matrix.length, n = matrix[<span class="number">0</span>].length;</div><div class="line">    <span class="keyword">int</span>[][] barLen = <span class="keyword">new</span> <span class="keyword">int</span>[m][n];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++){</div><div class="line">        barLen[m-<span class="number">1</span>][j] = matrix[m-<span class="number">1</span>][j] == <span class="string">'0'</span> ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = m - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) barLen[i][j] = matrix[i][j] == <span class="string">'0'</span> ? <span class="number">0</span> : barLen[i+<span class="number">1</span>][j] + <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">int</span>[] nls = <span class="keyword">new</span> <span class="keyword">int</span>[n], nrs = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++){</div><div class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;Integer&gt;();</div><div class="line">        Arrays.fill(nls, <span class="number">0</span>); Arrays.fill(nrs, <span class="number">0</span>);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++){</div><div class="line">            <span class="keyword">while</span>(!stack.isEmpty() && barLen[i][stack.peek()] &gt;= barLen[i][j]) nrs[stack.pop()] = j;</div><div class="line">            nls[j] = stack.isEmpty() ? -<span class="number">1</span> : stack.peek();</div><div class="line">            stack.push(j);</div><div class="line">        }</div><div class="line">        <span class="keyword">while</span>(!stack.isEmpty()) nrs[stack.pop()] = n;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++){</div><div class="line">            <span class="keyword">int</span> left = nls[j] + <span class="number">1</span>, right = nrs[j] - <span class="number">1</span>;</div><div class="line">            max = Math.max(max, barLen[i][j] * (right - left + <span class="number">1</span>));</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/02/Largest-Rectangle-in-Histogram/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/02/01/Jump-Game/" >Jump Game</a>
-			<span class="date"> Feb 1 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given an array of non-negative integers, you are initially positioned at the first index of the array.</p>
-<p>Each element in the array represents your maximum jump length at that position.</p>
-<p>Determine if you are able to reach the last index.</p>
-<p>For example:</p>
-<ul>
-<li>A = [2,3,1,1,4], return true.</li>
-<li>A = [3,2,1,0,4], return false.</li>
-</ul>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">int</span> farthest = end;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = start; i &lt;= end; i++){</div><div class="line">            farthest = Math.max(farthest, i + A[i]);</div><div class="line">            <span class="keyword">if</span>(farthest &gt;= A.length - <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(farthest == end) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">        start = end + <span class="number">1</span>;</div><div class="line">        end = farthest;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant">Variant</h3>
-<blockquote>
-<p>What if we need to return the minimum step?</p>
-</blockquote>
-<h3 id="Solution-1">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">if</span>(A.length == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>, step = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        step++;</div><div class="line">        <span class="keyword">int</span> farthest = end;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = start; i &lt;= end && i &lt; A.length; i++){</div><div class="line">            <span class="keyword">if</span>(i + A[i] &gt;= A.length - <span class="number">1</span>) <span class="keyword">return</span> step;</div><div class="line">            farthest = Math.max(farthest, i + A[i]);</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(farthest != end) {</div><div class="line">            start = end + <span class="number">1</span>;</div><div class="line">            end = farthest;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> Integer.MAX_VALUE;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/01/Jump-Game/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -502,7 +477,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>37</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>42</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -521,45 +496,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>8</span></a></li>
-		
-			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
-		
 			<li><a href="/tags/List/">List<span>10</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>1</span></a></li>
-		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
-		
-			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
 		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>5</span></a></li>
+		
+			<li><a href="/tags/DP/">DP<span>6</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+		
+			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
+		
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+		
 			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>10</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
 			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
 		
-			<li><a href="/tags/Math/">Math<span>5</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
-		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>22</span></a></li>
@@ -575,23 +550,23 @@
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2015/02/02/Swap-Node-In-Pair/" ><i class="fa fa-file-o"></i>Swap Node In Pair</a>
+        <a href="/2015/02/03/Minimum-Path-Sum/" ><i class="fa fa-file-o"></i>Minimum Path Sum</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-I/" ><i class="fa fa-file-o"></i>Delete Duplicated From Sort...</a>
+        <a href="/2015/02/03/Triangle/" ><i class="fa fa-file-o"></i>Triangle</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Insertion-Sort-List/" ><i class="fa fa-file-o"></i>Insertion Sort List</a>
+        <a href="/2015/02/03/Decode-Ways/" ><i class="fa fa-file-o"></i>Decode Ways</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Merge-Sort-List/" ><i class="fa fa-file-o"></i>Merge Sort List</a>
+        <a href="/2015/02/03/Best-Time-to-Buy-and-Sell-Stock-I/" ><i class="fa fa-file-o"></i>Best Time to Buy and Sell S...</a>
       </li>
     
       <li>
-        <a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" ><i class="fa fa-file-o"></i>Delete Duplicated From Sort...</a>
+        <a href="/2015/02/03/Maximum-Subarray/" ><i class="fa fa-file-o"></i>Maximum Subarray</a>
       </li>
     
   </ul>
