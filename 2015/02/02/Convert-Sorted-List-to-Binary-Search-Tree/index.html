@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Clone Graph | Codefish</title>
+  <title>Convert Sorted List to Binary Search Tree | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Clone an undirected graph
+Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 
 Solution
-12345678910111213141516171819202122232425HashMap&amp;lt;UndirectedGraphNode, UndirectedGraphNode&amp;gt; nodes = ">
+123456789101112131415">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Clone Graph"/>
+  <meta property="og:title" content="Convert Sorted List to Binary Search Tree"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -92,7 +92,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Clone Graph</h1>
+			<h1> Convert Sorted List to Binary Search Tree</h1>
 		</div>		
 	
 
@@ -110,10 +110,10 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Clone an undirected graph</p>
+<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt; nodes =</div><div class="line">        <span class="keyword">new</span> HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();</div><div class="line">HashSet&lt;UndirectedGraphNode&gt; visited = <span class="keyword">new</span> HashSet&lt;UndirectedGraphNode&gt;();</div><div class="line"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span>(UndirectedGraphNode node) {</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    UndirectedGraphNode newNode = <span class="keyword">new</span> UndirectedGraphNode(node.label);</div><div class="line">    visited.add(node);</div><div class="line">    nodes.put(node, newNode);</div><div class="line">    dfs(node, newNode);</div><div class="line">    <span class="keyword">return</span> newNode;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(UndirectedGraphNode oldNode, UndirectedGraphNode newNode){</div><div class="line">    <span class="keyword">for</span>(UndirectedGraphNode nb: oldNode.neighbors){</div><div class="line">        UndirectedGraphNode newNb = nodes.get(nb);</div><div class="line">        <span class="keyword">if</span>(newNb == <span class="keyword">null</span>) {</div><div class="line">            newNb = <span class="keyword">new</span> UndirectedGraphNode(nb.label);</div><div class="line">            nodes.put(nb, newNb);</div><div class="line">        }</div><div class="line">        newNode.neighbors.add(newNb);</div><div class="line">        <span class="keyword">if</span>(!visited.contains(nb)){</div><div class="line">            visited.add(nb);</div><div class="line">            dfs(nb, newNb);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">ListNode pos;</div><div class="line"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span>(ListNode head) {</div><div class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</div><div class="line">    ListNode p = head;</div><div class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span>){</div><div class="line">        p = p.next;</div><div class="line">        n++;</div><div class="line">    }</div><div class="line">    pos = head;</div><div class="line">    <span class="keyword">return</span> dfs(head, n);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> TreeNode <span class="title">dfs</span>(ListNode head, <span class="keyword">int</span> n){</div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span> || n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    TreeNode left = dfs(head, n / <span class="number">2</span>);</div><div class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(pos.val);</div><div class="line">    root.left = left;</div><div class="line">    pos = pos.next;</div><div class="line">    <span class="keyword">if</span>(pos != <span class="keyword">null</span>) root.right = dfs(pos, n - n / <span class="number">2</span> - <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -123,14 +123,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/01/Palindrome-Partition/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/01/Valid-Sudoku/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/02/Reorder-List/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -157,7 +157,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 1 2015 
+	Feb 2 2015 
 	</div>
 	
 
@@ -181,7 +181,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Graph/">Graph<span>1</span></a></li> <li><a href="/tags/DFS/">DFS<span>5</span></a></li> <li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+  <li><a href="/tags/List/">List<span>5</span></a></li>
     </ul>
 	</div>
 		
