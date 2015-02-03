@@ -103,6 +103,67 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/02/02/Merge-Sort-List/" >Merge Sort List</a>
+			<span class="date"> Feb 2 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ListNode <span class="title">findMid</span>(ListNode head, ListNode tail){</div><div class="line">    ListNode fast = head, slow = head;</div><div class="line">    <span class="keyword">while</span>(fast != tail){</div><div class="line">        fast = fast.next;</div><div class="line">        <span class="keyword">if</span>(fast != tail){</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> slow;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">sortList</span>(ListNode head) {</div><div class="line">    <span class="keyword">return</span> sort(head, <span class="keyword">null</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">sort</span>(ListNode first, ListNode last){</div><div class="line">    <span class="keyword">if</span>(first == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span>(first.next == last) {</div><div class="line">        first.next = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> first;</div><div class="line">    }</div><div class="line">    ListNode mid = findMid(first, last);</div><div class="line">    <span class="keyword">return</span> merge(sort(first, mid), sort(mid, last));</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">merge</span>(ListNode h1, ListNode h2){</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), tail = dummy;</div><div class="line">    <span class="keyword">while</span>(h1 != <span class="keyword">null</span> && h2 != <span class="keyword">null</span>){</div><div class="line">        <span class="keyword">if</span>(h1.val &lt; h2.val){</div><div class="line">            tail.next = h1;</div><div class="line">            h1 = h1.next;</div><div class="line">            tail = tail.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            tail.next = h2;</div><div class="line">            h2 = h2.next;</div><div class="line">            tail = tail.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(h1 != <span class="keyword">null</span>) tail.next = h1;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(h2 != <span class="keyword">null</span>) tail.next = h2;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/02/Merge-Sort-List/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" >Delete Duplicated From Sorted List II</a>
+			<span class="date"> Feb 2 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span>(ListNode head) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), p = head, tail = dummy;</div><div class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span>){</div><div class="line">        <span class="keyword">if</span>(p.next == <span class="keyword">null</span> || p.next.val != p.val){</div><div class="line">            tail.next = p;</div><div class="line">            tail = tail.next;</div><div class="line">            p = p.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> v = p.val;</div><div class="line">            <span class="keyword">while</span>(p != <span class="keyword">null</span> && p.val == v) p = p.next; <span class="comment">// maybe more than two</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/02/02/Convert-Sorted-List-to-Binary-Search-Tree/" >Convert Sorted List to Binary Search Tree</a>
 			<span class="date"> Feb 2 2015 </span>
 		</h3>
@@ -402,68 +463,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/02/01/Valid-Sudoku/" >Valid Sudoku</a>
-			<span class="date"> Feb 1 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<p>Determine if a Sudoku is valid</p>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span>(<span class="keyword">char</span>[][] board) {</div><div class="line">    <span class="keyword">boolean</span>[][] row = <span class="keyword">new</span> <span class="keyword">boolean</span>[board.length][<span class="number">9</span>];</div><div class="line">    <span class="keyword">boolean</span>[][] col = <span class="keyword">new</span> <span class="keyword">boolean</span>[board.length][<span class="number">9</span>];</div><div class="line">    <span class="keyword">boolean</span>[][] blk = <span class="keyword">new</span> <span class="keyword">boolean</span>[board.length][<span class="number">9</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){</div><div class="line">            <span class="keyword">if</span>(board[i][j] != <span class="string">'.'</span>){</div><div class="line">                <span class="keyword">int</span> c = board[i][j] - <span class="string">'1'</span>;</div><div class="line">                <span class="keyword">if</span>(row[i][c] || col[j][c] || blk[i/<span class="number">3</span>*<span class="number">3</span>+j/<span class="number">3</span>][c]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                row[i][c] = col[j][c] = blk[i/<span class="number">3</span>*<span class="number">3</span>+j/<span class="number">3</span>][c] = <span class="keyword">true</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/01/Valid-Sudoku/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/02/01/Plus-One/" >Plus One</a>
-			<span class="date"> Feb 1 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">plusOne</span>(<span class="keyword">int</span>[] digits) {</div><div class="line">    <span class="comment">// ask interviewer is it significant digit first or last</span></div><div class="line">    <span class="keyword">int</span> c = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = digits.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">        digits[i] = digits[i] + c;</div><div class="line">        <span class="keyword">if</span>(digits[i] &gt;= <span class="number">10</span>){</div><div class="line">            digits[i] -= <span class="number">10</span>;</div><div class="line">            c = <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            c = <span class="number">0</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(c == <span class="number">0</span>) <span class="keyword">return</span> digits;</div><div class="line">    <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[digits.length + <span class="number">1</span>];</div><div class="line">    result[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    System.arraycopy(digits, <span class="number">0</span>, result, <span class="number">1</span>, digits.length);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variants">Variants</h3>
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/02/01/Plus-One/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -514,7 +513,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>32</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>34</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -533,45 +532,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
-		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
 			<li><a href="/tags/String/">String<span>5</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
-		
-			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>1</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
-		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>8</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span>5</span></a></li>
-		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
 		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+		
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
+		
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+		
+			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>7</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+		
+			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
 			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>5</span></a></li>
+		
+			<li><a href="/tags/DP/">DP<span>1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>22</span></a></li>
@@ -587,6 +586,14 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/02/02/Merge-Sort-List/" ><i class="fa fa-file-o"></i>Merge Sort List</a>
+      </li>
+    
+      <li>
+        <a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" ><i class="fa fa-file-o"></i>Delete Duplicated From Sort...</a>
+      </li>
+    
+      <li>
         <a href="/2015/02/02/Convert-Sorted-List-to-Binary-Search-Tree/" ><i class="fa fa-file-o"></i>Convert Sorted List to Bina...</a>
       </li>
     
@@ -596,14 +603,6 @@
     
       <li>
         <a href="/2015/02/02/Reverse-Linked-List/" ><i class="fa fa-file-o"></i>Reverse Linked List</a>
-      </li>
-    
-      <li>
-        <a href="/2015/02/02/Largest-Rectangle-in-Histogram/" ><i class="fa fa-file-o"></i>Largest Rectangle in Histogram</a>
-      </li>
-    
-      <li>
-        <a href="/2015/02/01/Jump-Game/" ><i class="fa fa-file-o"></i>Jump Game</a>
       </li>
     
   </ul>

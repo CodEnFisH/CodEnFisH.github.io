@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Longest Substring Without Repeating Characters | Codefish</title>
+  <title>Delete Duplicated From Sorted List II | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating l">
+Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+
+Solution
+123">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Longest Substring Without Repeating Characters"/>
+  <meta property="og:title" content="Delete Duplicated From Sorted List II"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -89,7 +92,7 @@ Given a string, find the length of the longest substring without repeating chara
 
 	
 		<div class="page-header">		
-			<h1> Longest Substring Without Repeating Characters</h1>
+			<h1> Delete Duplicated From Sorted List II</h1>
 		</div>		
 	
 
@@ -107,10 +110,10 @@ Given a string, find the length of the longest substring without repeating chara
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating letters for “abcabcbb” is “abc”, which the length is 3. For “bbbbb” the longest substring is “b”, with the length of 1.</p>
+<p>Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span>(String s) {</div><div class="line">    <span class="keyword">char</span>[] str = s.toCharArray();</div><div class="line">    <span class="keyword">int</span>[] counter = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="keyword">int</span> m = s.length(), i = <span class="number">0</span>, j = -<span class="number">1</span>, max = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; m){</div><div class="line">        <span class="keyword">if</span>(repeated(counter)){</div><div class="line">            counter[(<span class="keyword">int</span>)str[i++]]--;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            max = Math.max(max, j - i + <span class="number">1</span>);</div><div class="line">            <span class="keyword">if</span>(j == m - <span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">            counter[(<span class="keyword">int</span>)str[++j]]++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">repeated</span>(<span class="keyword">int</span>[] counter){</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; counter.length; i++) <span class="keyword">if</span>(counter[i] &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">deleteDuplicates</span>(ListNode head) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), p = head, tail = dummy;</div><div class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span>){</div><div class="line">        <span class="keyword">if</span>(p.next == <span class="keyword">null</span> || p.next.val != p.val){</div><div class="line">            tail.next = p;</div><div class="line">            tail = tail.next;</div><div class="line">            p = p.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> v = p.val;</div><div class="line">            <span class="keyword">while</span>(p != <span class="keyword">null</span> && p.val == v) p = p.next; <span class="comment">// maybe more than two</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -121,13 +124,13 @@ Given a string, find the length of the longest substring without repeating chara
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/01/31/Trap-Rain-Water/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/02/Merge-Sort-List/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/31/Linked-List-Cycle-II/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/02/Convert-Sorted-List-to-Binary-Search-Tree/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -154,7 +157,7 @@ Given a string, find the length of the longest substring without repeating chara
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 31 2015 
+	Feb 2 2015 
 	</div>
 	
 
@@ -178,7 +181,7 @@ Given a string, find the length of the longest substring without repeating chara
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li> <li><a href="/tags/String/">String<span>5</span></a></li>
+  <li><a href="/tags/List/">List<span>7</span></a></li>
     </ul>
 	</div>
 		

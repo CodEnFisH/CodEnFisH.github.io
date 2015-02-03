@@ -3,17 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Longest Substring Without Repeating Characters | Codefish</title>
+  <title>Merge Sort List | Codefish</title>
   
   
-  <meta name="description" content="Problem
-
-Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating l">
+  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142private ListNode findMid(ListNode head, ListNode tail){    ListNode fast = ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Longest Substring Without Repeating Characters"/>
+  <meta property="og:title" content="Merge Sort List"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -89,7 +87,7 @@ Given a string, find the length of the longest substring without repeating chara
 
 	
 		<div class="page-header">		
-			<h1> Longest Substring Without Repeating Characters</h1>
+			<h1> Merge Sort List</h1>
 		</div>		
 	
 
@@ -105,12 +103,7 @@ Given a string, find the length of the longest substring without repeating chara
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating letters for “abcabcbb” is “abc”, which the length is 3. For “bbbbb” the longest substring is “b”, with the length of 1.</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span>(String s) {</div><div class="line">    <span class="keyword">char</span>[] str = s.toCharArray();</div><div class="line">    <span class="keyword">int</span>[] counter = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="keyword">int</span> m = s.length(), i = <span class="number">0</span>, j = -<span class="number">1</span>, max = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(j &lt; m){</div><div class="line">        <span class="keyword">if</span>(repeated(counter)){</div><div class="line">            counter[(<span class="keyword">int</span>)str[i++]]--;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            max = Math.max(max, j - i + <span class="number">1</span>);</div><div class="line">            <span class="keyword">if</span>(j == m - <span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">            counter[(<span class="keyword">int</span>)str[++j]]++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">repeated</span>(<span class="keyword">int</span>[] counter){</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; counter.length; i++) <span class="keyword">if</span>(counter[i] &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+	    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ListNode <span class="title">findMid</span>(ListNode head, ListNode tail){</div><div class="line">    ListNode fast = head, slow = head;</div><div class="line">    <span class="keyword">while</span>(fast != tail){</div><div class="line">        fast = fast.next;</div><div class="line">        <span class="keyword">if</span>(fast != tail){</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> slow;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">sortList</span>(ListNode head) {</div><div class="line">    <span class="keyword">return</span> sort(head, <span class="keyword">null</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">sort</span>(ListNode first, ListNode last){</div><div class="line">    <span class="keyword">if</span>(first == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span>(first.next == last) {</div><div class="line">        first.next = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> first;</div><div class="line">    }</div><div class="line">    ListNode mid = findMid(first, last);</div><div class="line">    <span class="keyword">return</span> merge(sort(first, mid), sort(mid, last));</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">merge</span>(ListNode h1, ListNode h2){</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), tail = dummy;</div><div class="line">    <span class="keyword">while</span>(h1 != <span class="keyword">null</span> && h2 != <span class="keyword">null</span>){</div><div class="line">        <span class="keyword">if</span>(h1.val &lt; h2.val){</div><div class="line">            tail.next = h1;</div><div class="line">            h1 = h1.next;</div><div class="line">            tail = tail.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            tail.next = h2;</div><div class="line">            h2 = h2.next;</div><div class="line">            tail = tail.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(h1 != <span class="keyword">null</span>) tail.next = h1;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(h2 != <span class="keyword">null</span>) tail.next = h2;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -120,14 +113,14 @@ Given a string, find the length of the longest substring without repeating chara
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/31/Trap-Rain-Water/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/31/Linked-List-Cycle-II/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -154,7 +147,7 @@ Given a string, find the length of the longest substring without repeating chara
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 31 2015 
+	Feb 2 2015 
 	</div>
 	
 
@@ -178,7 +171,7 @@ Given a string, find the length of the longest substring without repeating chara
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li> <li><a href="/tags/String/">String<span>5</span></a></li>
+  <li><a href="/tags/List/">List<span>7</span></a></li>
     </ul>
 	</div>
 		
