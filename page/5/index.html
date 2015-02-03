@@ -103,6 +103,45 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/27/Three-Increasing-Elements-in-an-Array/" >Three Increasing Elements in an Array</a>
+			<span class="date"> Jan 27 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given an array of integers A, please find three indexes i, j, k, such that i&lt;j&lt;k and A[i]&lt;A[j]&lt;A[k].</p>
+</blockquote>
+<h3 id="Idea">Idea</h3>
+<ul>
+<li><p>Using the idea of “find nearest larger element in array”, we can first scan the array and find out the nearest larger num on the right and store them in another array b[]. Then we can scan b to find out the answer</p>
+</li>
+<li><p>We can try to scan the array and update the candidate of i and j. How ? We can keep the index of current min element. If the current element is larger than the min but smaller than the current candidate of A[j] then we update j to the current element. If it’s larger than the current candidate of A[j], then we have found an answer. Example: a = [8,9,5,6,7]. The first candidate pair is (8,9) when we scan 5, we only update the min index, not i. But when we scan 6, it’s larger than the current min (5) but larger than the current candidate of A[j] — 9. This time we update A[i] to 5 and A[j] to 6.</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">findTreeIndexes</span>(<span class="keyword">int</span>[] a){</div><div class="line">  <span class="keyword">int</span> i = -<span class="number">1</span>, j = -<span class="number">1</span>, minIdx = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">1</span>; t &lt; a.length; t++){</div><div class="line">    <span class="keyword">if</span>(a[t] &lt; a[minIdx]) minIdx = t;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[t] &gt; a[minIdx]){</div><div class="line">      <span class="keyword">if</span>(j == -<span class="number">1</span>) {</div><div class="line">        i = minIdx;</div><div class="line">        j = t;</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">if</span>(a[t] &lt; a[j]) {</div><div class="line">          i = minIdx;</div><div class="line">          j = t;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(a[t] &gt; a[j]) { <span class="comment">// a[t] &gt; a[j]</span></div><div class="line">          <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</div><div class="line">          ret[<span class="number">0</span>] = i; ret[<span class="number">1</span>] = j; ret[<span class="number">2</span>] = t;</div><div class="line">          <span class="keyword">return</span> ret;</div><div class="line">        }</div><div class="line">      }</div><div class="line">    }</div><div class="line">  }</div><div class="line">  <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/27/Three-Increasing-Elements-in-an-Array/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/27/Sqrt-x/" >Sqrt(x)</a>
 			<span class="date"> Jan 27 2015 </span>
 		</h3>
@@ -1359,7 +1398,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>34</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>35</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
 		
@@ -1378,45 +1417,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>8</span></a></li>
-		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
 			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
 		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+			<li><a href="/tags/List/">List<span>8</span></a></li>
 		
 			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
 		
-			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
 		
 			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
-			<li><a href="/tags/List/">List<span>7</span></a></li>
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
 		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
 		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
 		
 			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
 		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+			<li><a href="/tags/DP/">DP<span>1</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>5</span></a></li>
 		
 			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
 		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
 			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
 		
-			<li><a href="/tags/DP/">DP<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>22</span></a></li>
@@ -1432,6 +1471,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/02/02/Insertion-Sort-List/" ><i class="fa fa-file-o"></i>Insertion Sort List</a>
+      </li>
+    
+      <li>
         <a href="/2015/02/02/Merge-Sort-List/" ><i class="fa fa-file-o"></i>Merge Sort List</a>
       </li>
     
@@ -1445,10 +1488,6 @@
     
       <li>
         <a href="/2015/02/02/Reorder-List/" ><i class="fa fa-file-o"></i>Reorder List</a>
-      </li>
-    
-      <li>
-        <a href="/2015/02/02/Reverse-Linked-List/" ><i class="fa fa-file-o"></i>Reverse Linked List</a>
       </li>
     
   </ul>
