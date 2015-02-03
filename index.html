@@ -126,6 +126,13 @@
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">uniquePaths</span>(<span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">return</span> dp(m, n);</div><div class="line">}</div><div class="line"><span class="comment">// dp method</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">dp</span>(<span class="keyword">int</span> m, <span class="keyword">int</span> n){</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m][n];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) f[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) f[<span class="number">0</span>][j] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) f[i][j] = f[i-<span class="number">1</span>][j] + f[i][j-<span class="number">1</span>];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">}</div><div class="line"><span class="comment">// combination method</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">choose</span>(<span class="keyword">int</span> m, <span class="keyword">int</span> n){</div><div class="line">    <span class="keyword">if</span>(m == <span class="number">0</span> || n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="comment">//String one = Integer.toString(1);</span></div><div class="line">    <span class="keyword">double</span> fm = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m-<span class="number">1</span>; i++) fm=fm*i;</div><div class="line">    <span class="keyword">double</span> fn = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n-<span class="number">1</span>; i++) fn=fn*i;</div><div class="line">    <span class="keyword">double</span> fmn = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n+m-<span class="number">2</span>; i++) fmn=fmn*i;</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)Math.round(fmn/(fm*fn));</div><div class="line">}</div></pre></td></tr></table></figure>
 
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>What if some position has blocks?</p>
+</blockquote>
+<h3 id="Solution-1">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">uniquePathsWithObstacles</span>(<span class="keyword">int</span>[][] obstacleGrid) {</div><div class="line">    <span class="keyword">int</span> m = obstacleGrid.length, n = obstacleGrid[<span class="number">0</span>].length;</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m][n];</div><div class="line">    f[<span class="number">0</span>][<span class="number">0</span>] = obstacleGrid[<span class="number">0</span>][<span class="number">0</span>] == <span class="number">1</span> ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++) f[i][<span class="number">0</span>] = obstacleGrid[i][<span class="number">0</span>] == <span class="number">1</span> ? <span class="number">0</span> : f[i-<span class="number">1</span>][<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++) f[<span class="number">0</span>][j] = obstacleGrid[<span class="number">0</span>][j] == <span class="number">1</span> ? <span class="number">0</span> : f[<span class="number">0</span>][j-<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)</div><div class="line">            f[i][j] = obstacleGrid[i][j] == <span class="number">1</span> ? <span class="number">0</span> : f[i-<span class="number">1</span>][j] + f[i][j-<span class="number">1</span>];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[m-<span class="number">1</span>][n-<span class="number">1</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
 
 	
 	</div>
@@ -500,43 +507,43 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
-		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>10</span></a></li>
-		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span>6</span></a></li>
-		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
-		
 			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
 		
-			<li><a href="/tags/List/">List<span>10</span></a></li>
-		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>7</span></a></li>
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
 		
 			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
 		
 			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+			<li><a href="/tags/List/">List<span>10</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>5</span></a></li>
+		
+			<li><a href="/tags/DP/">DP<span>7</span></a></li>
+		
+			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>10</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+		
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+		
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
+		
+			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
 		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
