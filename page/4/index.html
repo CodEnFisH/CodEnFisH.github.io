@@ -103,6 +103,90 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/01/31/Minimum-Window-Substring/" >Minimum Window Substring</a>
+			<span class="date"> Jan 31 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).</p>
+<p>For example,<br>S = “ADOBECODEBANC”<br>T = “ABC”</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> String <span class="title">minWindow</span>(String S, String T) {</div><div class="line">    <span class="keyword">int</span>[] counter = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>], goal = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">256</span>];</div><div class="line">    <span class="keyword">char</span>[] s = S.toCharArray();</div><div class="line">    <span class="keyword">int</span> m = s.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; T.length(); i++) goal[(<span class="keyword">int</span>)T.charAt(i)]++;</div><div class="line">    <span class="keyword">int</span> start = -<span class="number">1</span>, end = -<span class="number">1</span>, min = Integer.MAX_VALUE;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = -<span class="number">1</span>; <span class="comment">// the range is [i,j]</span></div><div class="line">    <span class="keyword">while</span>(j &lt; m){</div><div class="line">        <span class="keyword">if</span>(hasAll(counter, goal)){</div><div class="line">            <span class="keyword">if</span>(j - i + <span class="number">1</span> &lt; min){</div><div class="line">                min = j - i + <span class="number">1</span>;</div><div class="line">                start = i;</div><div class="line">                end = j + <span class="number">1</span>;</div><div class="line">            }</div><div class="line">            counter[(<span class="keyword">int</span>)s[i++]]--;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(j == m - <span class="number">1</span>) <span class="keyword">break</span>;</div><div class="line">            counter[(<span class="keyword">int</span>)s[++j]]++;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(start == -<span class="number">1</span>) <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> S.substring(start, end);</div><div class="line">}</div><div class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">hasAll</span>(<span class="keyword">int</span>[] counter, <span class="keyword">int</span>[] goal){</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; counter.length; i++) <span class="keyword">if</span>(counter[i] &lt; goal[i]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/31/Minimum-Window-Substring/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
+			<a href="/2015/01/30/Container-With-Most-Water/" >Container With Most Water</a>
+			<span class="date"> Jan 30 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
+<p>Note: You may not slant the container.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>We can use a two pointer algorithm to keep track of all potential optimal solution, as follows:</p>
+<p>We first put the two bars of at the two end of the array and try to slide them to the middle to see if we can do better. The key finding that when we slide the bar toward the middle we can make it better only when we get higher bars, since the width is shrinking during the bar sliding.</p>
+<p>At one potential position, which bar of the two should we move? Well, intuition tells us that we should move the shorter bar, since it has more space to improve. Here, I’m gonna prove that this intuition is correct.</p>
+<p>Without lossing generality, we can assume left bar l is the shorter than right bar r. The key is that, at any position, sliding higher bar toward the middle won’t get better result since the shorter bar decide the volume of the container.</p>
+<p>The Two-Pointer technique can be used in all these kind of problems where there are <span>$n^2$</span> possible choices, deciding by two sliding pointers. But if we can find some sort of “monotonicity” when fixing one pointer, say p1, we don’t have to “backtrace” the other pointer p2 to enumerate all possible choices. By doing this we can reduce the complexity from <span>$n^2$</span> to n.</p>
+<p>The key steps is to</p>
+<ol>
+<li>design some sort of status of the sliding pointer</li>
+<li>based on the status, decide how to slide the pointer</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span>(<span class="keyword">int</span>[] height) {</div><div class="line">    <span class="comment">// the key is always try to move the shorter bar</span></div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = height.length - <span class="number">1</span>, max = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j){</div><div class="line">        max = Math.max(max, Math.min(height[i], height[j]) * (j - i));</div><div class="line">        <span class="keyword">if</span>(height[i] &lt; height[j]) i++;</div><div class="line">        <span class="keyword">else</span> j--;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Variants">Variants</h3>
+<ul>
+<li><a href="http://codenfish.github.io/2015/01/30/Subarray-Sum/" target="_blank" rel="external">Subarray Sum</a><br>The status is the sum from 0 to the current position.</li>
+<li><a href="http://codenfish.github.io/2015/01/31/Minimum-Window-Substring/" target="_blank" rel="external">Minimum Window Substring</a><br>The status is the char counter of the substring of the current pointer window.</li>
+<li><a href="http://codenfish.github.io/2015/01/31/Longest-Substring-Without-Repeating-Characters/" target="_blank" rel="external">Longest Substring Without Repeating Characters</a><br>The status is the char counter of the substring of the current pointer window </li>
+</ul>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/01/30/Container-With-Most-Water/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/01/30/3-Sum/" >3 Sum</a>
 			<span class="date"> Jan 30 2015 </span>
 		</h3>
@@ -398,113 +482,6 @@
 </div>
 
 		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/29/Search-2D-Matrix/" >Search 2D Matrix</a>
-			<span class="date"> Jan 29 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:</p>
-<ul>
-<li>Integers in each row are sorted from left to right.</li>
-<li>The first integer of each row is greater than the last integer of the previous row.</li>
-</ul>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<p>There are several versions of this problem. The key idea is to, according to the problem, find good cutting point and discard subproblems.</p>
-<p>For the original problem, we can flat the array and treat it as 1D binary search, as follows.</p>
-<figure class="highlight JAVA"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span>(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> m = matrix.length, n = matrix[<span class="number">0</span>].length, r = m * n - <span class="number">1</span>, l = <span class="number">0</span>, mid;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r) {</div><div class="line">        mid = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">int</span> val = matrix[mid/n][mid%n];</div><div class="line">        <span class="keyword">if</span>(val == target) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(val &gt; target) r = mid - <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>Or we can first search which row is it in, then column, as follows:</p>
-<figure class="highlight JAVA"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">searchMatrix</span>(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> m = matrix.length;</div><div class="line">    <span class="keyword">if</span>(m == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">int</span> n = matrix[<span class="number">0</span>].length;</div><div class="line">    <span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[m];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++){</div><div class="line">        a[i] = matrix[i][<span class="number">0</span>];</div><div class="line">    }</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = m-<span class="number">1</span>, mid, lastSmaller = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(l&lt;=r){</div><div class="line">        mid = l+(r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(l==r){</div><div class="line">            <span class="keyword">if</span>(a[l] &lt;= target) lastSmaller = l;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(l==r-<span class="number">1</span>){</div><div class="line">            <span class="keyword">if</span>(a[r] &lt;= target) lastSmaller = r;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(a[l] &lt;= target) lastSmaller = l;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(a[mid] &gt; target){</div><div class="line">            r = mid-<span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &lt; target){</div><div class="line">            l = mid;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(lastSmaller==-<span class="number">1</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    a = matrix[lastSmaller];</div><div class="line">    l = <span class="number">0</span>;</div><div class="line">    r = n-<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(l&lt;=r){</div><div class="line">        mid = l+(r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[mid] &gt; target){</div><div class="line">            r = mid-<span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(a[mid] &lt; target){</div><div class="line">            l = mid+<span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant_1">Variant 1</h3>
-<blockquote>
-<p>What if the matrix’s feature is as follows?</p>
-<ul>
-<li>Integers in each row are sorted from left to right.</li>
-<li>Integers in each column are sorted from up to bottom.</li>
-<li>No duplicate in the whole array.<br>In fact this is called Young-Tableau</li>
-</ul>
-</blockquote>
-<h3 id="Solution-1">Solution</h3>
-<p>Basic insight is that for Young-Tableau, the left-up subarray is smaller than the right -bottom subarray.</p>
-<h4 id="Idea_1:_Scanning_from_Corner">Idea 1: Scanning from Corner</h4>
-<p>We can start from the right-up corner. If the current num is larger than target, the whole column can be discarded. If it’s smaller, the whole line can be discarded.</p>
-<figure class="highlight JAVA"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">search2D</span>(<span class="keyword">int</span>[][] a, <span class="keyword">int</span> target){</div><div class="line">  <span class="keyword">int</span> m = a.length, n = a[<span class="number">0</span>].length;</div><div class="line">  <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</div><div class="line">  <span class="keyword">while</span>(j &gt;= <span class="number">0</span> && i &lt; m){</div><div class="line">    <span class="keyword">if</span>(a[i][j] &gt; target) j--;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[i][j] &lt; target) i++;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">  }</div><div class="line">  <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h4 id="Idea_2:_2D-Cut_the_Matrix">Idea 2: 2D-Cut the Matrix</h4>
-<p>TODO</p>
-<h3 id="Variant_2">Variant 2</h3>
-<blockquote>
-<p>What if the matrix’s feature is as follows?</p>
-<ul>
-<li>Integers in each row are sorted from left to right.</li>
-<li>Integers in each column are sorted from up to bottom.</li>
-<li>No duplicate integers in each row or column.<br>Count how many of a given number are in the matrix?</li>
-</ul>
-</blockquote>
-<h3 id="Solution-2">Solution</h3>
-<p>Like the non-duplicated version, we now just need to add another case where when we find the current num is the target, we can disgard the whole row and column.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">count2D</span>(<span class="keyword">int</span>[][] a, <span class="keyword">int</span> target){</div><div class="line">  <span class="keyword">int</span> m = a.length, n = a[<span class="number">0</span>].length, cnt = <span class="number">0</span>;</div><div class="line">  <span class="keyword">int</span> i = <span class="number">0</span>, j = n - <span class="number">1</span>;</div><div class="line">  <span class="keyword">while</span>(j &gt;= <span class="number">0</span> && i &lt; m){</div><div class="line">    <span class="keyword">if</span>(a[i][j] &gt; target) j--;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[i][j] &lt; target) i++;</div><div class="line">    <span class="keyword">else</span> {</div><div class="line">      cnt++;</div><div class="line">      i++; j--;</div><div class="line">    }</div><div class="line">  }</div><div class="line">  <span class="keyword">return</span> cnt;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/29/Search-2D-Matrix/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
-			
-	
-	<!-- display as entry -->
-		<h3 class="title">
-			<a href="/2015/01/29/Search-Insertion-Position/" >Search Insertion Position</a>
-			<span class="date"> Jan 29 2015 </span>
-		</h3>
-	
-
-
-			<div class="entry">
-  <div class="row">
-  
-	<div class="col-md-12">
-	  
-	
-	  <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.</p>
-<p>You may assume no duplicates in the array.</p>
-<p>Here are few examples.<br>[1,3,5,6], 5 → 2<br>[1,3,5,6], 2 → 1<br>[1,3,5,6], 7 → 4<br>[1,3,5,6], 0 → 0</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">searchInsert</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> target) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = a.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(a[m] == target) <span class="keyword">return</span> m;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[m] &lt; target) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>(m &gt; <span class="number">0</span> && a[m - <span class="number">1</span>] &gt;= target) r = m - <span class="number">1</span>; <span class="comment">// pitfall: it's &gt;= target</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> l;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-
-	
-	</div>
-	
-  
-</div>
-	<a type="button" href="/2015/01/29/Search-Insertion-Position/#more" class="btn btn-default more">Read More</a>
-</div>
-
-		
 
 		</div>
 
@@ -555,15 +532,19 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>44</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>45</span></a></li>
 		
-			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>7</span></a></li>
+			<li><a href="/categories/Non-Leetcode/LinkedIn/">LinkedIn<span>1</span></a></li>
+		
+			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>8</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/Google/Onsite/">Onsite<span>1</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/Google/Phone-Screen/">Phone Screen<span>4</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/FB/Phone-Screen/">Phone Screen<span>1</span></a></li>
+		
+			<li><a href="/categories/Non-Leetcode/LinkedIn/Phone-Screen/">Phone Screen<span>1</span></a></li>
 		
 		</ul>
 	</div>
@@ -574,45 +555,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
-			<li><a href="/tags/Math/">Math<span>6</span></a></li>
-		
-			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
-		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
-			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
-		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>5</span></a></li>
-		
-			<li><a href="/tags/BST/">BST<span>2</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
-		
 			<li><a href="/tags/Sort/">Sort<span>1</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>5</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
-		
-			<li><a href="/tags/Tree/">Tree<span>2</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>10</span></a></li>
-		
-			<li><a href="/tags/List/">List<span>10</span></a></li>
-		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
-		
-			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
 		
 			<li><a href="/tags/DP/">DP<span>8</span></a></li>
 		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
-		
 			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+		
+			<li><a href="/tags/Math/">Math<span>7</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+		
+			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+		
+			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
+		
+			<li><a href="/tags/BST/">BST<span>2</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>10</span></a></li>
+		
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>6</span></a></li>
+		
+			<li><a href="/tags/Array/">Array<span>10</span></a></li>
+		
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
+		
+			<li><a href="/tags/Tree/">Tree<span>3</span></a></li>
+		
+			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>6</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>22</span></a></li>
@@ -628,6 +609,14 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/02/03/Binary-Tree-Upside-Down/" ><i class="fa fa-file-o"></i>Binary Tree Upside Down</a>
+      </li>
+    
+      <li>
+        <a href="/2015/02/03/Roman-To-Int/" ><i class="fa fa-file-o"></i>Roman To Int</a>
+      </li>
+    
+      <li>
         <a href="/2015/02/03/Word-Break/" ><i class="fa fa-file-o"></i>Word Break</a>
       </li>
     
@@ -637,14 +626,6 @@
     
       <li>
         <a href="/2015/02/03/Minimum-Path-Sum/" ><i class="fa fa-file-o"></i>Minimum Path Sum</a>
-      </li>
-    
-      <li>
-        <a href="/2015/02/03/Triangle/" ><i class="fa fa-file-o"></i>Triangle</a>
-      </li>
-    
-      <li>
-        <a href="/2015/02/03/Decode-Ways/" ><i class="fa fa-file-o"></i>Decode Ways</a>
       </li>
     
   </ul>

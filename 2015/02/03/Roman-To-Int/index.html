@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Roman To Int | Codefish</title>
+  
+  
+  <meta name="description" content="Problem
+
+Convert Roman to integer
+Solution
+
+1234567891011121314151617181920212223242526272829public int romanToInt(String s) {    int sum = 0;    for(">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Roman To Int"/>
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Roman To Int</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Convert Roman to integer</p>
+<h3 id="Solution">Solution</h3>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span>(String s) {</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); ){</div><div class="line">        <span class="keyword">if</span>(s.charAt(i) == <span class="string">'I'</span>){</div><div class="line">            <span class="keyword">if</span>(i &lt; s.length() - <span class="number">1</span>){</div><div class="line">                <span class="keyword">if</span>(s.charAt(i + <span class="number">1</span>) == <span class="string">'V'</span>) { sum += <span class="number">4</span>; i += <span class="number">2</span>;}</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i + <span class="number">1</span>) == <span class="string">'X'</span>) { sum += <span class="number">9</span>; i += <span class="number">2</span>; }</div><div class="line">                <span class="keyword">else</span> { sum += <span class="number">1</span>; i += <span class="number">1</span>; }</div><div class="line">            } <span class="keyword">else</span> { sum += <span class="number">1</span>; i += <span class="number">1</span>; }</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'X'</span>){</div><div class="line">            <span class="keyword">if</span>(i &lt; s.length() - <span class="number">1</span>){</div><div class="line">                <span class="keyword">if</span>(s.charAt(i + <span class="number">1</span>) == <span class="string">'L'</span>) { sum += <span class="number">40</span>; i += <span class="number">2</span>;}</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i + <span class="number">1</span>) == <span class="string">'C'</span>) { sum += <span class="number">90</span>; i += <span class="number">2</span>; }</div><div class="line">                <span class="keyword">else</span> { sum += <span class="number">10</span>; i += <span class="number">1</span>; }</div><div class="line">            } <span class="keyword">else</span> { sum += <span class="number">10</span>; i += <span class="number">1</span>; }</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'C'</span>){</div><div class="line">            <span class="keyword">if</span>(i &lt; s.length() - <span class="number">1</span>){</div><div class="line">                <span class="keyword">if</span>(s.charAt(i + <span class="number">1</span>) == <span class="string">'D'</span>) { sum += <span class="number">400</span>; i += <span class="number">2</span>;}</div><div class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i + <span class="number">1</span>) == <span class="string">'M'</span>) { sum += <span class="number">900</span>; i += <span class="number">2</span>; }</div><div class="line">                <span class="keyword">else</span> { sum += <span class="number">100</span>; i += <span class="number">1</span>; }</div><div class="line">            } <span class="keyword">else</span> { sum += <span class="number">100</span>; i += <span class="number">1</span>; }</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'V'</span>) { sum += <span class="number">5</span>; i += <span class="number">1</span>;}</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'L'</span>) { sum += <span class="number">50</span>; i += <span class="number">1</span>;}</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'D'</span>) { sum += <span class="number">500</span>; i += <span class="number">1</span>;}</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i) == <span class="string">'M'</span>) { sum += <span class="number">1000</span>; i += <span class="number">1</span>;}</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/02/03/Binary-Tree-Upside-Down/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/03/Word-Break/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Feb 3 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>45</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/String/">String<span>6</span></a></li> <li><a href="/tags/Math/">Math<span>7</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Codefish
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+   </html>
