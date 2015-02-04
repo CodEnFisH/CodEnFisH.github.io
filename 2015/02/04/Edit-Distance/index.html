@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Merge Sort List | Codefish</title>
+  <title>Edit Distance | Codefish</title>
   
   
-  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142private ListNode findMid(ListNode head, ListNode tail){    ListNode fast = ">
+  <meta name="description" content="Problem
+
+Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
+">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Merge Sort List"/>
+  <meta property="og:title" content="Edit Distance"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -87,7 +90,7 @@
 
 	
 		<div class="page-header">		
-			<h1> Merge Sort List</h1>
+			<h1> Edit Distance</h1>
 		</div>		
 	
 
@@ -103,7 +106,14 @@
 
 	<!-- content -->
 	<div class="mypage">		
-	    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ListNode <span class="title">findMid</span>(ListNode head, ListNode tail){</div><div class="line">    ListNode fast = head, slow = head;</div><div class="line">    <span class="keyword">while</span>(fast != tail){</div><div class="line">        fast = fast.next;</div><div class="line">        <span class="keyword">if</span>(fast != tail){</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> slow;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">sortList</span>(ListNode head) {</div><div class="line">    <span class="keyword">return</span> sort(head, <span class="keyword">null</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">sort</span>(ListNode first, ListNode last){</div><div class="line">    <span class="keyword">if</span>(first == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span>(first.next == last) {</div><div class="line">        first.next = <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> first;</div><div class="line">    }</div><div class="line">    ListNode mid = findMid(first, last);</div><div class="line">    <span class="keyword">return</span> merge(sort(first, mid), sort(mid, last));</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">merge</span>(ListNode h1, ListNode h2){</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), tail = dummy;</div><div class="line">    <span class="keyword">while</span>(h1 != <span class="keyword">null</span> && h2 != <span class="keyword">null</span>){</div><div class="line">        <span class="keyword">if</span>(h1.val &lt; h2.val){</div><div class="line">            tail.next = h1;</div><div class="line">            h1 = h1.next;</div><div class="line">            tail = tail.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            tail.next = h2;</div><div class="line">            h2 = h2.next;</div><div class="line">            tail = tail.next;</div><div class="line">            tail.next = <span class="keyword">null</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(h1 != <span class="keyword">null</span>) tail.next = h1;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(h2 != <span class="keyword">null</span>) tail.next = h2;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
+<p>You have the following 3 operations permitted on a word:</p>
+<p>a) Insert a character<br>b) Delete a character<br>c) Replace a character</p>
+<h3 id="Solution">Solution</h3>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span>(String word1, String word2) {</div><div class="line">    <span class="keyword">char</span>[] a = word1.toCharArray(), b = word2.toCharArray();</div><div class="line">    <span class="keyword">int</span> m = a.length, n = b.length;</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>][n+<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) f[i][<span class="number">0</span>] = i;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) f[<span class="number">0</span>][j] = j;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++){</div><div class="line">            <span class="keyword">int</span> cost = a[i-<span class="number">1</span>] == b[j-<span class="number">1</span>] ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">            f[i][j] = Math.min(f[i-<span class="number">1</span>][j-<span class="number">1</span>] + cost, Math.min(f[i-<span class="number">1</span>][j] + <span class="number">1</span>, f[i][j-<span class="number">1</span>] + <span class="number">1</span>));</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[m][n];</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -113,14 +123,14 @@
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/02/Insertion-Sort-List/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/04/Interleaving-String/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -147,7 +157,7 @@
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 2 2015 
+	Feb 4 2015 
 	</div>
 	
 
@@ -171,7 +181,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/List/">List<span>10</span></a></li>
+  <li><a href="/tags/DP/">DP<span>11</span></a></li> <li><a href="/tags/String/">String<span>8</span></a></li>
     </ul>
 	</div>
 		
