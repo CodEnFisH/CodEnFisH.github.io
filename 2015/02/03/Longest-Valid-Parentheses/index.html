@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Find Local Maximum/Minimum, aka, peek element | Codefish</title>
+  <title>Longest Valid Parentheses | Codefish</title>
   
   
   <meta name="description" content="Problem
 
-A peak element is an element that is greater than its neighbors.
-Given an input array where num[i] ≠ num[i+1], find a peak element and return">
+Given a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring.
+For “(()">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Find Local Maximum/Minimum, aka, peek element"/>
+  <meta property="og:title" content="Longest Valid Parentheses"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -90,7 +90,7 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 
 	
 		<div class="page-header">		
-			<h1> Find Local Maximum/Minimum, aka, peek element</h1>
+			<h1> Longest Valid Parentheses</h1>
 		</div>		
 	
 
@@ -108,15 +108,12 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>A peak element is an element that is greater than its neighbors.</p>
-<p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.</p>
-<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
-<p>You may imagine that num[-1] = num[n] = -∞.</p>
-<p>For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.</p>
-</blockquote>
+<p>Given a string containing just the characters ‘(‘ and ‘)’, find the length of the longest valid (well-formed) parentheses substring.</p>
+<p>For “(()”, the longest valid parentheses substring is “()”, which has length = 2.</p>
+<p>Another example is “)()())”, where the longest valid parentheses substring is “()()”, which has length = 4.</p>
 <h3 id="Solution">Solution</h3>
-<p>Binary search, if the mid point is in the “climbing half”, discard the left subarray; else it’s in the “decending half”, discard the right subarray.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = num.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">if</span>(l == r) <span class="keyword">return</span> l;</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m &lt; num.length - <span class="number">1</span>){</div><div class="line">            <span class="keyword">if</span>(num[m] &lt; num[m+<span class="number">1</span>]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span>(String s) {</div><div class="line">    <span class="keyword">if</span>(s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</div><div class="line">    <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length(); i++){</div><div class="line">        <span class="keyword">if</span>(s.charAt(i) == <span class="string">')'</span> && i - f[i-<span class="number">1</span>] &gt;= <span class="number">1</span> && s.charAt(i - f[i-<span class="number">1</span>] - <span class="number">1</span>) == <span class="string">'('</span>)</div><div class="line">            f[i] = f[i-<span class="number">1</span>] + <span class="number">2</span> + (i - f[i-<span class="number">1</span>] &gt; <span class="number">1</span> ? f[i - f[i-<span class="number">1</span>] - <span class="number">2</span>] : <span class="number">0</span>);</div><div class="line">        max = Math.max(max, f[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> max;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -126,14 +123,14 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/29/Median-of-Two-Sorted-Arrays/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/29/Search-2D-Matrix/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/03/Meeting-Room/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -160,7 +157,7 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 29 2015 
+	Feb 3 2015 
 	</div>
 	
 
@@ -184,7 +181,7 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+  <li><a href="/tags/DP/">DP<span>9</span></a></li>
     </ul>
 	</div>
 		
