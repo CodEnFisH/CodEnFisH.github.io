@@ -103,6 +103,49 @@
 	
 	<!-- display as entry -->
 		<h3 class="title">
+			<a href="/2015/02/04/Dungeon-Game/" >Dungeon Game</a>
+			<span class="date"> Feb 4 2015 </span>
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>The demons had captured the princess (P) and imprisoned her in the bottom-right corner of a dungeon. The dungeon consists of M x N rooms laid out in a 2D grid. Our valiant knight (K) was initially positioned in the top-left room and must fight his way through the dungeon to rescue the princess.</p>
+<p>The knight has an initial health point represented by a positive integer. If at any point his health point drops to 0 or below, he dies immediately.</p>
+<p>Some of the rooms are guarded by demons, so the knight loses health (negative integers) upon entering these rooms; other rooms are either empty (0’s) or contain magic orbs that increase the knight’s health (positive integers).</p>
+<p>In order to reach the princess as quickly as possible, the knight decides to move only rightward or downward in each step.</p>
+<p>Write a function to determine the knight’s minimum initial health so that he is able to rescue the princess.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>The key is to fill in the table from the bottom right corner to top left.<br>There are three condition to keep the knight alive in a room:</p>
+<ul>
+<li>Have sufficient HP to go to either right or down room.</li>
+<li>When enter the room, HP needs to be positive.</li>
+<li>After fighting the dragon (if any), the HP needs to be positive</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">calculateMinimumHP</span>(<span class="keyword">int</span>[][] dungeon) {</div><div class="line">    <span class="keyword">int</span> m = dungeon.length, n = dungeon[<span class="number">0</span>].length;</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m][n];</div><div class="line">    f[m-<span class="number">1</span>][n-<span class="number">1</span>] = dungeon[m-<span class="number">1</span>][n-<span class="number">1</span>] &gt;= <span class="number">0</span> ? <span class="number">1</span> : (-dungeon[m-<span class="number">1</span>][n-<span class="number">1</span>] + <span class="number">1</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) f[i][n-<span class="number">1</span>] = Math.max(f[i+<span class="number">1</span>][n-<span class="number">1</span>] - dungeon[i][n-<span class="number">1</span>], Math.max(<span class="number">1</span>, <span class="number">1</span> - dungeon[i][n-<span class="number">1</span>]));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = n - <span class="number">2</span>; j &gt;= <span class="number">0</span>; j--) f[m-<span class="number">1</span>][j] = Math.max(f[m-<span class="number">1</span>][j+<span class="number">1</span>] - dungeon[m-<span class="number">1</span>][j], Math.max(<span class="number">1</span>, <span class="number">1</span> - dungeon[m-<span class="number">1</span>][j]));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = m - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = n - <span class="number">2</span>; j &gt;= <span class="number">0</span>; j--){</div><div class="line">            f[i][j] = Math.min(f[i+<span class="number">1</span>][j], f[i][j+<span class="number">1</span>]) - dungeon[i][j];</div><div class="line">            f[i][j] = Math.max(f[i][j], Math.max(<span class="number">1</span>, <span class="number">1</span> - dungeon[i][j]));</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[<span class="number">0</span>][<span class="number">0</span>];</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/04/Dungeon-Game/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->
+		<h3 class="title">
 			<a href="/2015/02/04/Edit-Distance/" >Edit Distance</a>
 			<span class="date"> Feb 4 2015 </span>
 		</h3>
@@ -3465,7 +3508,7 @@
 		
 			<li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li>
 		
-			<li><a href="/categories/Leetcode/">Leetcode<span>49</span></a></li>
+			<li><a href="/categories/Leetcode/">Leetcode<span>50</span></a></li>
 		
 			<li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>8</span></a></li>
 		
@@ -3484,45 +3527,45 @@
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
+			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
 		
 			<li><a href="/tags/Data-Structure/">Data Structure<span>1</span></a></li>
 		
-			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
-		
-			<li><a href="/tags/Array/">Array<span>11</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>11</span></a></li>
-		
-			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
-		
-			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
-		
-			<li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+			<li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>1</span></a></li>
 		
 			<li><a href="/tags/BST/">BST<span>2</span></a></li>
 		
-			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
-		
-			<li><a href="/tags/DFS/">DFS<span>6</span></a></li>
-		
-			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
-		
-			<li><a href="/tags/Trie/">Trie<span>1</span></a></li>
-		
 			<li><a href="/tags/Tree/">Tree<span>3</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
-		
-			<li><a href="/tags/String/">String<span>8</span></a></li>
-		
-			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
 		
 			<li><a href="/tags/Sort/">Sort<span>2</span></a></li>
 		
-			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
+			<li><a href="/tags/Array/">Array<span>11</span></a></li>
+		
+			<li><a href="/tags/Graph/">Graph<span>1</span></a></li>
+		
+			<li><a href="/tags/Two-Pointers/">Two Pointers<span>7</span></a></li>
+		
+			<li><a href="/tags/DFS/">DFS<span>6</span></a></li>
 		
 			<li><a href="/tags/Math/">Math<span>7</span></a></li>
+		
+			<li><a href="/tags/String/">String<span>8</span></a></li>
+		
+			<li><a href="/tags/Two-Pointer/">Two Pointer<span>1</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>10</span></a></li>
+		
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>2</span></a></li>
+		
+			<li><a href="/tags/DP/">DP<span>12</span></a></li>
+		
+			<li><a href="/tags/HashMap/">HashMap<span>3</span></a></li>
+		
+			<li><a href="/tags/Palindrome/">Palindrome<span>1</span></a></li>
+		
+			<li><a href="/tags/MergeSort/">MergeSort<span>1</span></a></li>
 		
 		
 		   <li><a href="/tags">...<span>22</span></a></li>
@@ -3538,6 +3581,10 @@
   <ul class="entry list-unstyled">
     
       <li>
+        <a href="/2015/02/04/Dungeon-Game/" ><i class="fa fa-file-o"></i>Dungeon Game</a>
+      </li>
+    
+      <li>
         <a href="/2015/02/04/Edit-Distance/" ><i class="fa fa-file-o"></i>Edit Distance</a>
       </li>
     
@@ -3551,10 +3598,6 @@
     
       <li>
         <a href="/2015/02/03/Meeting-Room/" ><i class="fa fa-file-o"></i>Meeting Room</a>
-      </li>
-    
-      <li>
-        <a href="/2015/02/03/Binary-Tree-Upside-Down/" ><i class="fa fa-file-o"></i>Binary Tree Upside Down</a>
       </li>
     
   </ul>
