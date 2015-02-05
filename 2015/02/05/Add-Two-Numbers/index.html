@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Best Time to Buy and Sell Stock | Codefish</title>
+  <title>Add Two Numbers | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one tr">
+You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Best Time to Buy and Sell Stock"/>
+  <meta property="og:title" content="Add Two Numbers"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -77,7 +77,7 @@ Say you have an array for which the ith element is the price of a given stock on
 
 	
 		<div class="page-header">		
-			<h1> Best Time to Buy and Sell Stock</h1>
+			<h1> Add Two Numbers</h1>
 		</div>		
 	
 
@@ -95,17 +95,11 @@ Say you have an array for which the ith element is the price of a given stock on
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Say you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
+<p>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)<br>Output: 7 -&gt; 0 -&gt; 8</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span>(<span class="keyword">int</span>[] prices) {</div><div class="line">    <span class="keyword">int</span> min = Integer.MAX_VALUE, maxProfit = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++){</div><div class="line">        maxProfit = Math.max(maxProfit, prices[i] - min);</div><div class="line">        min = Math.min(min, prices[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> maxProfit;</div><div class="line">}</div></pre></td></tr></table></figure>
-
-<h3 id="Variant">Variant</h3>
-<blockquote>
-<p>What if we allow at most two transactions?</p>
-</blockquote>
-<h3 id="Solution-1">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span>(<span class="keyword">int</span>[] prices) {</div><div class="line">    <span class="keyword">if</span>(prices.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> maxProfit = <span class="number">0</span>, min = prices[<span class="number">0</span>], max = prices[prices.length-<span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length], g = <span class="keyword">new</span> <span class="keyword">int</span>[prices.length];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++){</div><div class="line">        min = Math.min(min, prices[i]);</div><div class="line">        <span class="keyword">if</span>(prices[i] &gt;= min) f[i] = Math.max(f[i-<span class="number">1</span>], prices[i] - min);</div><div class="line">        maxProfit = Math.max(maxProfit, f[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = prices.length - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">        max = Math.max(max, prices[i]);</div><div class="line">        <span class="keyword">if</span>(prices[i] &lt;= max) g[i] = Math.max(g[i+<span class="number">1</span>], max - prices[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length - <span class="number">1</span>; i++){</div><div class="line">        maxProfit = Math.max(maxProfit, f[i] + g[i+<span class="number">1</span>]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> maxProfit;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">addTwoNumbers</span>(ListNode l1, ListNode l2) {</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), tail = dummy, p = l1, q = l2;</div><div class="line">    <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span> && q != <span class="keyword">null</span>) {</div><div class="line">        <span class="keyword">int</span> digit = p.val + q.val + c;</div><div class="line">        <span class="keyword">if</span>(digit &gt;= <span class="number">10</span>) {</div><div class="line">            digit %= <span class="number">10</span>;</div><div class="line">            c = <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> c = <span class="number">0</span>;</div><div class="line">        tail.next = <span class="keyword">new</span> ListNode(digit);</div><div class="line">        tail = tail.next;</div><div class="line">        p = p.next;</div><div class="line">        q = q.next;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(q != <span class="keyword">null</span>) p = q;</div><div class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span>) {</div><div class="line">        tail.next = <span class="keyword">new</span> ListNode(p.val + c);</div><div class="line">        tail = tail.next;</div><div class="line">        <span class="keyword">if</span>(tail.val &gt;= <span class="number">10</span>){</div><div class="line">            tail.val %= <span class="number">10</span>;</div><div class="line">            c = <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> c = <span class="number">0</span>;</div><div class="line">        p = p.next;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(c == <span class="number">1</span>) tail.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -115,14 +109,14 @@ Say you have an array for which the ith element is the price of a given stock on
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/03/Decode-Ways/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/03/Maximum-Subarray/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/04/Evaluate-Reverse-Polish-Notation/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -149,7 +143,7 @@ Say you have an array for which the ith element is the price of a given stock on
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 3 2015 
+	Feb 5 2015 
 	</div>
 	
 
@@ -173,7 +167,7 @@ Say you have an array for which the ith element is the price of a given stock on
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/DP/">DP<span>15</span></a></li> <li><a href="/tags/Array/">Array<span>12</span></a></li>
+  <li><a href="/tags/List/">List<span>11</span></a></li>
     </ul>
 	</div>
 		
