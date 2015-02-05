@@ -3,21 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Three Increasing Elements in an Array | Codefish</title>
+  <title>Generate Parentheses | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given an array of integers A, please find three indexes i, j, k, such that i&amp;lt;j&amp;lt;k and A[i]&amp;lt;A[j]&amp;lt;A[k].
+Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
-Idea
-
-Using the idea of “fi">
+Solution
+123456789101112131415161718">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Three Increasing Elements in an Array"/>
+  <meta property="og:title" content="Generate Parentheses"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -81,7 +80,7 @@ Using the idea of “fi">
 
 	
 		<div class="page-header">		
-			<h1> Three Increasing Elements in an Array</h1>
+			<h1> Generate Parentheses</h1>
 		</div>		
 	
 
@@ -99,16 +98,10 @@ Using the idea of “fi">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given an array of integers A, please find three indexes i, j, k, such that i&lt;j&lt;k and A[i]&lt;A[j]&lt;A[k].</p>
+<p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.</p>
 </blockquote>
-<h3 id="Idea">Idea</h3>
-<ul>
-<li><p>Using the idea of “find nearest larger element in array”, we can first scan the array and find out the nearest larger num on the right and store them in another array b[]. Then we can scan b to find out the answer</p>
-</li>
-<li><p>We can try to scan the array and update the candidate of i and j. How ? We can keep the index of current min element. If the current element is larger than the min but smaller than the current candidate of A[j] then we update j to the current element. If it’s larger than the current candidate of A[j], then we have found an answer. Example: a = [8,9,5,6,7]. The first candidate pair is (8,9) when we scan 5, we only update the min index, not i. But when we scan 6, it’s larger than the current min (5) but larger than the current candidate of A[j] — 9. This time we update A[i] to 5 and A[j] to 6.</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">findTreeIndexes</span>(<span class="keyword">int</span>[] a){</div><div class="line">  <span class="keyword">int</span> i = -<span class="number">1</span>, j = -<span class="number">1</span>, minIdx = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> t = <span class="number">1</span>; t &lt; a.length; t++){</div><div class="line">    <span class="keyword">if</span>(a[t] &lt; a[minIdx]) minIdx = t;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a[t] &gt; a[minIdx]){</div><div class="line">      <span class="keyword">if</span>(j == -<span class="number">1</span>) {</div><div class="line">        i = minIdx;</div><div class="line">        j = t;</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">if</span>(a[t] &lt; a[j]) {</div><div class="line">          i = minIdx;</div><div class="line">          j = t;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(a[t] &gt; a[j]) { <span class="comment">// a[t] &gt; a[j]</span></div><div class="line">          <span class="keyword">int</span>[] ret = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</div><div class="line">          ret[<span class="number">0</span>] = i; ret[<span class="number">1</span>] = j; ret[<span class="number">2</span>] = t;</div><div class="line">          <span class="keyword">return</span> ret;</div><div class="line">        }</div><div class="line">      }</div><div class="line">    }</div><div class="line">  }</div><div class="line">  <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span>(<span class="keyword">int</span> n) {</div><div class="line">    List&lt;String&gt; ret = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">    gen(n, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">2</span>*n], ret);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gen</span>(<span class="keyword">int</span> n, <span class="keyword">int</span> left, <span class="keyword">int</span> right, <span class="keyword">char</span>[] status, List&lt;String&gt; ret){</div><div class="line">    <span class="keyword">if</span>(left == n && right == n){</div><div class="line">        ret.add(<span class="keyword">new</span> String(status));</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(left == n) {</div><div class="line">        status[left+right] = <span class="string">')'</span>;</div><div class="line">        gen(n, left, right + <span class="number">1</span>, status, ret);</div><div class="line">    } <span class="keyword">else</span> <span class="keyword">if</span>(left == right) {</div><div class="line">        status[left+right] = <span class="string">'('</span>;</div><div class="line">        gen(n, left + <span class="number">1</span>, right, status, ret);</div><div class="line">    } <span class="keyword">else</span> {</div><div class="line">        status[left+right] = <span class="string">'('</span>;</div><div class="line">        gen(n, left + <span class="number">1</span>, right, status, ret);</div><div class="line">        status[left+right] = <span class="string">')'</span>;</div><div class="line">        gen(n, left, right + <span class="number">1</span>, status, ret);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -119,13 +112,13 @@ Using the idea of “fi">
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/01/27/Valid-Palindrome/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/04/Maximum-Product-Subarray/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/27/Sqrt-x/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/04/Longest-Palindromic-Substring/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -152,7 +145,7 @@ Using the idea of “fi">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 27 2015 
+	Feb 4 2015 
 	</div>
 	
 
@@ -163,7 +156,7 @@ Using the idea of “fi">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>8</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li> <li><a href="/categories/Non-Leetcode/Google/Phone-Screen/">Phone Screen<span>4</span></a></li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>57</span></a></li>
   </li>
 
     </ul>
@@ -176,7 +169,7 @@ Using the idea of “fi">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Array/">Array<span>12</span></a></li>
+  <li><a href="/tags/Backtracking/">Backtracking<span>1</span></a></li> <li><a href="/tags/String/">String<span>12</span></a></li>
     </ul>
 	</div>
 		
