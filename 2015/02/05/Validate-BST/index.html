@@ -3,24 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Sqrt(x) | Codefish</title>
+  <title>Validate BST | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Implemt sqrt(x)
+Given a binary tree, determine if it is a valid binary search tree (BST).
+Solution
 
-Common Pitfalls
-
-Use long to avoid overflow
-Return condition
-
-1234567891011public int sqrt(int x) {    long l = 1, r = x, t ">
+123456789long min = Long.MIN_VALUE;public boolean isValid">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Sqrt(x)"/>
+  <meta property="og:title" content="Validate BST"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -84,7 +80,7 @@ Return condition
 
 	
 		<div class="page-header">		
-			<h1> Sqrt(x)</h1>
+			<h1> Validate BST</h1>
 		</div>		
 	
 
@@ -102,14 +98,10 @@ Return condition
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Implemt sqrt(x)</p>
+<p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
+<h3 id="Solution">Solution</h3>
 </blockquote>
-<h3 id="Common_Pitfalls">Common Pitfalls</h3>
-<ol>
-<li>Use long to avoid overflow</li>
-<li>Return condition</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sqrt</span>(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">long</span> l = <span class="number">1</span>, r = x, t = x;</div><div class="line">    <span class="keyword">if</span>(x &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">long</span> m = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &lt;= t && (m + <span class="number">1</span>)*(m + <span class="number">1</span>) &gt; t) <span class="keyword">return</span> (<span class="keyword">int</span>)m;</div><div class="line">        <span class="keyword">if</span>(m * m &lt; t) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &gt; t) r = m - <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)l;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> min = Long.MIN_VALUE;</div><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidBST</span>(TreeNode root) {</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">if</span>(!isValidBST(root.left)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">if</span>(min &gt;= root.val) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    min = root.val;</div><div class="line">    <span class="keyword">if</span>(!isValidBST(root.right)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -120,13 +112,13 @@ Return condition
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/01/27/Three-Increasing-Elements-in-an-Array/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/05/Letter-Combinations-of-a-Phone-Number/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/27/Pow-x-n/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/05/Add-Two-Numbers/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -153,7 +145,7 @@ Return condition
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 27 2015 
+	Feb 5 2015 
 	</div>
 	
 
@@ -177,7 +169,7 @@ Return condition
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Math/">Math<span>7</span></a></li>
+  <li><a href="/tags/BST/">BST<span>4</span></a></li> <li><a href="/tags/DFS/">DFS<span>9</span></a></li>
     </ul>
 	</div>
 		

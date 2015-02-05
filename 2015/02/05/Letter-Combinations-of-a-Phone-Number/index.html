@@ -3,24 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Sqrt(x) | Codefish</title>
+  <title>Letter Combinations of a Phone Number | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Implemt sqrt(x)
+Given a digit string, return all possible letter combinations that the number could represent
 
-Common Pitfalls
-
-Use long to avoid overflow
-Return condition
-
-1234567891011public int sqrt(int x) {    long l = 1, r = x, t ">
+Solution
+1234567891011121314151617181920212223">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Sqrt(x)"/>
+  <meta property="og:title" content="Letter Combinations of a Phone Number"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -84,7 +80,7 @@ Return condition
 
 	
 		<div class="page-header">		
-			<h1> Sqrt(x)</h1>
+			<h1> Letter Combinations of a Phone Number</h1>
 		</div>		
 	
 
@@ -102,14 +98,10 @@ Return condition
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Implemt sqrt(x)</p>
+<p>Given a digit string, return all possible letter combinations that the number could represent</p>
 </blockquote>
-<h3 id="Common_Pitfalls">Common Pitfalls</h3>
-<ol>
-<li>Use long to avoid overflow</li>
-<li>Return condition</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sqrt</span>(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">long</span> l = <span class="number">1</span>, r = x, t = x;</div><div class="line">    <span class="keyword">if</span>(x &lt;= <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(l &lt;= r){</div><div class="line">        <span class="keyword">long</span> m = l + (r-l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &lt;= t && (m + <span class="number">1</span>)*(m + <span class="number">1</span>) &gt; t) <span class="keyword">return</span> (<span class="keyword">int</span>)m;</div><div class="line">        <span class="keyword">if</span>(m * m &lt; t) l = m + <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(m * m &gt; t) r = m - <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)l;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">String[] dict = {</div><div class="line">    <span class="string">" "</span>,</div><div class="line">    <span class="string">""</span>,</div><div class="line">    <span class="string">"abc"</span>,</div><div class="line">    <span class="string">"def"</span>,</div><div class="line">    <span class="string">"ghi"</span>,</div><div class="line">    <span class="string">"jkl"</span>,</div><div class="line">    <span class="string">"mno"</span>,</div><div class="line">    <span class="string">"pqrs"</span>,</div><div class="line">    <span class="string">"tuv"</span>,</div><div class="line">    <span class="string">"wxyz"</span></div><div class="line">};</div><div class="line"><span class="keyword">public</span> List&lt;String&gt; <span class="title">letterCombinations</span>(String digits) {</div><div class="line">    List&lt;String&gt; ret = <span class="keyword">new</span> LinkedList&lt;String&gt;();</div><div class="line">    StringBuffer status = <span class="keyword">new</span> StringBuffer();</div><div class="line">    gen(digits, status, <span class="number">0</span>, ret);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gen</span>(String str, StringBuffer status, <span class="keyword">int</span> pos, List&lt;String&gt; ret){</div><div class="line">    <span class="keyword">if</span>(pos == str.length()){</div><div class="line">        ret.add(status.toString());</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    String chars = dict[str.charAt(pos) - <span class="string">'0'</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chars.length(); i++){</div><div class="line">        status.append(chars.charAt(i));</div><div class="line">        gen(str, status, pos+<span class="number">1</span>, ret);</div><div class="line">        status.deleteCharAt(status.length()-<span class="number">1</span>);</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(chars == <span class="string">""</span>) gen(str, status, pos+<span class="number">1</span>, ret);</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -120,13 +112,13 @@ Return condition
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/01/27/Three-Increasing-Elements-in-an-Array/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/05/Gas-Station/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/27/Pow-x-n/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/05/Validate-BST/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -153,7 +145,7 @@ Return condition
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 27 2015 
+	Feb 5 2015 
 	</div>
 	
 
@@ -177,7 +169,7 @@ Return condition
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Math/">Math<span>7</span></a></li>
+  <li><a href="/tags/Backtracking/">Backtracking<span>2</span></a></li>
     </ul>
 	</div>
 		

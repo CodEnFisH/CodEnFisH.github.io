@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Codefish</title>
+  <meta name="author" content="Ze Yu">
+  
+  <meta name="description" content="title: Gas Stationdate: 2015-02-05 11:14:04tags:
+
+Greedy
+Arraycategories:Leetcode
+
+
+Problem
+Solution
+A super easy-to-implement but hard-to-prove solut">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/." title="Home Page">
+			  <i class="fa fa-user"></i>Home
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/blogs" title="My blogs.">
+			  <i class="fa fa-archive"></i>Blogs
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> </h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <p>title: Gas Station<br>date: 2015-02-05 11:14:04<br>tags:</p>
+<ul>
+<li>Greedy</li>
+<li>Array<br>categories:<br>Leetcode</li>
+</ul>
+<hr>
+<h3 id="Problem">Problem</h3>
+<h3 id="Solution">Solution</h3>
+<p>A super easy-to-implement but hard-to-prove solution is based on the following two observations:</p>
+<ul>
+<li><p>If starting from A we cannot reach B, then for each C between A and B, starting from C cannot reach B neither. Proof: let the accumulation between A and B is x, A and C is Y, C and B is z. Then we have x &lt; 0, y &gt; 0, and x = y + z. Easy to see that z &lt; 0;</p>
+</li>
+<li><p>If the total gas is greater than cost, there must be a solution. Proof: reduction can do the trick.</p>
+</li>
+</ul>
+<p>So we just to accumulate the total gas - cost and subarray sum. If subarray sum is less than 0 then according to observation 1 we can discard these candidates. Finally we return either -1 or the last impossible position + 1.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span>(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost) {</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>, total = <span class="number">0</span>, pos = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gas.length; i++){</div><div class="line">        total += gas[i] - cost[i];</div><div class="line">        sum += gas[i] - cost[i];</div><div class="line">        <span class="keyword">if</span>(sum &lt; <span class="number">0</span>) {</div><div class="line">            sum = <span class="number">0</span>;</div><div class="line">            pos = i;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(total &lt; <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> pos + <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>Another easy-to-understand but harder-to-implement method is using two pointers, one move forward as far as possible and the other move backward if we cannot move forward any more. If these two pointers converge, then we get the answer. Otherwise we return -1.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span>(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost) {</div><div class="line">    <span class="keyword">int</span> n = gas.length;</div><div class="line">    <span class="keyword">int</span> sum = gas[<span class="number">0</span>] - cost[<span class="number">0</span>], p = <span class="number">0</span>, q = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">if</span>(sum &gt;= <span class="number">0</span>) {</div><div class="line">            q = q == n - <span class="number">1</span> ? <span class="number">0</span> : q +<span class="number">1</span>;</div><div class="line">            sum += gas[q] - cost[q];</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            p = p == <span class="number">0</span> ? n - <span class="number">1</span> : p - <span class="number">1</span>;</div><div class="line">            sum += gas[p] - cost[p];</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(p == (q + <span class="number">1</span>) % n){</div><div class="line">            <span class="keyword">if</span>(sum &gt;= <span class="number">0</span>) <span class="keyword">return</span> p;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/05/Letter-Combinations-of-a-Phone-Number/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Feb 5 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+
+	<!-- tags -->
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Ze Yu
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+   </html>
