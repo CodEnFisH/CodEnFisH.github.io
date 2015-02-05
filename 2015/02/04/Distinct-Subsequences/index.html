@@ -3,20 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reverse Linked List | Codefish</title>
+  <title>Distinct Subsequences | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Reverse a linked list from position m to n. Do it in-place and in one-pass.
-
-Solution
-1234567891011121314151617public ListNode reverseBetween">
+Given a string S and a string T, count the number of distinct subsequences of T in S.
+A subsequence of a string is a new string which is form">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Reverse Linked List"/>
+  <meta property="og:title" content="Distinct Subsequences"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -80,7 +78,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Reverse Linked List</h1>
+			<h1> Distinct Subsequences</h1>
 		</div>		
 	
 
@@ -98,10 +96,12 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Reverse a linked list from position m to n. Do it in-place and in one-pass.</p>
+<p>Given a string S and a string T, count the number of distinct subsequences of T in S.</p>
+<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, “ACE” is a subsequence of “ABCDE” while “AEC” is not).</p>
+<p>Here is an example: S = “rabbbit”, T = “rabbit”. Return 3.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span>(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(m == n) <span class="keyword">return</span> head;</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), from = dummy, prev = <span class="keyword">null</span>, tail = <span class="keyword">null</span>;</div><div class="line">    dummy.next = head;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(++i &lt; m) from = from.next;</div><div class="line">    tail = from.next;</div><div class="line">    <span class="keyword">while</span>(i++ &lt;= n) {</div><div class="line">        ListNode toMove = from.next;</div><div class="line">        from.next = toMove.next;</div><div class="line">        toMove.next = prev;</div><div class="line">        prev = toMove;</div><div class="line">    }</div><div class="line">    tail.next = from.next;</div><div class="line">    from.next = prev;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span>(String S, String T) {</div><div class="line">    <span class="keyword">char</span>[] a = S.toCharArray(), b = T.toCharArray();</div><div class="line">    <span class="keyword">int</span> m = a.length, n = b.length;</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>][n+<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) f[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++){</div><div class="line">            f[i][j] = f[i-<span class="number">1</span>][j];</div><div class="line">            <span class="keyword">if</span>(a[i-<span class="number">1</span>] == b[j-<span class="number">1</span>]) f[i][j] += f[i-<span class="number">1</span>][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[m][n];</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -111,14 +111,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/02/Reorder-List/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/02/Largest-Rectangle-in-Histogram/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/04/Dungeon-Game/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -145,7 +145,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 2 2015 
+	Feb 4 2015 
 	</div>
 	
 
@@ -169,7 +169,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/List/">List<span>10</span></a></li>
+  <li><a href="/tags/DP/">DP<span>13</span></a></li> <li><a href="/tags/String/">String<span>9</span></a></li>
     </ul>
 	</div>
 		
