@@ -109,7 +109,7 @@ You have a car with an unlimited gas tank an">
 <li><p>If the total gas is greater than cost, there must be a solution. Proof: reduction can do the trick.</p>
 </li>
 </ul>
-<p>So we just to accumulate the total gas - cost and subarray sum. If subarray sum is less than 0 then according to observation 1 we can discard these candidates. Finally we return either -1 or the last impossible position + 1.</p>
+<p>So we just need to accumulate the total gas - cost and subarray sum. If subarray sum is less than 0 then according to observation 1 we can discard these candidates. Finally we return either -1 or the last impossible position + 1.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span>(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost) {</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>, total = <span class="number">0</span>, pos = -<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gas.length; i++){</div><div class="line">        total += gas[i] - cost[i];</div><div class="line">        sum += gas[i] - cost[i];</div><div class="line">        <span class="keyword">if</span>(sum &lt; <span class="number">0</span>) {</div><div class="line">            sum = <span class="number">0</span>;</div><div class="line">            pos = i;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(total &lt; <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> pos + <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>Another easy-to-understand but harder-to-implement method is using two pointers, one move forward as far as possible and the other move backward if we cannot move forward any more. If these two pointers converge, then we get the answer. Otherwise we return -1.</p>
@@ -123,9 +123,9 @@ You have a car with an unlimited gas tank an">
 	<div class="pagination">
 <ul class="pagination">
 	 
-		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-        
+				
+    	<li class="prev"><a href="/2015/02/05/Largest-Number/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
@@ -168,7 +168,7 @@ You have a car with an unlimited gas tank an">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>62</span></a></li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>63</span></a></li>
   </li>
 
     </ul>
