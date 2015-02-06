@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Clone Graph | Codefish</title>
+  <title>Repeated DNA Sequences | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Clone an undirected graph
-
-Solution
-12345678910111213141516171819202122232425HashMap&amp;lt;UndirectedGraphNode, UndirectedGraphNode&amp;gt; nodes = ">
+All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: “ACGAATTCCG”. When studying DNA, it is sometimes u">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Clone Graph"/>
+  <meta property="og:title" content="Repeated DNA Sequences"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +71,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Clone Graph</h1>
+			<h1> Repeated DNA Sequences</h1>
 		</div>		
 	
 
@@ -92,10 +89,13 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Clone an undirected graph</p>
+<p>All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: “ACGAATTCCG”. When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.</p>
+<p>Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt; nodes =</div><div class="line">        <span class="keyword">new</span> HashMap&lt;UndirectedGraphNode, UndirectedGraphNode&gt;();</div><div class="line">HashSet&lt;UndirectedGraphNode&gt; visited = <span class="keyword">new</span> HashSet&lt;UndirectedGraphNode&gt;();</div><div class="line"><span class="keyword">public</span> UndirectedGraphNode <span class="title">cloneGraph</span>(UndirectedGraphNode node) {</div><div class="line">    <span class="keyword">if</span>(node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    UndirectedGraphNode newNode = <span class="keyword">new</span> UndirectedGraphNode(node.label);</div><div class="line">    visited.add(node);</div><div class="line">    nodes.put(node, newNode);</div><div class="line">    dfs(node, newNode);</div><div class="line">    <span class="keyword">return</span> newNode;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(UndirectedGraphNode oldNode, UndirectedGraphNode newNode){</div><div class="line">    <span class="keyword">for</span>(UndirectedGraphNode nb: oldNode.neighbors){</div><div class="line">        UndirectedGraphNode newNb = nodes.get(nb);</div><div class="line">        <span class="keyword">if</span>(newNb == <span class="keyword">null</span>) {</div><div class="line">            newNb = <span class="keyword">new</span> UndirectedGraphNode(nb.label);</div><div class="line">            nodes.put(nb, newNb);</div><div class="line">        }</div><div class="line">        newNode.neighbors.add(newNb);</div><div class="line">        <span class="keyword">if</span>(!visited.contains(nb)){</div><div class="line">            visited.add(nb);</div><div class="line">            dfs(nb, newNb);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>The basic idea is that, since the length is fix, we can put all len-10 subsequences in a hashmap. The challenge is that the string might be too long. So we encode it into string: A = 00, C = 01, G = 10, T = 11.</p>
+<p>Don’t forget to avoid duplication.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> List&lt;String&gt; <span class="title">findRepeatedDnaSequences</span>(String s) {</div><div class="line">    HashSet&lt;Integer&gt; seqs = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">    HashSet&lt;String&gt; ret = <span class="keyword">new</span> HashSet&lt;String&gt;();</div><div class="line">    <span class="keyword">int</span> d;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= s.length() - <span class="number">10</span>; j++){</div><div class="line">        <span class="keyword">int</span> sig = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++){</div><div class="line">            <span class="keyword">if</span>(s.charAt(i + j) == <span class="string">'A'</span>) d = <span class="number">0x00</span>; <span class="comment">// 00</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i + j) == <span class="string">'C'</span>) d = <span class="number">0x01</span>; <span class="comment">// 01</span></div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s.charAt(i + j) == <span class="string">'G'</span>) d = <span class="number">0x02</span>; <span class="comment">// 10</span></div><div class="line">            <span class="keyword">else</span> d = <span class="number">0x03</span>; <span class="comment">// 11</span></div><div class="line">            sig &lt;&lt;= <span class="number">2</span>;</div><div class="line">            sig |= d;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(seqs.contains(sig)) ret.add(s.substring(j, j + <span class="number">10</span>));</div><div class="line">        <span class="keyword">else</span> seqs.add(sig);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> LinkedList&lt;String&gt;(ret);</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -105,14 +105,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/01/Palindrome-Partition/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/01/Valid-Sudoku/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/06/Gray-Code/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,23 +139,12 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 1 2015 
+	Feb 6 2015 
 	</div>
 	
 
 	<!-- categories -->
     
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>67</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
 
 	<!-- tags -->
 	
@@ -163,7 +152,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Graph/">Graph<span>1</span></a></li> <li><a href="/tags/DFS/">DFS<span>9</span></a></li> <li><a href="/tags/HashMap/">HashMap<span>4</span></a></li>
+  <li><a href="/tags/String/">String<span>13</span></a></li> <li><a href="/tags/HashMap/">HashMap<span>4</span></a></li> <li><a href="/tags/Bit-Manipulation/">Bit Manipulation<span>1</span></a></li>
     </ul>
 	</div>
 		
