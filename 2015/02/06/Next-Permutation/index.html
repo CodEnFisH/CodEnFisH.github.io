@@ -96,6 +96,12 @@ If such arrangement is n">
 <p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.<br>1,2,3 → 1,3,2<br>3,2,1 → 1,2,3<br>1,1,5 → 1,5,1</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
+<ol>
+<li>Scan from end to start, find the first reverse pair</li>
+<li>Scan from end to start, find the first num, say at position j, that is larger than the first element of the reverse pair, say at position i.</li>
+<li>Swap i and j</li>
+<li>Reverse the subarray [i, len - 1]</li>
+</ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nextPermutation</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">int</span> i = num.length - <span class="number">1</span>, j;</div><div class="line">    <span class="keyword">while</span>(i &gt; <span class="number">0</span> && num[i-<span class="number">1</span>] &gt;= num[i]) i--;</div><div class="line">    <span class="keyword">if</span>(i != <span class="number">0</span>) {</div><div class="line">        j = num.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(j &gt;= i && num[j] &lt;= num[i-<span class="number">1</span>]) j--;</div><div class="line">        <span class="keyword">int</span> tmp = num[i-<span class="number">1</span>];</div><div class="line">        num[i-<span class="number">1</span>] = num[j];</div><div class="line">        num[j] = tmp;</div><div class="line">    }</div><div class="line">    j = num.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j) {</div><div class="line">        <span class="keyword">int</span> tmp = num[i];</div><div class="line">        num[i] = num[j];</div><div class="line">        num[j] = tmp;</div><div class="line">        i++;</div><div class="line">        j--;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
@@ -106,9 +112,9 @@ If such arrangement is n">
 	<div class="pagination">
 <ul class="pagination">
 	 
-		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-        
+				
+    	<li class="prev"><a href="/2015/02/06/Sub-Set/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
@@ -151,7 +157,7 @@ If such arrangement is n">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>65</span></a></li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>67</span></a></li>
   </li>
 
     </ul>
@@ -164,7 +170,7 @@ If such arrangement is n">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Array/">Array<span>15</span></a></li>
+  <li><a href="/tags/Array/">Array<span>16</span></a></li>
     </ul>
 	</div>
 		

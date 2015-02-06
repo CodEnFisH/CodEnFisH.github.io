@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Valid Sudoku | Codefish</title>
+  <title>Gray Code | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
-Determine if a Sudoku is valid
+
+Generate Gray CodeIdea: duplicate the n-len gray codes, prepend 0 to the first half, prepend 1 to
+
 Solution
-123456789101112131415public boolean isValidSudoku(char[][] board) {    boolean[][] row = new boolean[b">
+// idea: duplicate the n-len gray">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Valid Sudoku"/>
+  <meta property="og:title" content="Gray Code"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -72,7 +74,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Valid Sudoku</h1>
+			<h1> Gray Code</h1>
 		</div>		
 	
 
@@ -89,9 +91,12 @@ Solution
 	<!-- content -->
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
-<p>Determine if a Sudoku is valid</p>
+<blockquote>
+<p>Generate Gray Code<br>Idea: duplicate the n-len gray codes, prepend 0 to the first half, prepend 1 to</p>
+</blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidSudoku</span>(<span class="keyword">char</span>[][] board) {</div><div class="line">    <span class="keyword">boolean</span>[][] row = <span class="keyword">new</span> <span class="keyword">boolean</span>[board.length][<span class="number">9</span>];</div><div class="line">    <span class="keyword">boolean</span>[][] col = <span class="keyword">new</span> <span class="keyword">boolean</span>[board.length][<span class="number">9</span>];</div><div class="line">    <span class="keyword">boolean</span>[][] blk = <span class="keyword">new</span> <span class="keyword">boolean</span>[board.length][<span class="number">9</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.length; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; board[<span class="number">0</span>].length; j++){</div><div class="line">            <span class="keyword">if</span>(board[i][j] != <span class="string">'.'</span>){</div><div class="line">                <span class="keyword">int</span> c = board[i][j] - <span class="string">'1'</span>;</div><div class="line">                <span class="keyword">if</span>(row[i][c] || col[j][c] || blk[i/<span class="number">3</span>*<span class="number">3</span>+j/<span class="number">3</span>][c]) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">                row[i][c] = col[j][c] = blk[i/<span class="number">3</span>*<span class="number">3</span>+j/<span class="number">3</span>][c] = <span class="keyword">true</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>// idea: duplicate the n-len gray codes, prepend 0 to the first half, prepend 1 to the second half</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>{</div><div class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title">grayCode</span>(<span class="keyword">int</span> n) {</div><div class="line">        List&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>){</div><div class="line">            ret.add(<span class="number">0</span>);</div><div class="line">            <span class="keyword">return</span> ret;</div><div class="line">        }  </div><div class="line">        <span class="keyword">int</span>[] gray = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1</span>&lt;&lt;n];</div><div class="line">        gray[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">        gray[<span class="number">1</span>] = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) gen(i, gray);</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span>&lt;&lt;n); i++){</div><div class="line">            ret.add(gray[i]);</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    }</div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">gen</span>(<span class="keyword">int</span> l, <span class="keyword">int</span>[] code){</div><div class="line">        <span class="keyword">int</span> prelen = (<span class="number">1</span>&lt;&lt;l);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prelen; i++){</div><div class="line">            code[<span class="number">2</span>*prelen-i-<span class="number">1</span>] = code[i];</div><div class="line">            code[<span class="number">2</span>*prelen-i-<span class="number">1</span>] |= (<span class="number">1</span>&lt;&lt;l);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -101,14 +106,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/01/Clone-Graph/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/01/Plus-One/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/06/Sub-Set/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -135,7 +140,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 1 2015 
+	Feb 6 2015 
 	</div>
 	
 
