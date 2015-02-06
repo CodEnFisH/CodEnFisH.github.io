@@ -3,20 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Convert Sorted List to Binary Search Tree | Codefish</title>
+  <title>Next Permutation | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
-
-Solution
-123456789101112131415">
+Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
+If such arrangement is n">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Convert Sorted List to Binary Search Tree"/>
+  <meta property="og:title" content="Next Permutation"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +72,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Convert Sorted List to Binary Search Tree</h1>
+			<h1> Next Permutation</h1>
 		</div>		
 	
 
@@ -92,10 +90,13 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
+<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
+<p>The replacement must be in-place, do not allocate extra memory.</p>
+<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.<br>1,2,3 → 1,3,2<br>3,2,1 → 1,2,3<br>1,1,5 → 1,5,1</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">ListNode pos;</div><div class="line"><span class="keyword">public</span> TreeNode <span class="title">sortedListToBST</span>(ListNode head) {</div><div class="line">    <span class="keyword">int</span> n = <span class="number">0</span>;</div><div class="line">    ListNode p = head;</div><div class="line">    <span class="keyword">while</span>(p != <span class="keyword">null</span>){</div><div class="line">        p = p.next;</div><div class="line">        n++;</div><div class="line">    }</div><div class="line">    pos = head;</div><div class="line">    <span class="keyword">return</span> dfs(head, n);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> TreeNode <span class="title">dfs</span>(ListNode head, <span class="keyword">int</span> n){</div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span> || n == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    TreeNode left = dfs(head, n / <span class="number">2</span>);</div><div class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(pos.val);</div><div class="line">    root.left = left;</div><div class="line">    pos = pos.next;</div><div class="line">    <span class="keyword">if</span>(pos != <span class="keyword">null</span>) root.right = dfs(pos, n - n / <span class="number">2</span> - <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nextPermutation</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">int</span> i = num.length - <span class="number">1</span>, j;</div><div class="line">    <span class="keyword">while</span>(i &gt; <span class="number">0</span> && num[i-<span class="number">1</span>] &gt;= num[i]) i--;</div><div class="line">    <span class="keyword">if</span>(i != <span class="number">0</span>) {</div><div class="line">        j = num.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(j &gt;= i && num[j] &lt;= num[i-<span class="number">1</span>]) j--;</div><div class="line">        <span class="keyword">int</span> tmp = num[i-<span class="number">1</span>];</div><div class="line">        num[i-<span class="number">1</span>] = num[j];</div><div class="line">        num[j] = tmp;</div><div class="line">    }</div><div class="line">    j = num.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j) {</div><div class="line">        <span class="keyword">int</span> tmp = num[i];</div><div class="line">        num[i] = num[j];</div><div class="line">        num[j] = tmp;</div><div class="line">        i++;</div><div class="line">        j--;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -105,14 +106,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/02/Delete-Duplicated-From-Sorted-List-II/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/02/Reorder-List/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/06/4-Sum/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +140,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 2 2015 
+	Feb 6 2015 
 	</div>
 	
 
@@ -163,7 +164,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/List/">List<span>11</span></a></li>
+  <li><a href="/tags/Array/">Array<span>15</span></a></li>
     </ul>
 	</div>
 		
