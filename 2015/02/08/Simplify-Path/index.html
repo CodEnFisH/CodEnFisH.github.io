@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Find Local Maximum/Minimum, aka, peek element | Codefish</title>
+  <title>Simplify Path | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-A peak element is an element that is greater than its neighbors.
-Given an input array where num[i] ≠ num[i+1], find a peak element and return">
+Given an absolute path for a file (Unix-style), simplify it. For example,
+
+12path = &quot;/home/&quot;, =&amp;gt; &quot;/home&quot;path = &quot;/a/./b/../../c/&quot;, =&amp;gt; &quot;/">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Find Local Maximum/Minimum, aka, peek element"/>
+  <meta property="og:title" content="Simplify Path"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -72,7 +73,7 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 
 	
 		<div class="page-header">		
-			<h1> Find Local Maximum/Minimum, aka, peek element</h1>
+			<h1> Simplify Path</h1>
 		</div>		
 	
 
@@ -90,15 +91,18 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>A peak element is an element that is greater than its neighbors.</p>
-<p>Given an input array where num[i] ≠ num[i+1], find a peak element and return its index.</p>
-<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
-<p>You may imagine that num[-1] = num[n] = -∞.</p>
-<p>For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.</p>
+<p>Given an absolute path for a file (Unix-style), simplify it. For example,</p>
 </blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path = <span class="string">"/home/"</span>, =&gt; <span class="string">"/home"</span></div><div class="line">path = <span class="string">"/a/./b/../../c/"</span>, =&gt; <span class="string">"/c"</span></div></pre></td></tr></table></figure>
+
 <h3 id="Solution">Solution</h3>
-<p>Binary search, if the mid point is in the “climbing half”, discard the left subarray; else it’s in the “decending half”, discard the right subarray.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findPeakElement</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">int</span> l = <span class="number">0</span>, r = num.length - <span class="number">1</span>, m;</div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>){</div><div class="line">        <span class="keyword">if</span>(l == r) <span class="keyword">return</span> l;</div><div class="line">        m = l + (r - l)/<span class="number">2</span>;</div><div class="line">        <span class="keyword">if</span>(m &lt; num.length - <span class="number">1</span>){</div><div class="line">            <span class="keyword">if</span>(num[m] &lt; num[m+<span class="number">1</span>]) l = m + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> r = m;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">return</span> m;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>Corner cases:</p>
+<ul>
+<li>Multiple /</li>
+<li>Ending with non /</li>
+<li>Empty stack</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> String <span class="title">simplifyPath</span>(String path) {</div><div class="line">    Stack&lt;String&gt; s = <span class="keyword">new</span> Stack&lt;String&gt;();</div><div class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= path.length(); i++){</div><div class="line">        <span class="keyword">if</span>(i == path.length() || path.charAt(i) == <span class="string">'/'</span>) { <span class="comment">// pitfall</span></div><div class="line">            String next = path.substring(start + <span class="number">1</span>, i);</div><div class="line">            <span class="keyword">if</span>(next.equals(<span class="string">".."</span>)) {</div><div class="line">                <span class="keyword">if</span>(!s.isEmpty()) s.pop();</div><div class="line">            }</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(!next.equals(<span class="string">""</span>) && !next.equals(<span class="string">"."</span>)) s.push(next);</div><div class="line">            start = i;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    Iterator&lt;String&gt; itr = s.iterator();</div><div class="line">    StringBuffer buf = <span class="keyword">new</span> StringBuffer();</div><div class="line">    <span class="keyword">while</span>(itr.hasNext()) buf.append(<span class="string">"/"</span> + itr.next());</div><div class="line">    <span class="keyword">if</span>(buf.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">"/"</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> buf.toString();</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -108,14 +112,14 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/29/Median-of-Two-Sorted-Arrays/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/29/Search-2D-Matrix/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/08/Spiral-Matrix/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -142,7 +146,7 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 29 2015 
+	Feb 8 2015 
 	</div>
 	
 
@@ -166,7 +170,7 @@ Given an input array where num[i] ≠ num[i+1], find a peak element and return">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Binary-Search/">Binary Search<span>6</span></a></li>
+  <li><a href="/tags/String/">String<span>14</span></a></li> <li><a href="/tags/Stack/">Stack<span>4</span></a></li>
     </ul>
 	</div>
 		
