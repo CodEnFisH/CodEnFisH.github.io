@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Wiggle Sort | Codefish</title>
+  <title>Sort Color | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)
+Sort array of 0, 1, 2 so that 0 comes before 1 and 1 before 2, in one pass and constant memory space.
 
 Solution
-We can sca">
+Scan array, when see 0, swap ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Wiggle Sort"/>
+  <meta property="og:title" content="Sort Color"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +74,7 @@ We can sca">
 
 	
 		<div class="page-header">		
-			<h1> Wiggle Sort</h1>
+			<h1> Sort Color</h1>
 		</div>		
 	
 
@@ -92,15 +92,11 @@ We can sca">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>The wiggle problem, given an array of integers arrange them such that alternate elements are large and small.(2,5,3,6,…)</p>
+<p>Sort array of 0, 1, 2 so that 0 comes before 1 and 1 before 2, in one pass and constant memory space.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<p>We can scan the array and keep track of the last three elements and swap them if</p>
-<ul>
-<li>a[i-2] &lt; a[i-1] &amp;&amp; a[i-1] &lt; a[i]</li>
-<li>a[i-2] &gt; a[i-1] &amp;&amp; a[i-1]  &gt; a[i]</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> wiggleSort(<span class="keyword">int</span>[] a){</div><div class="line">    <span class="keyword">int</span> n = a.length;</div><div class="line">    <span class="keyword">if</span>(n &lt;= <span class="number">1</span>) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">if</span>(a[<span class="number">0</span>] &gt; a[<span class="number">1</span>]) { <span class="comment">// we can remove this swap if we don't require a[1] &gt; a[0]</span></div><div class="line">        <span class="keyword">int</span> tmp = a[<span class="number">1</span>];</div><div class="line">        a[<span class="number">1</span>] = a[<span class="number">0</span>];</div><div class="line">        a[<span class="number">0</span>] = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; n; i++){</div><div class="line">        <span class="keyword">if</span>((a[i-<span class="number">2</span>] &lt; a[i-<span class="number">1</span>] && a[i] &gt; a[i-<span class="number">1</span>]) || a[i-<span class="number">2</span>] &gt; a[i-<span class="number">1</span>] && a[i] &lt; a[i-<span class="number">1</span>]){</div><div class="line">            <span class="keyword">int</span> tmp = a[i];</div><div class="line">            a[i] = a[i-<span class="number">1</span>];</div><div class="line">            a[i-<span class="number">1</span>] = tmp;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>Scan array, when see 0, swap it to the head, when see 2 swap it to the tail, else scan next</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortColors</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = -<span class="number">1</span>, j = A.length, p = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(p &lt; j){</div><div class="line">        <span class="keyword">if</span>(A[p] == <span class="number">0</span>) swap(A, ++i, p++);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(A[p] == <span class="number">2</span>) swap(A, --j, p);</div><div class="line">        <span class="keyword">else</span> p++;</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span>(<span class="keyword">int</span>[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j){</div><div class="line">    <span class="keyword">int</span> tmp = a[i];</div><div class="line">    a[i] = a[j];</div><div class="line">    a[j] = tmp;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -111,13 +107,13 @@ We can sca">
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/01/29/QAZ-number-Maximal-Surpasser-Count/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/08/Set-Matrix-Zeros/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/28/Level-Order-Related/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/07/Combination/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -144,23 +140,12 @@ We can sca">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 28 2015 
+	Feb 7 2015 
 	</div>
 	
 
 	<!-- categories -->
     
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>8</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>6</span></a></li> <li><a href="/categories/Non-Leetcode/Google/Phone-Screen/">Phone Screen<span>4</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
 
 	<!-- tags -->
 	
@@ -168,7 +153,7 @@ We can sca">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Array/">Array<span>18</span></a></li> <li><a href="/tags/Sort/">Sort<span>3</span></a></li>
+  <li><a href="/tags/Array/">Array<span>18</span></a></li> <li><a href="/tags/Two-Pointers/">Two Pointers<span>9</span></a></li>
     </ul>
 	</div>
 		
