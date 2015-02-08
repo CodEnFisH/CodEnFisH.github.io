@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reverse Linked List | Codefish</title>
+  <title>Rotate Image | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Reverse a linked list from position m to n. Do it in-place and in one-pass.
+Rotate the image by 90 degrees (clockwise) in place
 
 Solution
-1234567891011121314151617public ListNode reverseBetween">
+12345678910111213public void rotate(int[][] matrix) {    int n = matrix.length;">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Reverse Linked List"/>
+  <meta property="og:title" content="Rotate Image"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +74,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Reverse Linked List</h1>
+			<h1> Rotate Image</h1>
 		</div>		
 	
 
@@ -92,10 +92,10 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Reverse a linked list from position m to n. Do it in-place and in one-pass.</p>
+<p>Rotate the image by 90 degrees (clockwise) in place</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">reverseBetween</span>(ListNode head, <span class="keyword">int</span> m, <span class="keyword">int</span> n) {</div><div class="line">    <span class="keyword">if</span>(m == n) <span class="keyword">return</span> head;</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), from = dummy, prev = <span class="keyword">null</span>, tail = <span class="keyword">null</span>;</div><div class="line">    dummy.next = head;</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(++i &lt; m) from = from.next;</div><div class="line">    tail = from.next;</div><div class="line">    <span class="keyword">while</span>(i++ &lt;= n) {</div><div class="line">        ListNode toMove = from.next;</div><div class="line">        from.next = toMove.next;</div><div class="line">        toMove.next = prev;</div><div class="line">        prev = toMove;</div><div class="line">    }</div><div class="line">    tail.next = from.next;</div><div class="line">    from.next = prev;</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rotate</span>(<span class="keyword">int</span>[][] matrix) {</div><div class="line">    <span class="keyword">int</span> n = matrix.length;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l = <span class="number">0</span>, r = n - <span class="number">1</span>, t = <span class="number">0</span>, b = n - <span class="number">1</span>; l &lt; r; l++, r--, t++, b--){</div><div class="line">        <span class="keyword">int</span> i = t;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = l; j &lt; r; j++){ <span class="comment">// pitfall, not &lt;=, but &lt;</span></div><div class="line">            <span class="keyword">int</span> tmp = matrix[i][j];</div><div class="line">            matrix[i][j] = matrix[n-j-<span class="number">1</span>][i];</div><div class="line">            matrix[n-j-<span class="number">1</span>][i] = matrix[n-i-<span class="number">1</span>][n-j-<span class="number">1</span>];</div><div class="line">            matrix[n-i-<span class="number">1</span>][n-j-<span class="number">1</span>] = matrix[j][n-i-<span class="number">1</span>];</div><div class="line">            matrix[j][n-i-<span class="number">1</span>] = tmp;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -105,14 +105,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/02/Reorder-List/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/02/Largest-Rectangle-in-Histogram/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/08/Anagrams/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +139,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 2 2015 
+	Feb 8 2015 
 	</div>
 	
 
@@ -163,7 +163,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/List/">List<span>11</span></a></li>
+  <li><a href="/tags/Array/">Array<span>20</span></a></li>
     </ul>
 	</div>
 		
