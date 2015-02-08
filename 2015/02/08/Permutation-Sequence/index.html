@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Largest Number | Codefish</title>
+  <title>Permutation Sequence | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given a list of non negative integers, arrange them such that they form the largest number.
-For example, given [3, 30, 34, 5, 9], the largest">
+Given n and k, return the kth permutation sequence.
+
+Solution
+123456789101112131415public String getPermutation(int n, int k) {    int[] cnt ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Largest Number"/>
+  <meta property="og:title" content="Permutation Sequence"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -72,7 +74,7 @@ For example, given [3, 30, 34, 5, 9], the largest">
 
 	
 		<div class="page-header">		
-			<h1> Largest Number</h1>
+			<h1> Permutation Sequence</h1>
 		</div>		
 	
 
@@ -90,13 +92,10 @@ For example, given [3, 30, 34, 5, 9], the largest">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a list of non negative integers, arrange them such that they form the largest number.</p>
-<p>For example, given [3, 30, 34, 5, 9], the largest formed number is 9534330.</p>
-<p>Note: The result may be very large, so you need to return a string instead of an integer.</p>
+<p>Given n and k, return the kth permutation sequence.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<p>The idea is sorting according to the most significant digits, like radix sort. The only pitfall is to handle multiple leading zeros.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class MSDComparator implements Comparator&lt;String&gt;{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span>(String s1, String s2){</div><div class="line">        <span class="keyword">int</span> i, j;</div><div class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>, j = <span class="number">0</span>; i &lt; s1.length() && j &lt; s2.length(); i++, j++){</div><div class="line">            <span class="keyword">if</span>(s1.charAt(i) &lt; s2.charAt(j)) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s1.charAt(i) &gt; s2.charAt(j)) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(i &lt; s1.length()) <span class="keyword">return</span> compare(s1.substring(i), s2);</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(j &lt; s2.length()) <span class="keyword">return</span> compare(s1, s2.substring(j));</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="keyword">public</span> String <span class="title">largestNumber</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    String[] str = <span class="keyword">new</span> String[num.length];</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num.length; i++) {</div><div class="line">        str[i] = Integer.toString(num[i]);</div><div class="line">        sum += str[i].length();</div><div class="line">    }</div><div class="line">    Arrays.sort(str, <span class="keyword">new</span> MSDComparator());</div><div class="line">    <span class="keyword">if</span>(str[str.length-<span class="number">1</span>].equals(<span class="string">"0"</span>)) <span class="keyword">return</span> <span class="string">"0"</span>; <span class="comment">// avoid leading zeros</span></div><div class="line">    StringBuffer buf = <span class="keyword">new</span> StringBuffer(sum);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = str.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">        buf.append(str[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> buf.toString();</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> String <span class="title">getPermutation</span>(<span class="keyword">int</span> n, <span class="keyword">int</span> k) {</div><div class="line">    <span class="keyword">int</span>[] cnt = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</div><div class="line">    cnt[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) cnt[i] = cnt[i-<span class="number">1</span>] * i;</div><div class="line">    String ret = <span class="string">""</span>;</div><div class="line">    List&lt;Character&gt; digits = <span class="keyword">new</span> LinkedList&lt;Character&gt;();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) digits.add((<span class="keyword">char</span>)(<span class="string">'1'</span> + i));</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--){</div><div class="line">        <span class="keyword">int</span> idx = (k-<span class="number">1</span>) / cnt[i];</div><div class="line">        ret += digits.get(idx);</div><div class="line">        digits.remove(idx);</div><div class="line">        k -= cnt[i] * ((k-<span class="number">1</span>)/cnt[i]);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -106,14 +105,14 @@ For example, given [3, 30, 34, 5, 9], the largest">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/06/4-Sum/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/05/Gas-Station/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/08/Set-Matrix-Zeros/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -140,7 +139,7 @@ For example, given [3, 30, 34, 5, 9], the largest">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 5 2015 
+	Feb 8 2015 
 	</div>
 	
 
@@ -164,7 +163,7 @@ For example, given [3, 30, 34, 5, 9], the largest">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Sort/">Sort<span>3</span></a></li>
+  <li><a href="/tags/Math/">Math<span>8</span></a></li>
     </ul>
 	</div>
 		
