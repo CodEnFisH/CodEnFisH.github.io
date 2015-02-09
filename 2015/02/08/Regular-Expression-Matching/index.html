@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Trap Rain Water | Codefish</title>
+  <title>Regular Expression Matching | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after">
+Implement regular expression matching with support for ‘.’ and ‘*’.
+
+Solution
+Backtracking solution is easy to understand.
+123456789101112131">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Trap Rain Water"/>
+  <meta property="og:title" content="Regular Expression Matching"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -71,7 +75,7 @@ Given n non-negative integers representing an elevation map where the width of e
 
 	
 		<div class="page-header">		
-			<h1> Trap Rain Water</h1>
+			<h1> Regular Expression Matching</h1>
 		</div>		
 	
 
@@ -89,12 +93,14 @@ Given n non-negative integers representing an elevation map where the width of e
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.</p>
-<p>For example, Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.</p>
+<p>Implement regular expression matching with support for ‘.’ and ‘*’.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<p>Moving the shorter one can guarantee it will hit a higher bar, where we can stop and accumulate.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, n = A.length, j = n - <span class="number">1</span>, ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j){</div><div class="line">        <span class="keyword">if</span>(A[i] &lt;= A[j]){</div><div class="line">            <span class="keyword">int</span> k = i + <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &lt; j && A[k] &lt; A[i]) ret += (A[i] - A[k++]);</div><div class="line">            i = k;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">int</span> k = j - <span class="number">1</span>;</div><div class="line">            <span class="keyword">while</span>(k &gt; i && A[k] &lt; A[j]) ret += (A[j] - A[k--]);</div><div class="line">            j = k;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>Backtracking solution is easy to understand.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isMatch</span>(String s, String p) {</div><div class="line">    <span class="keyword">return</span> match(s, <span class="number">0</span>, p, <span class="number">0</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">match</span>(String s1, <span class="keyword">int</span> l1, String s2, <span class="keyword">int</span> l2){</div><div class="line">    <span class="keyword">if</span>(l2 == s2.length()) <span class="keyword">return</span> l1 == s1.length();</div><div class="line">    <span class="keyword">if</span>(l2 &lt; s2.length() - <span class="number">1</span> && s2.charAt(l2 + <span class="number">1</span>) == <span class="string">'*'</span>){</div><div class="line">        <span class="keyword">int</span> k = l1;</div><div class="line">        <span class="keyword">while</span>(k &lt; s1.length() && (s2.charAt(l2) == <span class="string">'.'</span> || s1.charAt(k) == s2.charAt(l2))) {</div><div class="line">            <span class="keyword">if</span>(match(s1, k + <span class="number">1</span>, s2, l2 + <span class="number">2</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">            k++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> match(s1, l1, s2, l2 + <span class="number">2</span>);</div><div class="line">    } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">if</span>(l1 &lt; s1.length() && (s2.charAt(l2) == <span class="string">'.'</span> || s2.charAt(l2) == s1.charAt(l1)))</div><div class="line">            <span class="keyword">return</span> match(s1, l1 + <span class="number">1</span>, s2, l2 + <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>DP solution:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//TODO</span></div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -104,14 +110,14 @@ Given n non-negative integers representing an elevation map where the width of e
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/01/31/Rotate-List/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/31/Longest-Substring-Without-Repeating-Characters/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/08/Max-Point-on-a-Line/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -138,7 +144,7 @@ Given n non-negative integers representing an elevation map where the width of e
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 31 2015 
+	Feb 8 2015 
 	</div>
 	
 
@@ -162,7 +168,7 @@ Given n non-negative integers representing an elevation map where the width of e
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Two-Pointers/">Two Pointers<span>9</span></a></li> <li><a href="/tags/Array/">Array<span>20</span></a></li>
+  <li><a href="/tags/Backtracking/">Backtracking<span>7</span></a></li>
     </ul>
 	</div>
 		
