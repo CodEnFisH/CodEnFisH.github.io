@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Longest Contiguous Letters | Codefish</title>
+  <title>Merge K Sorted List | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Count the length of the longest contiguous latters of a string. eg:
+Merge K sorteded List
 
-1234&quot;this is a sentence&quot; =&amp;gt; [t, h, i, s, i, s, a, s, e, n, t, e, n, c">
+Solution
+1234567891011121314151617181920class ListNodeComparator implements Comparator&amp;lt;ListNode&amp;gt; {    public int">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Longest Contiguous Letters"/>
+  <meta property="og:title" content="Merge K Sorted List"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -73,7 +74,7 @@ Count the length of the longest contiguous latters of a string. eg:
 
 	
 		<div class="page-header">		
-			<h1> Longest Contiguous Letters</h1>
+			<h1> Merge K Sorted List</h1>
 		</div>		
 	
 
@@ -91,9 +92,10 @@ Count the length of the longest contiguous latters of a string. eg:
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Count the length of the longest contiguous latters of a string. eg:</p>
+<p>Merge K sorteded List</p>
 </blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"this is a sentence"</span> =&gt; [t, h, i, s, i, s, a, s, e, n, t, e, n, c, e]</div><div class="line"><span class="string">"thiis iss a senntencee"</span> =&gt; [i, s, n, e]</div><div class="line"><span class="string">"thiisss iss a senntttenceee"</span> =&gt; [s, t, e]</div><div class="line"><span class="string">"thiisss iss a sennnntttenceee"</span> =&gt; [n]</div></pre></td></tr></table></figure>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class ListNodeComparator implements Comparator&lt;ListNode&gt; {</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span>(ListNode n1, ListNode n2){</div><div class="line">        <span class="keyword">if</span>(n1.val &lt; n2.val) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(n1.val &gt; n2.val) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span>(List&lt;ListNode&gt; lists) {</div><div class="line">    PriorityQueue&lt;ListNode&gt; heap =</div><div class="line">        <span class="keyword">new</span> PriorityQueue&lt;ListNode&gt;(lists.size() + <span class="number">1</span>, <span class="keyword">new</span> ListNodeComparator());</div><div class="line">    <span class="keyword">for</span>(ListNode head: lists) <span class="keyword">if</span>(head != <span class="keyword">null</span>) heap.add(head);</div><div class="line">    ListNode dummy = <span class="keyword">new</span> ListNode(-<span class="number">1</span>), tail = dummy, next;</div><div class="line">    <span class="keyword">while</span>(!heap.isEmpty()){</div><div class="line">        next = heap.remove();</div><div class="line">        tail.next = next;</div><div class="line">        tail = tail.next;</div><div class="line">        <span class="keyword">if</span>(next.next != <span class="keyword">null</span>) heap.add(next.next);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> dummy.next;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -104,13 +106,13 @@ Count the length of the longest contiguous latters of a string. eg:
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/02/10/Longest-Consecutive-Sequence/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/10/Rain-Flow-To-Sea/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/10/Non-overlapping-Jobs/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/10/Longest-Consecutive-Sequence/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -148,7 +150,7 @@ Count the length of the longest contiguous latters of a string. eg:
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>17</span></a></li> <li><a href="/categories/Non-Leetcode/FB/">FB<span>6</span></a></li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>84</span></a></li>
   </li>
 
     </ul>
@@ -161,7 +163,7 @@ Count the length of the longest contiguous latters of a string. eg:
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/String/">String<span>16</span></a></li>
+  <li><a href="/tags/Heap/">Heap<span>1</span></a></li> <li><a href="/tags/Sort/">Sort<span>5</span></a></li>
     </ul>
 	</div>
 		
