@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Distinct Subsequences | Codefish</title>
+  <title>Valid String | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given a string S and a string T, count the number of distinct subsequences of T in S.
-A subsequence of a string is a new string which is form">
+A string consisted of only A B or C is valid iff any three consecutive chars doesn’t contain all A B and C. Count the num of valid strings wi">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Distinct Subsequences"/>
+  <meta property="og:title" content="Valid String"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -72,7 +71,7 @@ A subsequence of a string is a new string which is form">
 
 	
 		<div class="page-header">		
-			<h1> Distinct Subsequences</h1>
+			<h1> Valid String</h1>
 		</div>		
 	
 
@@ -90,12 +89,11 @@ A subsequence of a string is a new string which is form">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a string S and a string T, count the number of distinct subsequences of T in S.</p>
-<p>A subsequence of a string is a new string which is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, “ACE” is a subsequence of “ABCDE” while “AEC” is not).</p>
-<p>Here is an example: S = “rabbbit”, T = “rabbit”. Return 3.</p>
+<p>A string consisted of only A B or C is valid iff any three consecutive chars doesn’t contain all A B and C. Count the num of valid strings with length of n</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numDistinct</span>(String S, String T) {</div><div class="line">    <span class="keyword">char</span>[] a = S.toCharArray(), b = T.toCharArray();</div><div class="line">    <span class="keyword">int</span> m = a.length, n = b.length;</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>][n+<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) f[i][<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++){</div><div class="line">            f[i][j] = f[i-<span class="number">1</span>][j];</div><div class="line">            <span class="keyword">if</span>(a[i-<span class="number">1</span>] == b[j-<span class="number">1</span>]) f[i][j] += f[i-<span class="number">1</span>][j-<span class="number">1</span>];</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[m][n];</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>Let $f<em>n$ be the num of valid n-length string with last two chars the same, $g_n$ be the one with last two chars different then $f</em>{n+1} = f<em>n + g_n$, $g</em>{n+1} = 2f_n + g_n$.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countValidString</span>(n){</div><div class="line">  <span class="keyword">int</span> f = <span class="number">3</span>, g = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++){</div><div class="line">    <span class="keyword">int</span> tmp = f;</div><div class="line">    f = f + g;</div><div class="line">    g = f + tmp;</div><div class="line">  }</div><div class="line">  <span class="keyword">return</span> f + g;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -105,14 +103,14 @@ A subsequence of a string is a new string which is form">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/04/Convert-Sorted-Array-to-BST/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/04/Dungeon-Game/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/12/Shortest-Word-Distance/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +137,7 @@ A subsequence of a string is a new string which is form">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 4 2015 
+	Feb 12 2015 
 	</div>
 	
 
@@ -150,7 +148,7 @@ A subsequence of a string is a new string which is form">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>84</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>23</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>15</span></a></li>
   </li>
 
     </ul>
@@ -163,7 +161,7 @@ A subsequence of a string is a new string which is form">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/DP/">DP<span>17</span></a></li> <li><a href="/tags/String/">String<span>16</span></a></li>
+  <li><a href="/tags/DP/">DP<span>17</span></a></li>
     </ul>
 	</div>
 		
