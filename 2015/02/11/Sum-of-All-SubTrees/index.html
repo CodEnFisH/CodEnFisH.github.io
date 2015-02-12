@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Sum of All SubTrees | Codefish</title>
+  <meta name="author" content="Ze Yu">
+  
+  <meta name="description" content="Problem
+
+Assume TreeNodeWithParent class
+
+123456class TreeNodeWithParent {    int id, val, parentId;    public TreeNodeWithParent(int id, int val, int">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Sum of All SubTrees"/>
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/." title="Home Page">
+			  <i class="fa fa-user"></i>Home
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Sum of All SubTrees</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Assume TreeNodeWithParent class</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class TreeNodeWithParent {</div><div class="line">    <span class="keyword">int</span> id, val, parentId;</div><div class="line">    <span class="keyword">public</span> <span class="title">TreeNodeWithParent</span>(<span class="keyword">int</span> id, <span class="keyword">int</span> val, <span class="keyword">int</span> parentId){</div><div class="line">        <span class="keyword">this</span>.id = id; <span class="keyword">this</span>.val = val; <span class="keyword">this</span>.parentId = parentId;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Given a collection of nodes, representing a valid tree, return the sum of value of all subtrees</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>Using bottom-up BFS</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> NULLID = Integer.MIN_VALUE;</div><div class="line"><span class="keyword">public</span> HashMap&lt;Integer, Integer&gt; <span class="title">allSum</span>(TreeNodeWithParent[] nodes){</div><div class="line">    HashMap&lt;Integer, TreeNodeWithParent&gt; idToNode = <span class="keyword">new</span> HashMap&lt;Integer, TreeNodeWithParent&gt;();</div><div class="line">    HashMap&lt;Integer, Integer&gt; ret = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;(), prevLev = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;(),</div><div class="line">            lev = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">    HashSet&lt;Integer&gt; parentIds = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</div><div class="line">    <span class="keyword">for</span>(TreeNodeWithParent n: nodes){</div><div class="line">        idToNode.put(n.id, n);</div><div class="line">        parentIds.add(n.parentId);</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(Map.Entry&lt;Integer, TreeNodeWithParent&gt; entry: idToNode.entrySet()){</div><div class="line">        <span class="keyword">if</span>(!parentIds.contains(entry.getKey())){</div><div class="line">            lev.put(entry.getKey(), entry.getValue().val);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">while</span>(!lev.isEmpty()){</div><div class="line">        ret.putAll(lev);</div><div class="line">        prevLev = lev;</div><div class="line">        lev = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</div><div class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry: prevLev.entrySet()){</div><div class="line">            <span class="keyword">int</span> parentId = idToNode.get(entry.getKey()).parentId;</div><div class="line">            <span class="keyword">if</span>(parentId != NULLID) {</div><div class="line">                <span class="keyword">int</span> sum = lev.containsKey(parentId) ? lev.get(parentId) + entry.getValue() : entry.getValue();</div><div class="line">                lev.put(parentId, sum);</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry: lev.entrySet()){</div><div class="line">            lev.put(entry.getKey(), entry.getValue() + idToNode.get(entry.getKey()).val);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/10/Max-in-Semi-Sorted-Array/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Feb 11 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>19</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>11</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/BFS/">BFS<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Ze Yu
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+   </html>
