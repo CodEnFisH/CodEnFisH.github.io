@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Substring with Concatenation of All Words | Codefish</title>
+  <meta name="author" content="Ze Yu">
+  
+  <meta name="description" content="Problem
+
+You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a ">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Substring with Concatenation of All Words"/>
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/." title="Home Page">
+			  <i class="fa fa-user"></i>Home
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Substring with Concatenation of All Words</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters. For example, given:</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="label">S:</span> <span class="string">"barfoothefoobarman"</span></div><div class="line"><span class="label">L:</span> [<span class="string">"foo"</span>, <span class="string">"bar"</span>]</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>You should return the indices: [0,9].</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>The basic idea is using two sliding pointers to check all possible candidates. But this problem is tricky. When the word next to the right pointer cannot match any word in the dict, what should we do? While, we can move the left pointer by one char, but in this way it is impossible to jump over all the word that we have matched.</p>
+<p>Instead, we jump over all the words in the sliding window, and start to match from the next word. And we can try different “starting position”. Suppose the word length is l, then 0…l-1 are all possible candidates where we should try to start from. But l is not, since we have already check it when we start from 0, whether it’s a match or not.</p>
+<p>Complexity: we need to try l different starting positions, each try, we scan the whole target string (length is N) by dividing it into words. Each word needs O(1) to check if it’s in dict, there are $N/l$ words to check, each one will be check at most twice by sliding windows (one when hit by right pointer and one when hit by the left). So in total, the complexity is $O(N/l * l) = O(N)$</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">findSubstring</span>(String S, String[] L) {</div><div class="line">    <span class="keyword">int</span> l = L[<span class="number">0</span>].length(), totalLen = l * L.length;</div><div class="line">    HashMap&lt;String, Integer&gt; dict = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</div><div class="line">    <span class="keyword">for</span>(String s: L) dict.put(s, dict.containsKey(s) ? dict.get(s) + <span class="number">1</span> : <span class="number">1</span>);</div><div class="line">    List&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l; i++){</div><div class="line">        HashMap&lt;String, Integer&gt; needMatch = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;(dict);</div><div class="line">        <span class="keyword">int</span> left = i, right = i;</div><div class="line">        <span class="keyword">while</span>(left + totalLen - <span class="number">1</span> &lt; S.length() && right + l - <span class="number">1</span> &lt; S.length()){</div><div class="line">            String next = S.substring(right, right + l);</div><div class="line">            <span class="keyword">if</span>(dict.containsKey(next)){</div><div class="line">                <span class="keyword">if</span>(needMatch.containsKey(next)) {</div><div class="line">                    Integer cnt = needMatch.get(next);</div><div class="line">                    <span class="keyword">if</span>(cnt == <span class="number">1</span>) needMatch.remove(next);</div><div class="line">                    <span class="keyword">else</span> needMatch.put(next, cnt - <span class="number">1</span>);</div><div class="line">                    right += l;</div><div class="line">                    <span class="keyword">if</span>(needMatch.size() == <span class="number">0</span>) ret.add(left);</div><div class="line">                } <span class="keyword">else</span> {</div><div class="line">                    String leftMost = S.substring(left, left + l);</div><div class="line">                    needMatch.put(leftMost, needMatch.containsKey(leftMost) ? needMatch.get(leftMost) + <span class="number">1</span> : <span class="number">1</span>);</div><div class="line">                    left += l;</div><div class="line">                }</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                left = right + l;</div><div class="line">                right = left;</div><div class="line">                needMatch = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;(dict);</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/12/Valid-String/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Feb 12 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>85</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/String/">String<span>17</span></a></li> <li><a href="/tags/Two-Pointers/">Two Pointers<span>11</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Ze Yu
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+   </html>
