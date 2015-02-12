@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Maximum Product Subarray | Codefish</title>
+  <title>Shortest Word Distance | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Find the contiguous subarray within an array (containing at least one number) which has the largest product.
-
-Solution
-12345678910public int ">
+Please design and implement a class:This class will be given a list of words (such as might be tokenized from a paragraph of text), and will ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Maximum Product Subarray"/>
+  <meta property="og:title" content="Shortest Word Distance"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +71,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Maximum Product Subarray</h1>
+			<h1> Shortest Word Distance</h1>
 		</div>		
 	
 
@@ -92,11 +89,18 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Find the contiguous subarray within an array (containing at least one number) which has the largest product.</p>
+<p>Please design and implement a class:<br>This class will be given a list of words (such as might be tokenized from a paragraph of text), and will provide a method that takes two words and returns the shortest distance (in words) between those two words in the provided text.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProduct</span>(<span class="keyword">int</span>[] A) {</div><div class="line">    <span class="keyword">int</span> max = A[<span class="number">0</span>], min = A[<span class="number">0</span>], ret = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; i++){</div><div class="line">        <span class="keyword">int</span> t1 = max * A[i], t2 = min * A[i];</div><div class="line">        max = Math.max(A[i], Math.max(t1, t2));</div><div class="line">        min = Math.min(A[i], Math.min(t1, t2));</div><div class="line">        ret = Math.max(ret, max);</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
-
+<p>Say the two words are s1 and s2, we just need two pointers to record the position where we see s1 and s2. The answer is to minimize the gap between the two pointers.</p>
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>What if the distance function is called multiple times? How to pre-process?</p>
+</blockquote>
+<h3 id="Solution-1">Solution</h3>
+<p>We can use a hash map to keep track of all positions of a word. When a query comes, it is just to answer the min gap between any num from two sorted arrays.</p>
+<p>This can be done by “merging” two sorted array, say a and b: move the smaller pointer and update the min gap if needed.</p>
+<p>Another optimization could be when a.length &gt;&gt; b.length, we can scan b and use binary search to find cloest num in a. Complexity is O(mlogn) instead of O(m+n)</p>
 	  
 	</div>
 
@@ -105,14 +109,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/04/Construct-BST-from-Traversal/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/04/Generate-Parentheses/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/12/Merge-Two-BST/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +143,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 4 2015 
+	Feb 12 2015 
 	</div>
 	
 
@@ -150,7 +154,7 @@ Solution
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>84</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>22</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>14</span></a></li>
   </li>
 
     </ul>
@@ -163,7 +167,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Array/">Array<span>21</span></a></li> <li><a href="/tags/DP/">DP<span>16</span></a></li>
+  <li><a href="/tags/HashMap/">HashMap<span>8</span></a></li> <li><a href="/tags/Array/">Array<span>21</span></a></li> <li><a href="/tags/Two-Pointers/">Two Pointers<span>10</span></a></li>
     </ul>
 	</div>
 		
