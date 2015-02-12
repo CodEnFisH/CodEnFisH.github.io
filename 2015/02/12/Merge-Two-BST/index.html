@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Validate BST | Codefish</title>
+  <title>Merge Two BST | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given a binary tree, determine if it is a valid binary search tree (BST).
-Solution
-
-123456789long min = Long.MIN_VALUE;public boolean isValid">
+You are given two balanced binary search trees. Write a function that merges the two given balanced BSTs into a balanced binary search tree.Y">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Validate BST"/>
+  <meta property="og:title" content="Merge Two BST"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +71,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Validate BST</h1>
+			<h1> Merge Two BST</h1>
 		</div>		
 	
 
@@ -92,11 +89,10 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
-<h3 id="Solution">Solution</h3>
+<p>You are given two balanced binary search trees. Write a function that merges the two given balanced BSTs into a balanced binary search tree.<br>Your merge function should take O(M+N) time and O(1) space.</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">long</span> min = Long.MIN_VALUE;</div><div class="line"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isValidBST</span>(TreeNode root) {</div><div class="line">    <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    <span class="keyword">if</span>(!isValidBST(root.left)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">if</span>(min &gt;= root.val) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    min = root.val;</div><div class="line">    <span class="keyword">if</span>(!isValidBST(root.right)) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
-
+<h3 id="Solution">Solution</h3>
+<p>The ides is to first flat BST into sorted list like <a href="https://oj.leetcode.com/problems/flatten-binary-tree-to-linked-list/" target="_blank" rel="external">this</a>, and then merger two sorted list like <a href="https://oj.leetcode.com/problems/merge-two-sorted-lists/" target="_blank" rel="external">this</a></p>
 	  
 	</div>
 
@@ -105,14 +101,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/05/Letter-Combinations-of-a-Phone-Number/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/05/Add-Two-Numbers/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/12/Closest-Value-in-Float-Binary-Search-Tree/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +135,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 5 2015 
+	Feb 12 2015 
 	</div>
 	
 
@@ -150,7 +146,7 @@ Solution
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>84</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>21</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>13</span></a></li>
   </li>
 
     </ul>
@@ -163,7 +159,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/BST/">BST<span>6</span></a></li> <li><a href="/tags/DFS/">DFS<span>12</span></a></li>
+  <li><a href="/tags/Tree/">Tree<span>6</span></a></li> <li><a href="/tags/DFS/">DFS<span>12</span></a></li>
     </ul>
 	</div>
 		
