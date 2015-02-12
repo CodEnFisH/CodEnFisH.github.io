@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Find Maximum Values | Codefish</title>
+  <title>Closest Value in Float Binary Search Tree | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-http://www.fgdsb.com/2015/01/03/find-max-values/">
+Given a float BST and an int, find the closest float to the int.
+
+Solution
+Just find the largest elem if the int is smaller than the root and">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Find Maximum Values"/>
+  <meta property="og:title" content="Closest Value in Float Binary Search Tree"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -71,7 +74,7 @@ http://www.fgdsb.com/2015/01/03/find-max-values/">
 
 	
 		<div class="page-header">		
-			<h1> Find Maximum Values</h1>
+			<h1> Closest Value in Float Binary Search Tree</h1>
 		</div>		
 	
 
@@ -89,8 +92,12 @@ http://www.fgdsb.com/2015/01/03/find-max-values/">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p><a href="http://www.fgdsb.com/2015/01/03/find-max-values/" target="_blank" rel="external">http://www.fgdsb.com/2015/01/03/find-max-values/</a></p>
+<p>Given a float BST and an int, find the closest float to the int.</p>
 </blockquote>
+<h3 id="Solution">Solution</h3>
+<p>Just find the largest elem if the int is smaller than the root and see either the root or this smallest will be the answer. Same with right subtree.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">findCloest</span>(TreeNode root, <span class="keyword">int</span> target){</div><div class="line">  <span class="keyword">float</span> closest = Float.MAX_VALUE;</div><div class="line">  <span class="keyword">if</span>(target &lt; root.val){</div><div class="line">    <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) <span class="keyword">return</span> root.val;</div><div class="line">    <span class="keyword">else</span> closest = findCloest(root.left, target);</div><div class="line">  } <span class="keyword">else</span> <span class="keyword">if</span>(target &gt; root.val){</div><div class="line">    <span class="keyword">if</span>(root.right == <span class="keyword">null</span>) <span class="keyword">return</span> root.val;</div><div class="line">    <span class="keyword">else</span> closest = findCloest(root.right, target);</div><div class="line">  } <span class="keyword">else</span> <span class="keyword">return</span> root.val;</div><div class="line">  <span class="keyword">return</span> Math.abs(closest - target) &lt; Math.abs(root.val - target) ? closest: root.val;</div><div class="line">}</div></pre></td></tr></table></figure>
+
 	  
 	</div>
 
@@ -99,14 +106,14 @@ http://www.fgdsb.com/2015/01/03/find-max-values/">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/09/Copy-List-With-Random-Pointer/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/09/Sort-Food/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/11/Sum-of-All-SubTrees/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -133,7 +140,7 @@ http://www.fgdsb.com/2015/01/03/find-max-values/">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 9 2015 
+	Feb 12 2015 
 	</div>
 	
 
@@ -144,7 +151,7 @@ http://www.fgdsb.com/2015/01/03/find-max-values/">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>20</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>20</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>12</span></a></li>
   </li>
 
     </ul>
@@ -152,6 +159,14 @@ http://www.fgdsb.com/2015/01/03/find-max-values/">
 	
 
 	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/BST/">BST<span>6</span></a></li>
+    </ul>
+	</div>
 		
 
 	<!-- toc -->
