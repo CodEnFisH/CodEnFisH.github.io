@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Non-overlapping Jobs | Codefish</title>
+  <title>All Factors | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given a set of n jobs with [start time, end time, cost] find a subset so that no 2 jobs overlap and the cost is maximum.
+Given an array of primes. Compute all the factors of the product of all primes in the array.
 
-Source">
+Solution
+The idea is to choose from the given p">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Non-overlapping Jobs"/>
+  <meta property="og:title" content="All Factors"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -73,7 +74,7 @@ Source">
 
 	
 		<div class="page-header">		
-			<h1> Non-overlapping Jobs</h1>
+			<h1> All Factors</h1>
 		</div>		
 	
 
@@ -91,9 +92,12 @@ Source">
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a set of n jobs with [start time, end time, cost] find a subset so that no 2 jobs overlap and the cost is maximum.</p>
+<p>Given an array of primes. Compute all the factors of the product of all primes in the array.</p>
 </blockquote>
-<a href="http://www.fgdsb.com/2015/01/03/non-overlapping-jobs/" target="_blank" rel="external">Source</a>
+<h3 id="Solution">Solution</h3>
+<p>The idea is to choose from the given primes to compose the factor. Pay attention that 1 is also a factor.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">allFactor</span>(<span class="keyword">int</span>[] primes){</div><div class="line">    List&lt;Integer&gt; ret = <span class="keyword">new</span> LinkedList&lt;Integer&gt;();</div><div class="line">    dfs(primes, <span class="number">0</span>, <span class="number">1</span>, ret);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span>(<span class="keyword">int</span>[] p, <span class="keyword">int</span> pos, <span class="keyword">int</span> curr, List&lt;Integer&gt; ret){</div><div class="line">    <span class="keyword">if</span>(p.length == pos) {</div><div class="line">        ret.add(curr);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    dfs(p, pos + <span class="number">1</span>, curr, ret);</div><div class="line">    dfs(p, pos + <span class="number">1</span>, curr * p[pos], ret);</div><div class="line">}</div></pre></td></tr></table></figure>
+
 	  
 	</div>
 
@@ -102,14 +106,14 @@ Source">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/10/Longest-Contiguous-Letters/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/09/Candy/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/12/Substring-with-Concatenation-of-All-Words/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -136,7 +140,7 @@ Source">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 10 2015 
+	Feb 12 2015 
 	</div>
 	
 
@@ -147,7 +151,7 @@ Source">
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>24</span></a></li> <li><a href="/categories/Non-Leetcode/FB/">FB<span>6</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>24</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>16</span></a></li>
   </li>
 
     </ul>
@@ -160,7 +164,7 @@ Source">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/DP/">DP<span>17</span></a></li>
+  <li><a href="/tags/Math/">Math<span>10</span></a></li> <li><a href="/tags/Backtracking/">Backtracking<span>8</span></a></li>
     </ul>
 	</div>
 		
