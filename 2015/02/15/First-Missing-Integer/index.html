@@ -3,20 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reorder List | Codefish</title>
+  <title>First Missing Integer | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given a singly linked list L: L0→L1→…→Ln-1→Ln,reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
-
-Solution
-1234567891011121314151617181920212223242526272">
+Given an unsorted integer array, find the first missing positive integer.
+For example,Given [1,2,0] return 3,and [3,4,-1,1] return 2.
+Your al">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Reorder List"/>
+  <meta property="og:title" content="First Missing Integer"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +73,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Reorder List</h1>
+			<h1> First Missing Integer</h1>
 		</div>		
 	
 
@@ -92,10 +91,13 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a singly linked list L: L0→L1→…→Ln-1→Ln,<br>reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…</p>
+<p>Given an unsorted integer array, find the first missing positive integer.</p>
+<p>For example,<br>Given [1,2,0] return 3,<br>and [3,4,-1,1] return 2.</p>
+<p>Your algorithm should run in O(n) time and uses constant space.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> ListNode <span class="title">findMid</span>(ListNode head){</div><div class="line">    ListNode fast = head, slow = head;</div><div class="line">    <span class="keyword">while</span>(fast != <span class="keyword">null</span>){</div><div class="line">        fast = fast.next;</div><div class="line">        <span class="keyword">if</span>(fast != <span class="keyword">null</span>){</div><div class="line">            fast = fast.next;</div><div class="line">            slow = slow.next;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> slow;</div><div class="line">}</div><div class="line"><span class="keyword">private</span> ListNode <span class="title">reverse</span>(ListNode head){</div><div class="line">    ListNode prev = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">while</span>(head != <span class="keyword">null</span>){</div><div class="line">        ListNode tmp = head.next;</div><div class="line">        head.next = prev;</div><div class="line">        prev = head;</div><div class="line">        head = tmp;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> prev;</div><div class="line">}</div><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reorderList</span>(ListNode head) {</div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">    ListNode mid = findMid(head), secondHalf = reverse(mid), p = head, q = secondHalf;</div><div class="line">    <span class="keyword">while</span>(p.next != q && p != q){</div><div class="line">        ListNode t1 = p.next, t2 = q.next;</div><div class="line">        p.next = q;</div><div class="line">        q.next = t1;</div><div class="line">        p = t1;</div><div class="line">        q = t2;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>The idea is to put a num to the position corresponding to its value.<br>The key to avoid extra memory is to keep rolling till we reach some out of boundary num or a cell with it’s num already in place.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">firstMissingPositive</span>(<span class="keyword">int</span>[] a) {</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++){</div><div class="line">        <span class="keyword">if</span>(a[i] &lt; <span class="number">1</span> || a[i] &gt; a.length) <span class="keyword">continue</span>;</div><div class="line">        <span class="keyword">int</span> target = a[i];</div><div class="line">        <span class="keyword">while</span>(target &gt; <span class="number">0</span> && target &lt;= a.length && a[target-<span class="number">1</span>] != target){</div><div class="line">            <span class="keyword">int</span> tmp = a[target-<span class="number">1</span>];</div><div class="line">            a[target-<span class="number">1</span>] = target;</div><div class="line">            target = tmp;</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) <span class="keyword">if</span>(a[i] != i + <span class="number">1</span>) <span class="keyword">return</span> i + <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> a.length + <span class="number">1</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -106,13 +108,13 @@ Solution
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/02/02/Convert-Sorted-List-to-Binary-Search-Tree/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/15/Lexical-Order/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/02/Reverse-Linked-List/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/15/Wildcard-Matching/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +141,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 2 2015 
+	Feb 15 2015 
 	</div>
 	
 
@@ -163,7 +165,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/List/">List<span>13</span></a></li>
+  <li><a href="/tags/Array/">Array<span>22</span></a></li>
     </ul>
 	</div>
 		
