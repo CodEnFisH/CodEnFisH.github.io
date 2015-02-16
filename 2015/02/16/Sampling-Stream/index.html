@@ -3,21 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reverse Int | Codefish</title>
+  <title>Sampling Stream | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Reverse digits of an integer.
-Example1: x = 123, return 321; Example2: x = -123, return -321
+How to sample a stream of integer randomly?
 
 Solution
-12345678910111213// overflowpublic int">
+The more fundamental question is how to sample something without knowing the size of da">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Reverse Int"/>
+  <meta property="og:title" content="Sampling Stream"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -75,7 +74,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Reverse Int</h1>
+			<h1> Sampling Stream</h1>
 		</div>		
 	
 
@@ -93,11 +92,17 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Reverse digits of an integer.</p>
-<p>Example1: x = 123, return 321; Example2: x = -123, return -321</p>
+<p>How to sample a stream of integer randomly?</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// overflow</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span>(<span class="keyword">int</span> x) {</div><div class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">    <span class="keyword">boolean</span> isPositive = x &gt; <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(x != <span class="number">0</span>) {</div><div class="line">        <span class="keyword">int</span> d = x % <span class="number">10</span>;</div><div class="line">        <span class="keyword">if</span>(isPositive && sum &gt; (Integer.MAX_VALUE - d) / <span class="number">10</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(!isPositive && sum &lt; (Integer.MIN_VALUE - d) / <span class="number">10</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        sum = sum * <span class="number">10</span> + d;</div><div class="line">        x /= <span class="number">10</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> sum;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>The more fundamental question is how to sample something without knowing the size of data being sampled. The answer is reservoir sampling: we keep track of a candidate; for the k-th element, we keep it with a probability of $\frac{1}{k}$ and keep the candidate with a probability of $\frac{k-1}{k}$.</p>
+<h3 id="Variant">Variant</h3>
+<blockquote>
+<p>Given a binary tree, return a node randomly. Assume the tree is very large.</p>
+</blockquote>
+<h3 id="Solution-1">Solution</h3>
+<p>The same as stream/list or whatever “very large” data structure. We can always use reservoir sampling without having to scan all the data.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RandomNode</span> </span>{</div><div class="line">    Random rand = <span class="keyword">new</span> Random();</div><div class="line">    TreeNode ret = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">int</span> k = <span class="number">1</span>;</div><div class="line">    <span class="keyword">public</span> TreeNode <span class="title">getRandomNode</span>(TreeNode root){</div><div class="line">        reservoirSample(root);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reservoirSample</span>(TreeNode root){</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span>;</div><div class="line">        <span class="keyword">if</span>(rand.nextInt(k++) == <span class="number">0</span>) ret = root;</div><div class="line">        reservoirSample(root.left);</div><div class="line">        reservoirSample(root.left);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -107,14 +112,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/01/Longest-Common-Prefix/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/31/Rotate-List/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/16/Recover-Quack/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -141,7 +146,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 1 2015 
+	Feb 16 2015 
 	</div>
 	
 
@@ -152,7 +157,7 @@ Solution
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>93</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>28</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>20</span></a></li>
   </li>
 
     </ul>
@@ -165,7 +170,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Math/">Math<span>14</span></a></li>
+  <li><a href="/tags/Math/">Math<span>14</span></a></li> <li><a href="/tags/Randomized-Algorithm/">Randomized Algorithm<span>1</span></a></li>
     </ul>
 	</div>
 		
