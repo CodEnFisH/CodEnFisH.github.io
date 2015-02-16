@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Rotate List | Codefish</title>
+  <title>Two Difference | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given a list, rotate the list to the right by k places, where k is non-negative.
-For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k =">
+Given an array of unique positive num and a target. Find two nums in the array, A and B, so that A - B = target.
+Requirement: O(1) space, O(n">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Rotate List"/>
+  <meta property="og:title" content="Two Difference"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -72,7 +72,7 @@ For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k =
 
 	
 		<div class="page-header">		
-			<h1> Rotate List</h1>
+			<h1> Two Difference</h1>
 		</div>		
 	
 
@@ -90,13 +90,13 @@ For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k =
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given a list, rotate the list to the right by k places, where k is non-negative.</p>
-<p>For example:<br>Given 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL and k = 2, return 4-&gt;5-&gt;1-&gt;2-&gt;3-&gt;NULL.</p>
+<p>Given an array of unique positive num and a target. Find two nums in the array, A and B, so that A - B = target.</p>
+<p>Requirement: O(1) space, O(n) time.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> ListNode <span class="title">rotateRight</span>(ListNode head, <span class="keyword">int</span> n) {</div><div class="line">    <span class="comment">// corner cases: n &gt;= len, head = null</span></div><div class="line">    <span class="keyword">if</span>(head == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    ListNode second = head;</div><div class="line">    <span class="keyword">int</span> cnt = n;</div><div class="line">    <span class="keyword">while</span>(cnt&gt;<span class="number">0</span>){</div><div class="line">        cnt--;</div><div class="line">        <span class="keyword">if</span>(second.next == <span class="keyword">null</span>) {</div><div class="line">            second = head;</div><div class="line">            cnt = n % (n - cnt);</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> second = second.next;</div><div class="line">    }</div><div class="line">    ListNode first = head;</div><div class="line">    <span class="keyword">while</span>(second.next != <span class="keyword">null</span>){</div><div class="line">        second = second.next;</div><div class="line">        first = first.next;</div><div class="line">    }</div><div class="line">    <span class="keyword">if</span>(first.next != <span class="keyword">null</span>) {</div><div class="line">        second.next = head;</div><div class="line">        head = first.next;</div><div class="line">        first.next = <span class="keyword">null</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> head;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>Using two pointers techniques, we need to find a way to slide the pointers so that each time we have only one chice to slide them. Here is how: we start both from the left side. If the absolute difference of the two pointer is smaller than the target, we need to enlarge the difference, meaning that we need to slide the right pointer to the right; else we need to slide the left pointer to the right to shrink the difference. When the window size is 1, we need to slide both pointer, because it means the target is smaller than the 1-sized window, any k-sized window (k &gt; 1) from the current left pointer is not the answer since the difference would be even larger.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">twoDifference</span>(<span class="keyword">int</span>[] num, <span class="keyword">int</span> target){</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">1</span>, ret[] = {-<span class="number">1</span>, -<span class="number">1</span>}, t = target &gt; <span class="number">0</span> ? -target : target;</div><div class="line">    <span class="keyword">while</span>(j &lt; num.length){</div><div class="line">        <span class="keyword">if</span>(num[i] - num[j] &lt; t) i++;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(num[i] - num[j] == t) {</div><div class="line">            <span class="keyword">if</span>(t == target) {</div><div class="line">                ret[<span class="number">0</span>] = num[i];</div><div class="line">                ret[<span class="number">1</span>] = num[j];</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                ret[<span class="number">1</span>] = num[i];</div><div class="line">                ret[<span class="number">0</span>] = num[j];</div><div class="line">            }</div><div class="line">            <span class="keyword">return</span> ret;</div><div class="line">        } <span class="keyword">else</span> j++;</div><div class="line">        <span class="keyword">if</span>(i == j) j++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<hr>
 	  
 	</div>
 
@@ -105,14 +105,14 @@ For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k =
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/01/Reverse-Int/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/01/31/Trap-Rain-Water/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/15/Search-Longest-String/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +139,7 @@ For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k =
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Jan 31 2015 
+	Feb 15 2015 
 	</div>
 	
 
@@ -150,7 +150,7 @@ For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k =
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>93</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>26</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>18</span></a></li>
   </li>
 
     </ul>
@@ -163,7 +163,7 @@ For example:Given 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5-&amp;gt;NULL and k =
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/List/">List<span>13</span></a></li>
+  <li><a href="/tags/Two-Pointers/">Two Pointers<span>12</span></a></li> <li><a href="/tags/Array/">Array<span>23</span></a></li>
     </ul>
 	</div>
 		
