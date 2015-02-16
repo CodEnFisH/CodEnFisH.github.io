@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Search Missing Numbers | Codefish</title>
+  <meta name="author" content="Ze Yu">
+  
+  <meta name="description" content="Problem
+
+A sorted array contains integers from 1..n with m of them missing. Find all missing numbers.
+Example:n = 8 , m = 2arr = [1,2,4,5,6,8]Result h">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Search Missing Numbers"/>
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/." title="Home Page">
+			  <i class="fa fa-user"></i>Home
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Search Missing Numbers</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>A sorted array contains integers from 1..n with m of them missing. Find all missing numbers.</p>
+<p>Example:<br>n = 8 , m = 2<br>arr = [1,2,4,5,6,8]<br>Result has to be {3, 7}.</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<p>Idea 1: since the array is sorted, using binary search we can check whether a num exist in the array in O(log(n-m)), we loop all n integers so the complexity is O(nlog(n-m))</p>
+<p>Idea 2: use counting method or hash table, it can be done within O(n) time and O(m) space</p>
+<p>Idea 3: using binary search, we can search for if the first half has missing numbers and if not we just discard the first half. This can be done by checking whether the size of the first half is smaller than it supposed to be.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FindMissing</span> </span>{</div><div class="line">    <span class="keyword">int</span> pos = <span class="number">0</span>, ret[];</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] <span class="title">findMissing</span>(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span>[] a){</div><div class="line">        ret = <span class="keyword">new</span> <span class="keyword">int</span>[n];</div><div class="line">        search(<span class="number">1</span>, m, n, a, <span class="number">0</span>, a.length - <span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    }</div><div class="line">    <span class="comment">// find missing numbers in range [min, max], given the existing num a[l...r]</span></div><div class="line">    <span class="comment">// missing is the number of missing number</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">search</span>(<span class="keyword">int</span> min, <span class="keyword">int</span> max, <span class="keyword">int</span> missing, <span class="keyword">int</span>[] a, <span class="keyword">int</span> l, <span class="keyword">int</span> r){</div><div class="line">        <span class="keyword">if</span>(missing == <span class="number">0</span> || min &gt; max) <span class="keyword">return</span>; <span class="comment">// no missing</span></div><div class="line">        <span class="keyword">if</span>(min == max){ <span class="comment">// range is trivial, but still has missing, then must be this</span></div><div class="line">            ret[pos++] = min;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(l &gt; r){ <span class="comment">// none of [min, max] is in the given array, all are missing</span></div><div class="line">            <span class="keyword">while</span>(min &lt;= max) ret[pos++] = min++;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        }</div><div class="line">        <span class="comment">// normal cases</span></div><div class="line">        <span class="keyword">int</span> mid = l + (r - l) / <span class="number">2</span>;</div><div class="line">        <span class="keyword">int</span> missingInLeft = (a[mid] - min) - (mid - l);</div><div class="line">        search(min, a[mid] - <span class="number">1</span>, missingInLeft, a, l, mid - <span class="number">1</span>); <span class="comment">// mid is excluded</span></div><div class="line">        search(a[mid] + <span class="number">1</span>, max, missing - missingInLeft, a, mid + <span class="number">1</span>, r); <span class="comment">// mid is excluded</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/16/Cloest-Police/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Feb 16 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>30</span></a></li> <li><a href="/categories/Non-Leetcode/Google/">Google<span>22</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Binary-Search/">Binary Search<span>8</span></a></li> <li><a href="/tags/Divide-and-Conquer/">Divide-and-Conquer<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Ze Yu
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+   </html>
