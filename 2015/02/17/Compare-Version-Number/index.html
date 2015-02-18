@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Convert Sorted Array to BST | Codefish</title>
+  <title>Compare Version Number | Codefish</title>
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
 
-Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
+Compare two version numbers version1 and version2.
 
 Solution
-123456789101112public TreeNode so">
+123456789101112131415161718192021public int compareVersion(String version1, Stri">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Convert Sorted Array to BST"/>
+  <meta property="og:title" content="Compare Version Number"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -74,7 +74,7 @@ Solution
 
 	
 		<div class="page-header">		
-			<h1> Convert Sorted Array to BST</h1>
+			<h1> Compare Version Number</h1>
 		</div>		
 	
 
@@ -92,10 +92,10 @@ Solution
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
 <blockquote>
-<p>Given an array where elements are sorted in ascending order, convert it to a height balanced BST.</p>
+<p>Compare two version numbers version1 and version2.</p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">return</span> dfs(num, <span class="number">0</span>, num.length - <span class="number">1</span>);</div><div class="line">}</div><div class="line"><span class="keyword">public</span> TreeNode <span class="title">dfs</span>(<span class="keyword">int</span>[] num, <span class="keyword">int</span> left, <span class="keyword">int</span> right){</div><div class="line">    <span class="keyword">if</span>(left &gt; right) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">if</span>(left == right) <span class="keyword">return</span> <span class="keyword">new</span> TreeNode(num[left]);</div><div class="line">    <span class="keyword">int</span> m = left + (right - left) / <span class="number">2</span>;</div><div class="line">    TreeNode root = <span class="keyword">new</span> TreeNode(num[m]);</div><div class="line">    root.left = dfs(num, left, m - <span class="number">1</span>);</div><div class="line">    root.right = dfs(num, m + <span class="number">1</span>, right);</div><div class="line">    <span class="keyword">return</span> root;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareVersion</span>(String version1, String version2) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; version1.length() || j &lt; version2.length()){</div><div class="line">        <span class="keyword">int</span> digit1 = <span class="number">0</span>, digit2 = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(i &lt; version1.length()) {</div><div class="line">            <span class="keyword">int</span> p1 = version1.indexOf(<span class="string">'.'</span>, i);</div><div class="line">            String strDigit = version1.substring(i, p1 == -<span class="number">1</span> ? version1.length() : p1);</div><div class="line">            digit1 = Integer.parseInt(strDigit);</div><div class="line">            i = p1 != -<span class="number">1</span> ?  p1 + <span class="number">1</span> : version1.length();</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(j &lt; version2.length()){</div><div class="line">            <span class="keyword">int</span> p2 = version2.indexOf(<span class="string">'.'</span>, j);</div><div class="line">            String strDigit = version2.substring(j, p2 == -<span class="number">1</span> ? version2.length() : p2);</div><div class="line">            digit2 = Integer.parseInt(strDigit);</div><div class="line">            j = p2 != -<span class="number">1</span> ? p2 + <span class="number">1</span> : version2.length();</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(digit1 &lt; digit2) <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(digit1 &gt; digit2) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -105,14 +105,14 @@ Solution
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/04/Longest-Palindromic-Substring/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/04/Distinct-Subsequences/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/17/Restore-IP-Address/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +139,7 @@ Solution
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 4 2015 
+	Feb 17 2015 
 	</div>
 	
 
@@ -163,7 +163,7 @@ Solution
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/BST/">BST<span>6</span></a></li> <li><a href="/tags/DFS/">DFS<span>15</span></a></li>
+  <li><a href="/tags/String/">String<span>24</span></a></li>
     </ul>
 	</div>
 		
