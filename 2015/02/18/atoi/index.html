@@ -3,18 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Next Permutation | Codefish</title>
+  <title>atoi | Codefish</title>
   <meta name="author" content="Ze Yu">
   
-  <meta name="description" content="Problem
-
-Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
-If such arrangement is n">
+  <meta name="description" content="12345678910111213141516171819202122// corner cases: sign, overflow, valid char leading 0, white spacespublic int atoi(String str) {    int i = 0, ret ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Next Permutation"/>
+  <meta property="og:title" content="atoi"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -72,7 +69,7 @@ If such arrangement is n">
 
 	
 		<div class="page-header">		
-			<h1> Next Permutation</h1>
+			<h1> atoi</h1>
 		</div>		
 	
 
@@ -88,21 +85,7 @@ If such arrangement is n">
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
-<p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
-<p>The replacement must be in-place, do not allocate extra memory.</p>
-<p>Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.<br>1,2,3 → 1,3,2<br>3,2,1 → 1,2,3<br>1,1,5 → 1,5,1</p>
-</blockquote>
-<h3 id="Solution">Solution</h3>
-<ol>
-<li>Scan from end to start, find the first reverse pair</li>
-<li>Scan from end to start, find the first num, say at position j, that is larger than the first element of the reverse pair, say at position i.</li>
-<li>Swap i and j</li>
-<li>Reverse the subarray [i, len - 1]</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">nextPermutation</span>(<span class="keyword">int</span>[] num) {</div><div class="line">    <span class="keyword">int</span> i = num.length - <span class="number">1</span>, j;</div><div class="line">    <span class="keyword">while</span>(i &gt; <span class="number">0</span> && num[i-<span class="number">1</span>] &gt;= num[i]) i--;</div><div class="line">    <span class="keyword">if</span>(i != <span class="number">0</span>) {</div><div class="line">        j = num.length - <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span>(j &gt;= i && num[j] &lt;= num[i-<span class="number">1</span>]) j--;</div><div class="line">        <span class="keyword">int</span> tmp = num[i-<span class="number">1</span>];</div><div class="line">        num[i-<span class="number">1</span>] = num[j];</div><div class="line">        num[j] = tmp;</div><div class="line">    }</div><div class="line">    j = num.length - <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; j) {</div><div class="line">        <span class="keyword">int</span> tmp = num[i];</div><div class="line">        num[i] = num[j];</div><div class="line">        num[j] = tmp;</div><div class="line">        i++;</div><div class="line">        j--;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+	    <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// corner cases: sign, overflow, valid char leading 0, white spaces</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">atoi</span>(String str) {</div><div class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, ret = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(i &lt; str.length() && str.charAt(i) == <span class="string">' '</span>) i++;</div><div class="line">    <span class="keyword">if</span>(i == str.length() || str.charAt(i) != <span class="string">'+'</span> && str.charAt(i) != <span class="string">'-'</span> &&</div><div class="line">        !(<span class="string">'0'</span> &lt;= str.charAt(i) && str.charAt(i) &lt;= <span class="string">'9'</span>)) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> sign = str.charAt(i) == <span class="string">'-'</span> ? -<span class="number">1</span> : <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span>(!(<span class="string">'0'</span> &lt;= str.charAt(i) && str.charAt(i) &lt;= <span class="string">'9'</span>)) i++;</div><div class="line">    <span class="keyword">while</span>(i &lt; str.length()){</div><div class="line">        <span class="keyword">if</span>(!(<span class="string">'0'</span> &lt;= str.charAt(i) && str.charAt(i) &lt;= <span class="string">'9'</span>)) <span class="keyword">return</span> ret;</div><div class="line">        <span class="keyword">int</span> d = sign * (str.charAt(i) - <span class="string">'0'</span>);</div><div class="line">        <span class="keyword">if</span>(sign == <span class="number">1</span>){</div><div class="line">            <span class="keyword">if</span>((Integer.MAX_VALUE - d) / <span class="number">10</span> &gt;= ret) ret = ret * <span class="number">10</span> + d;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> Integer.MAX_VALUE;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">if</span>((Integer.MIN_VALUE - d) / <span class="number">10</span> &lt;= ret) ret = ret * <span class="number">10</span> + d;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">return</span> Integer.MIN_VALUE;</div><div class="line">        }</div><div class="line">        i++;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -112,14 +95,14 @@ If such arrangement is n">
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/06/Sub-Set/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/06/4-Sum/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/17/Compare-Version-Number/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -146,7 +129,7 @@ If such arrangement is n">
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 6 2015 
+	Feb 18 2015 
 	</div>
 	
 
@@ -170,7 +153,7 @@ If such arrangement is n">
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Array/">Array<span>23</span></a></li>
+  <li><a href="/tags/String/">String<span>25</span></a></li>
     </ul>
 	</div>
 		
