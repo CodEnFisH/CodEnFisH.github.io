@@ -3,18 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Edit Distance | Codefish</title>
+  <title>Bit Operations | Codefish</title>
   <meta name="author" content="Ze Yu">
   
-  <meta name="description" content="Problem
+  <meta name="description" content="Get the i-th bit from the right
 
-Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
-">
+1(x &amp;gt;&amp;gt; i) &amp; 1
+
+
+Set the i-th bit from the right to 1
+
+1x |= (1 &amp;lt;&amp;lt; i)
+
+
+Set the i-th bit from the right to">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Edit Distance"/>
+  <meta property="og:title" content="Bit Operations"/>
   <meta property="og:site_name" content="Codefish"/>
 
   
@@ -72,7 +79,7 @@ Given two words word1 and word2, find the minimum number of steps required to co
 
 	
 		<div class="page-header">		
-			<h1> Edit Distance</h1>
+			<h1> Bit Operations</h1>
 		</div>		
 	
 
@@ -88,14 +95,25 @@ Given two words word1 and word2, find the minimum number of steps required to co
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h3 id="Problem">Problem</h3>
-<blockquote>
-<p>Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)</p>
-<p>You have the following 3 operations permitted on a word:</p>
-<p>a) Insert a character<br>b) Delete a character<br>c) Replace a character</p>
+	    <blockquote>
+<p>Get the i-th bit from the right</p>
 </blockquote>
-<h3 id="Solution">Solution</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span>(String word1, String word2) {</div><div class="line">    <span class="keyword">char</span>[] a = word1.toCharArray(), b = word2.toCharArray();</div><div class="line">    <span class="keyword">int</span> m = a.length, n = b.length;</div><div class="line">    <span class="keyword">int</span>[][] f = <span class="keyword">new</span> <span class="keyword">int</span>[m+<span class="number">1</span>][n+<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) f[i][<span class="number">0</span>] = i;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) f[<span class="number">0</span>][j] = j;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++){</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++){</div><div class="line">            <span class="keyword">int</span> cost = a[i-<span class="number">1</span>] == b[j-<span class="number">1</span>] ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">            f[i][j] = Math.min(f[i-<span class="number">1</span>][j-<span class="number">1</span>] + cost, Math.min(f[i-<span class="number">1</span>][j] + <span class="number">1</span>, f[i][j-<span class="number">1</span>] + <span class="number">1</span>));</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> f[m][n];</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(x &gt;&gt; i) & <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Set the i-th bit from the right to 1</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">x |= (<span class="number">1</span> &lt;&lt; i)</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Set the i-th bit from the right to 0</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">x &= (~(<span class="number">1</span> &lt;&lt; i))</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Reverse the i-th bit from the right</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">x ^= (<span class="number">1</span> &lt;&lt; i)</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -105,14 +123,14 @@ Given two words word1 and word2, find the minimum number of steps required to co
 	<div class="pagination">
 <ul class="pagination">
 	 
-				
-    	<li class="prev"><a href="/2015/02/04/Dungeon-Game/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
-  		
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
 
         <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/04/Interleaving-String/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/18/Palindrome-Number/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -139,7 +157,7 @@ Given two words word1 and word2, find the minimum number of steps required to co
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	Feb 4 2015 
+	Feb 18 2015 
 	</div>
 	
 
@@ -150,7 +168,7 @@ Given two words word1 and word2, find the minimum number of steps required to co
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Leetcode/">Leetcode<span>99</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>31</span></a></li>
   </li>
 
     </ul>
@@ -163,7 +181,7 @@ Given two words word1 and word2, find the minimum number of steps required to co
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/DP/">DP<span>19</span></a></li> <li><a href="/tags/String/">String<span>25</span></a></li>
+  <li><a href="/tags/Bit-Manipulation/">Bit Manipulation<span>3</span></a></li>
     </ul>
 	</div>
 		
