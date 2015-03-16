@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Binary Search Tree Problem Set | Codefish</title>
+  <meta name="author" content="Ze Yu">
+  
+  <meta name="description" content="Problem: BST Basic Operation
+
+Implement basic operations of a BST: insert, delete, search
+
+Solution
+The delete is pretty tricky. Two tricks: using del">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Binary Search Tree Problem Set"/>
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/." title="Home Page">
+			  <i class="fa fa-user"></i>Home
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Binary Search Tree Problem Set</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h3 id="Problem:_BST_Basic_Operation">Problem: BST Basic Operation</h3>
+<blockquote>
+<p>Implement basic operations of a BST: insert, delete, search</p>
+</blockquote>
+<h4 id="Solution">Solution</h4>
+<p>The delete is pretty tricky. Two tricks: using deleteMin to delete the min val and return a new root; delete function should better to be implemented recursively, the idea is to return the new root of the target-deleted subtree, so that the parent can just hook it up without having to track whether it’s left/right child.</p>
+<h4 id="TAKE_AWAYS:">TAKE AWAYS:</h4>
+<p>复杂操作 包括结构变化的 最好用递归 省的麻烦<br>结构不变化 可以考虑用非递归</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BST</span> </span>{</div><div class="line">    TreeNode root = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">int</span> size = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">insert</span>(<span class="keyword">int</span> v) {</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) {</div><div class="line">            root = <span class="keyword">new</span> TreeNode(v);</div><div class="line">            size++;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> insert(root, v);</div><div class="line">    }</div><div class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">insert</span>(TreeNode root, <span class="keyword">int</span> v) {</div><div class="line">        TreeNode cur = root;</div><div class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>) {</div><div class="line">            <span class="keyword">if</span>(v &lt; cur.val) {</div><div class="line">                <span class="keyword">if</span>(cur.left == <span class="keyword">null</span>) {</div><div class="line">                    cur.left = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                    size++;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                } <span class="keyword">else</span> cur = cur.left;</div><div class="line">            } <span class="keyword">else</span> <span class="keyword">if</span>(v == cur.val) <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            <span class="keyword">else</span> {</div><div class="line">                <span class="keyword">if</span>(cur.right == <span class="keyword">null</span>) {</div><div class="line">                    cur.right = <span class="keyword">new</span> TreeNode(v);</div><div class="line">                    size++;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">                } <span class="keyword">else</span> cur = cur.right;</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> TreeNode <span class="title">search</span>(<span class="keyword">int</span> key) {</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">return</span> search(root, key);</div><div class="line">    }</div><div class="line">    <span class="keyword">private</span> TreeNode <span class="title">search</span>(TreeNode root, <span class="keyword">int</span> key) {</div><div class="line">        TreeNode cur = root;</div><div class="line">        <span class="keyword">while</span>(cur != <span class="keyword">null</span> && cur.val != key) {</div><div class="line">            <span class="keyword">if</span>(key &lt; cur.val) cur = cur.left;</div><div class="line">            <span class="keyword">else</span> cur = cur.right;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> cur;</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">public</span> TreeNode <span class="title">delete</span>(<span class="keyword">int</span> key) {</div><div class="line">        root = delete(root, key);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    }</div><div class="line">    <span class="javadoc">/**</span></div><div class="line">    * Delete a key searching from root.</div><div class="line">    */</div><div class="line">    <span class="keyword">private</span> TreeNode <span class="title">delete</span>(TreeNode root, <span class="keyword">int</span> key) {</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(key &lt; root.val) {</div><div class="line">            root.left = delete(root.left, key);</div><div class="line">            <span class="keyword">return</span> root;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(key &gt; root.val) {</div><div class="line">            root.right = delete(root.right, key);</div><div class="line">            <span class="keyword">return</span> root;</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> { <span class="comment">// equal</span></div><div class="line">            <span class="comment">// The steps are:</span></div><div class="line">            <span class="comment">// 1. if the target node has only one child, just replace it with the child</span></div><div class="line">            <span class="comment">// 2. if it has both left and right child, we replace the target with its successor</span></div><div class="line">            <span class="comment">//  a. first get the successor of the target</span></div><div class="line">            <span class="comment">//  b. delete the successor from the right subtree of the target, using the deleteMin function. The return value of the deleteMin function should be the new right child of the successor</span></div><div class="line">            <span class="comment">//  c. link the left child to the successor</span></div><div class="line">            <span class="comment">//  d. return the successor, so that the parent can hookup it.</span></div><div class="line">            <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) <span class="keyword">return</span> root.right; <span class="comment">// 1</span></div><div class="line">            <span class="keyword">if</span>(root.right == <span class="keyword">null</span>) <span class="keyword">return</span> root.left; <span class="comment">// 1</span></div><div class="line">            TreeNode target = root, successor = getMin(target.right); <span class="comment">// 2.a</span></div><div class="line">            successor.right = deleteMin(target.right); <span class="comment">//2.b</span></div><div class="line">            successor.left = target.left; <span class="comment">// 2.c</span></div><div class="line">            <span class="keyword">return</span> successor; <span class="comment">// 2.d</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> TreeNode <span class="title">getMin</span>(TreeNode root) {</div><div class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) <span class="keyword">return</span> root;</div><div class="line">        <span class="keyword">return</span> getMin(root.left);</div><div class="line">    }</div><div class="line">    <span class="javadoc">/**</span></div><div class="line">    * Delete Min from the root, return the new root of the tree</div><div class="line">    */</div><div class="line">    <span class="keyword">private</span> TreeNode <span class="title">deleteMin</span>(TreeNode root) {</div><div class="line">        <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) <span class="keyword">return</span> root.right;</div><div class="line">        root.left = deleteMin(root.left);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">prettyPrint</span>() {</div><div class="line">        System.out.println(TreeNode.prettyPrint(root));</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="Problem:_Sorted_LinkedList_to_BST">Problem: Sorted LinkedList to BST</h3>
+<h3 id="Problem:_Lowest_Common_Ancestor_of_BST">Problem: Lowest Common Ancestor of BST</h3>
+<p>The idea is that the LCA’s value is the first value that is between the searched pair’s values</p>
+<blockquote>
+<p>NOTE That LCA of BST is different from LCA of Binary Tree</p>
+</blockquote>
+<h3 id="Problem:_Inorder_Successor_of_BST">Problem: Inorder Successor of BST</h3>
+<h3 id="Problem:_Convert_BST_from_and_to_Sorted_Double_Linked_List">Problem: Convert BST from and to Sorted Double Linked List</h3>
+<h3 id="Problem:_Merge_Two_Balanced_BST_to_Balanced_BST">Problem: Merge Two Balanced BST to Balanced BST</h3>
+<p>Algorithm 1: First unload the value of the BST into arrays and then merge-sort them. Then convert the sorted array into balanced BST. Time - O(nlogn), space - O(n).</p>
+<p>Algorithm 2: We can do it in-place. First we flatten the two BST into two double linked lists, just like the previous problem. Then we merge these two list and converted them to a balanced BST.</p>
+<h3 id="Problem:_Find_the_largest_BST_subtree_in_a_given_Binary_Tree">Problem: Find the largest BST subtree in a given Binary Tree</h3>
+<blockquote>
+<p>Given a Binary Tree, write a function that returns the size of the largest subtree which is also a Binary Search Tree (BST). If the complete Binary Tree is BST, then return the size of whole tree.</p>
+</blockquote>
+<p>Algorithm: DFS, function should return 1. if subtree is BST, 2. range of subtree and 3. size of subtree.</p>
+<h3 id="Problem:_Recover_BST">Problem: Recover BST</h3>
+<h3 id="Problem:_2Sum_BST">Problem: 2Sum BST</h3>
+<p>Algorithm: In-order and reverse in-order traverse the tree and do it like 1D 2Sum.<br>The key is to find the successor and precessor. Using stack, we can get O(1) time (amortized) and O(h) space (Leetcode BST iterator). If there is parent pointer, we can reduce space to O(1).</p>
+<h3 id="Problem:_K-th_Smallest_in_BST">Problem: K-th Smallest in BST</h3>
+<p>Algorithm: if there is no further information about the treenode, the best we can do is to dfs the BST till we hit the kth node.<br>If we have the size of subtree stored in the node, we can do</p>
+<ul>
+<li>if the left subtree has k - 1 nodes, return root</li>
+<li>if the left subtree has t &lt; k - 1 nodes, then dfs root.right with k - t - 1</li>
+<li>if the left subtree has t &gt; k - 1 nodes, then dfs root.left with k</li>
+</ul>
+<h3 id="Problem:_Print_key_range_in_BST">Problem: Print key range in BST</h3>
+<p>Algorithm: assume the range is [a, b]</p>
+<ul>
+<li>if b &lt; root.val, dfs(root.left, [a,b])</li>
+<li>else if a &gt; root.val, dfs(root.right, [a,b])</li>
+<li>else dfs(root.left, root.val - 1) + [root.val] + dfs(root.right, [root.val + 1,b])</li>
+</ul>
+<h3 id="Problem:_Floor/Ceiling_in_BST">Problem: Floor/Ceiling in BST</h3>
+<blockquote>
+<p>Find the first element le/se than the given key.</p>
+</blockquote>
+<p>Algorithm: Ceiling for eg</p>
+<ul>
+<li>If key &gt; root.val return dfs(root.right, key)</li>
+<li>If key = root.val return root</li>
+<li>else check the result of dfs(root.left, key), if it’s not null return it, else return root</li>
+</ul>
+<h3 id="Problem:_Binary_Tree_to_BST">Problem: Binary Tree to BST</h3>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/03/07/Two-Pointer-Problem-Set/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/18/Bit-Operations/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Mar 7 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>37</span></a></li> <li><a href="/categories/Non-Leetcode/Problem-Categorization/">Problem Categorization<span>3</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/BST/">BST<span>9</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Ze Yu
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+   </html>

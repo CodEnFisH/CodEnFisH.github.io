@@ -97,8 +97,10 @@ Given a binary tree where all the right nodes are either leaf nodes with a sibli
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  4</div><div class="line"> / <span class="command">\</span></div><div class="line">5   2</div><div class="line">   / <span class="command">\</span></div><div class="line">  3   1</div></pre></td></tr></table></figure>
 
 <h3 id="Solution">Solution</h3>
-<p>Using DFS to turn the left tree upside down, and then put the right leaf into appropriate position.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> TreeNode <span class="title">upsideDown</span>(TreeNode root){</div><div class="line">    <span class="keyword">if</span>(root.left == <span class="keyword">null</span> && root.right == <span class="keyword">null</span>) <span class="keyword">return</span> root;</div><div class="line">    TreeNode lc = upsideDown(root.left), p = lc;</div><div class="line">    <span class="keyword">while</span>(p.left != <span class="keyword">null</span>) p = p.right;</div><div class="line">    p.left = root.right;</div><div class="line">    p.right = root;</div><div class="line">    root.left = <span class="keyword">null</span>; root.right = <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">return</span> lc;</div><div class="line">}</div></pre></td></tr></table></figure>
+<ul>
+<li>Using DFS to turn the left tree upside down. DFS return the root of upside-down left subtree.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedinBinaryTreeUpsideDown</span> </span>{</div><div class="line">    TreeNode newRoot = <span class="keyword">null</span>;</div><div class="line">    <span class="comment">// return the right most node of the upside-down subtree</span></div><div class="line">    <span class="keyword">public</span> TreeNode <span class="title">upsideDown</span>(TreeNode root) {</div><div class="line">        <span class="keyword">if</span>(root.left == <span class="keyword">null</span>) {</div><div class="line">            <span class="keyword">if</span>(newRoot == <span class="keyword">null</span>) newRoot = root;</div><div class="line">            <span class="keyword">return</span> root;</div><div class="line">        }</div><div class="line">        TreeNode prev = upsideDown(root.left);</div><div class="line">        prev.left = root.right;</div><div class="line">        prev.right = root;</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 	  
 	</div>
@@ -166,7 +168,7 @@ Given a binary tree where all the right nodes are either leaf nodes with a sibli
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Tree/">Tree<span>6</span></a></li> <li><a href="/tags/DFS/">DFS<span>15</span></a></li>
+  <li><a href="/tags/Tree/">Tree<span>8</span></a></li> <li><a href="/tags/DFS/">DFS<span>17</span></a></li>
     </ul>
 	</div>
 		
