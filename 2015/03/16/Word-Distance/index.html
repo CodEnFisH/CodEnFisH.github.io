@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Word Distance | Codefish</title>
+  <meta name="author" content="Ze Yu">
+  
+  <meta name="description" content="Problem
+
+Find the closest distance between dictionary words in a text
+
+Solution
+1234567891011121314151617181920212223242526272829303132333435363738394">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Word Distance"/>
+  <meta property="og:site_name" content="Codefish"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Codefish</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/." title="Home Page">
+			  <i class="fa fa-user"></i>Home
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Word Distance</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h3 id="Problem">Problem</h3>
+<blockquote>
+<p>Find the closest distance between dictionary words in a text</p>
+</blockquote>
+<h3 id="Solution">Solution</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedinWordDistanceFinder</span> </span>{</div><div class="line">    List&lt;String&gt; text = <span class="keyword">null</span>;</div><div class="line">    LinkedinWordDistanceFinder(List&lt;String&gt; text) {</div><div class="line">        <span class="keyword">this</span>.text = text;</div><div class="line">        preprocessing();</div><div class="line">    }</div><div class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title">preprocessing</span>(){</div><div class="line">        Iterator&lt;String&gt; itr = text.iterator();</div><div class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(itr.hasNext()){</div><div class="line">            String next = itr.next();</div><div class="line">            ArrayList&lt;Integer&gt; positions = wdToPos.containsKey(next) ? wdToPos.get(next) :</div><div class="line">                    <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">            positions.add(pos++);</div><div class="line">            wdToPos.put(next, positions);</div><div class="line">        }</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">distance</span>(String s1, String s2){</div><div class="line">        <span class="keyword">int</span> prevS1 = -<span class="number">1</span>, prevS2 = -<span class="number">1</span>, pos = <span class="number">0</span>, min = Integer.MAX_VALUE;</div><div class="line">        Iterator&lt;String&gt; itr = text.iterator();</div><div class="line">        <span class="keyword">while</span>(itr.hasNext()) {</div><div class="line">            String next = itr.next();</div><div class="line">            <span class="keyword">if</span>(next.equals(s1)) prevS1 = pos;</div><div class="line">            <span class="keyword">if</span>(next.equals(s2)) prevS2 = pos;</div><div class="line">            <span class="keyword">if</span>(prevS1 != -<span class="number">1</span> && prevS2 != -<span class="number">1</span>) min = Math.min(min, Math.abs(prevS1 - prevS2));</div><div class="line">            pos++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    }</div><div class="line"></div><div class="line">    HashMap&lt;String, ArrayList&lt;Integer&gt;&gt; wdToPos = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">    <span class="comment">// what if the function is called often?</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">distanceCallOften</span>(String s1, String s2) {</div><div class="line">        ArrayList&lt;Integer&gt; s1Pos = wdToPos.get(s1), s2Pos = wdToPos.get(s2);</div><div class="line">        <span class="keyword">if</span>(s1Pos == <span class="keyword">null</span> || s2Pos == <span class="keyword">null</span>) <span class="keyword">return</span> Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, m = s1Pos.size(), n = s2Pos.size(), min = Integer.MAX_VALUE;</div><div class="line">        <span class="keyword">while</span>(i &lt; m && j &lt; n) {</div><div class="line">            min = Math.min(min, Math.abs(s1Pos.get(i) - s2Pos.get(j)));</div><div class="line">            <span class="keyword">if</span>(s1Pos.get(i) &lt;= s2Pos.get(j)) i++;</div><div class="line">            <span class="keyword">else</span> j++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> min;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/."><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/03/16/Tree-Serialization/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	Mar 16 2015 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>58</span></a></li> <li><a href="/categories/Non-Leetcode/Linkedin/">Linkedin<span>24</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Array/">Array<span>27</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Ze Yu
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</body>
+   </html>
