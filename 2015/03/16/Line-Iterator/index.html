@@ -7,9 +7,8 @@
   <meta name="author" content="Ze Yu">
   
   <meta name="description" content="Problem
-&amp;gt;
 
- public class TextFile implements Iterable{   public Iterator iterator() { // please implement this   }   public TextFile(String fileNam">
+ public class TextFile implements Iterable{   public Iterator iterator() { // please implement this}   public TextFile(String fileName) { // ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,9 +88,8 @@
 	<!-- content -->
 	<div class="mypage">		
 	    <h3 id="Problem">Problem</h3>
-<p>&gt;</p>
 <blockquote>
-<p> public class TextFile implements Iterable<string>{<br>   public Iterator<string> iterator() { // please implement this<br>   }<br>   public TextFile(String fileName) { // please implement this<br>   }<br> }</string></string></p>
+<p> public class TextFile implements Iterable<string>{<br>   public Iterator<string> iterator() { // please implement this}<br>   public TextFile(String fileName) { // please implement this}<br> }</string></string></p>
 </blockquote>
 <h3 id="Solution">Solution</h3>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinedinTextFile</span> <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">String</span>&gt; </span>{</div><div class="line">    class LineIterator implements Iterator&lt;String&gt; {</div><div class="line">        BufferedReader br;</div><div class="line">        String currentLine;</div><div class="line"></div><div class="line">        LineIterator(String fileName) {</div><div class="line">            <span class="keyword">try</span>{</div><div class="line">                br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(fileName));</div><div class="line">                currentLine = br.readLine();</div><div class="line">            } <span class="keyword">catch</span> (IOException e) {</div><div class="line">                System.out.println(<span class="string">"can't open file "</span> + fileName);</div><div class="line">            }</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="annotation">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span>() {</div><div class="line">            <span class="keyword">return</span> currentLine != <span class="keyword">null</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="annotation">@Override</span></div><div class="line">        <span class="keyword">public</span> String <span class="title">next</span>() {</div><div class="line">            String ret = currentLine;</div><div class="line">            <span class="keyword">try</span> {</div><div class="line">                currentLine = br.readLine();</div><div class="line">            } <span class="keyword">catch</span> (IOException e) {</div><div class="line">                System.out.println(<span class="string">"Can't Read Line "</span> + e);</div><div class="line">            } <span class="keyword">finally</span> {</div><div class="line">                <span class="keyword">return</span> ret;</div><div class="line">            }</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="annotation">@Override</span></div><div class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span>() {</div><div class="line">        }</div><div class="line">    }</div><div class="line">    String fileName;</div><div class="line">    <span class="keyword">public</span> <span class="title">LinedinTextFile</span>(String fileName) { <span class="comment">// please implement this.</span></div><div class="line">        <span class="keyword">this</span>.fileName = fileName;</div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> Iterator&lt;String&gt; <span class="title">iterator</span>() { <span class="comment">// please implement this.</span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> LineIterator(<span class="keyword">this</span>.fileName);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
@@ -149,7 +147,7 @@
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Non-LeetCode/">Non-LeetCode<span>1</span></a></li> <li><a href="/categories/Non-LeetCode/Linkedin/">Linkedin<span>1</span></a></li>
+    <li><a href="/categories/Non-Leetcode/">Non-Leetcode<span>42</span></a></li> <li><a href="/categories/Non-Leetcode/Linkedin/">Linkedin<span>8</span></a></li>
   </li>
 
     </ul>
@@ -162,7 +160,7 @@
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Iterator/">Iterator<span>2</span></a></li>
+  <li><a href="/tags/Iterator/">Iterator<span>3</span></a></li>
     </ul>
 	</div>
 		
