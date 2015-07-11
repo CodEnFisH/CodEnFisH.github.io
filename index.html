@@ -1,222 +1,119 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<!--
+Copyright 2011 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Author: Eric Bidelman (ericbidelman@chromium.org)
+-->
 <html>
 <head>
-  <meta charset="utf-8">
-  
-  <title>Codefish</title>
-  <meta name="author" content="Ze Yu">
-  
-  <meta name="description" content="Ze Yu
-
-
-I will graduate in Aug 2015 and join Google search team as a software engineer.
-
-Short Bio
-
-I’m a 1st 2nd 3rd final year graduating Ph.D stude">
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  
-  <meta property="og:site_name" content="Codefish"/>
-
-  
-    <meta property="og:image" content="undefined"/>
-  
-
-  
-  
-    <link href="/favicon.png" rel="icon">
-  
-  
-  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  <script src="/js/jquery-2.0.3.min.js"></script>
-
-  <!-- analytics -->
-  
-
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<title>Codefish' Homepage</title>
+<link rel="stylesheet" media="all" href="terminal.css">
+<link rel="chrome-application-definition" href="manifest.json">
 </head>
+<body>
 
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-	  <a class="navbar-brand" href="/">Codefish</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/." title="Home Page">
-			  <i class="fa fa-user"></i>Home
-			</a>
-		  </li>
-		  
-		</ul>
+<aside class="help hidden">
+  <section>
+    <div>
+      <span onclick="toggleHelp()" id="close">x</span>
+      <h2>Keyboard shortcuts</h2>
+      <div class="shortcuts">
+        <p><strong>&lt;ctrl&gt; + s</strong> : Toggle CRT monitor flicker effect</p>
+        <p><strong>&lt;esc&gt;</strong> : toggle this help menu</p>
       </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
+    </div>
+    <div>
+      <h2>What is this?</h2>
+      <p>A Command-line terminal/shell running on top of HTML5 APIs.</p>
+      <p>By: Eric Bidelman &lt;ericbidelman@chromium.org&gt;</p>
+    </div>
+  </section>
+</aside>
 
-  <div class="container">
-  	<div class="content">
-    	 
-	
-		<div class="page-header">		
-			<h1> </h1>
-		</div>		
-	
+<!--<div class="crt top"></div>-->
+<div class="interlace"></div>
+<div id="container"></div>
+<!--<div class="crt bottom"></div>-->
 
+<script src="terminal.js"></script>
+<script>
+function toggleHelp() {
+  document.querySelector('.help').classList.toggle('hidden');
+  document.body.classList.toggle('dim');
+}
 
+(function() {
+  var term = new Terminal('container');
+  term.initFS(false, 1024 * 1024);
 
-<div class="row page">
-	<!-- cols -->
-	
-	<div class="col-md-12">
-	
+  /*
+  if (document.location.hash) {
+    var theme = document.location.hash.substring(1).split('=')[1];
+    term.setTheme(theme);
+  } else if (localStorage.theme) {
+    term.setTheme(localStorage.theme);
+  }
+  */
+  term.setTheme('cream')
 
-			
-
-	<!-- content -->
-	<div class="mypage">		
-	    <h1 id="Ze_Yu">Ze Yu</h1>
-<hr>
-<blockquote>
-<p>I will graduate in Aug 2015 and join Google search team as a software engineer.</p>
-</blockquote>
-<h2 id="Short_Bio">Short Bio</h2>
-<blockquote>
-<p>I’m a <del>1st</del> <del>2nd</del> <del>3rd</del> <del>final year</del> graduating Ph.D student at <a href="http://www.ufl.edu" target="_blank" rel="external">University of Florida</a>, majoring in Computer Engineering. I worked at <a href="http://www.s3lab.ece.ufl.edu" title="Title" target="_blank" rel="external">S3Lab</a> with <a href="http://www.andyli.ece.ufl.edu/" title="Title" target="_blank" rel="external">Dr. Xiaolin (Andy) Li</a>. My research focuses on large-scale data-intensive computing systems.</p>
-<p>Before joining UF, I got my M.S. degree from <a href="http://www.tsinghua.edu.cn/publish/then/index.html" target="_blank" rel="external">Tsinghua University</a> and my B.S. degree from <a href="http://www.neu.edu.cn" target="_blank" rel="external">Northeastern University</a>.</p>
-</blockquote>
-<h2 id="Internships_Experiences">Internships Experiences</h2>
-<blockquote>
-<p><strong><em>I’m lucky to have the chance to work with the following teams as an intern:</em></strong></p>
-<h3 id="Qualcomm_Research,_Silicon_Valley,_May_2014_—_Aug_2014">Qualcomm Research, Silicon Valley, May 2014 — Aug 2014</h3>
-<p><strong><em>Project</em></strong>: The Cumbica Mobile Cloud System.<br><strong><em>Role</em></strong>: Design and implement a runtime system to offload mobile cloud services to First Hop Edge Devices, such as home routers/smart gateways.</p>
-<h3 id="Nokia_Research,_Beijing,_Jan_2010_—_Mar_2011">Nokia Research, Beijing, Jan 2010 — Mar 2011</h3>
-<p><strong><em>Project</em></strong>: Mobile Context Data Processing System.<br><strong><em>Role</em></strong>: Design and implement the backend query processing platform for Nokia’s Location-Based Mobile Services (LBMS)</p>
-</blockquote>
-<h2 id="Projects">Projects</h2>
-<blockquote>
-<p><strong><em>I have been worked on several exciting projects related to Big Data Processing Systems and Cloud Computing:</em></strong></p>
-<h3 id="Mammoth">Mammoth</h3>
-<p>An autonomic data processing framework for scientific state-transition applications. Mammoth provides a MapReduce-like programming model for state-transition applications and compiles users’ code into highly-optimized Hadoop jobs. <a href="https://github.com/CodEnFisH/Mammoth" target="_blank" rel="external">[On Github]</a></p>
-<h3 id="Palantir">Palantir</h3>
-<p>An Software-Defined Network (SDN) service for big data frameworks, which automatically and dynamically maintain locality information. <a href="https://github.com/CodEnFisH/palantir" target="_blank" rel="external">[On Github]</a></p>
-<h3 id="Gandalf">Gandalf</h3>
-<p>This on-going project focuses on improving multi-stage data-parallel DAG scheduler for Spark.</p>
-<h3 id="GatorMap">GatorMap</h3>
-<p>This project enhances MapReduce system by optimizing the incremental processing of iterative MapReduce jobs and leveraging cluster affinity to optimize the task scheduling</p>
-</blockquote>
-<h2 id="Selected_Publications">Selected Publications</h2>
-<blockquote>
-<ul>
-<li><strong><em>Palantir: Reseizing Network Proximity in Large-scale Distributed Computing Frameworks Using SDN.</em></strong> 2014 IEEE 7th International Conference on Cloud Computing (CLOUD’14) <a href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6973772&amp;punumber%3D6968679%26sortType%3Dasc_p_Sequence%26filter%3DAND%28p_IS_Number%3A6973706%29%26pageNumber%3D3" title="Title" target="_blank" rel="external">[pdf]</a></li>
-<li><strong><em>Taming Computation Skews of Block-Oriented Iterative Scientific Applications in MapReduce Systems.</em></strong> 2014 IEEE 7th International Conference on Cloud Computing (CLOUD’14) <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6973739" target="_blank" rel="external">[pdf]</a></li>
-<li><strong><em>Mammoth: Autonomic Data Processing Framework for Scientific State-Transition Applications.</em></strong> 2013 ACM Cloud and Autonomic Computing Conference (CAC’13) <a href="http://dl.acm.org/citation.cfm?id=2494633&amp;preflayout=tabs" target="_blank" rel="external">[pdf]</a>. <span style="color:red; font-weight:bold">Best Paper</span></li>
-<li><strong><em>Domain-based MapReduce Programming Model for Complex Scientific Applications</em></strong>. 2013 The 15th IEEE International Conference on High Performance Computing and Communications (HPCC’13) <a href="https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=ZGVmYXVsdGRvbWFpbnx6aW5jdW15eHxneDozMmQ2ODY0YTJhMDdhZDNh" target="_blank" rel="external">[pdf]</a></li>
-<li><strong><em> MyCloud: On-Demand Virtual Cluster Provisioning on HPC Resources</em></strong>. 2013 The 15th IEEE International Conference on High Performance Computing and Communications (HPCC’13). <a href="https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=ZGVmYXVsdGRvbWFpbnx6aW5jdW15eHxneDoxYjBjOTI3ZTZlMjFkZTI0" target="_blank" rel="external">[pdf]</a></li>
-<li><strong><em>Apala: Adaptive Partitioning and Load Balancing for State-Transition Applications</em></strong>. 2013 IEEE International Conference on Parallel and Distributed Systems (ICPADS’13).  <a href="http://www.s3lab.ece.ufl.edu/publication/icpads13-apala.pdf" target="_blank" rel="external">[pdf]</a></li>
-<li><strong><em>IncMR: Incremental Data Processing based on MapReduce</em></strong>. 2012 IEEE 5th International Conference on Cloud Computing (CLOUD’12). <a href="http://www.s3lab.ece.ufl.edu/publication/cloud12.pdf" target="_blank" rel="external">[pdf]</a></li>
-<li><strong><em>Affinity-aware Virtual Cluster Optimization for MapReduce Applications</em></strong>. 2012 IEEE International Conference on Cluster Computing (CLUSTER’12) <a href="http://www.s3lab.ece.ufl.edu/publication/cluster12.pdf" target="_blank" rel="external">[pdf]</a></li>
-</ul>
-</blockquote>
-<h2 id="Other_Activities">Other Activities</h2>
-<p>During my undergrad I participated in algorithmic programming contests. Our team won the 1st prize in China N.E. regional in <a href="http://icpc.baylor.edu/" target="_blank" rel="external">ICPC</a> 2007. I haven’t  played for a long time but I still love it.</p>
-	  
-	</div>
-
-	<div>
-  	<center>
-	<div class="pagination">
-<ul class="pagination">
-	 
-</ul>
-</div>
-
-    </center>
-	</div>
-	
-	<!-- comment -->
-	
-	
-	</div> <!-- col-md-9/col-md-12 -->
-	
-	
-
-</div><!-- row -->
-
-	</div>
-  </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2015 Ze Yu
-  
-      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
-</p> </footer>
-</div> <!-- container-narrow -->
-  
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
+  document.body.addEventListener('keydown', function(e) {
+    if (e.keyCode == 27) { // Esc
+      toggleHelp();
+      e.stopPropagation();
+      e.preventDefault();
     }
-  });
-</script>
+  }, false);
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-</script>
+  // Setup the DnD listeners for file drop.
+  document.body.addEventListener('dragenter', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.classList.add('dropping');
+  }, false);
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
+  document.body.addEventListener('dragover', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+  }, false);
 
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  document.body.addEventListener('dragleave', function(e) {
+   this.classList.remove('dropping');
+  }, false);
+  
+  document.body.addEventListener('drop', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.classList.remove('dropping');
+    term.addDroppedFiles(e.dataTransfer.files);
+    term.output('<div>File(s) added!</div>');
+  }, false);
+})();
+</script>
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23384572-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 </script>
 </body>
-   </html>
+</html>
