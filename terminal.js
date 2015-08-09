@@ -587,7 +587,7 @@ var Terminal = Terminal || function(containerId) {
       output('<div>Welcome to ' + document.title +
              '! (v' + VERSION_ + ', powered by <a href="http://www.htmlfivewow.com/demos/terminal/terminal.html" target="_blank">HTML5 Terminal</a>)</div>');
       output('<div> Visited at ' + (new Date()).toLocaleString() + '</div>');
-      output('<p>To see more about me: type "help"</p>');
+      output('<p>To see more about me, please type "help"</p>');
 
       if (!!!window.requestFileSystem) {
         output('<div>Sorry! The FileSystem APIs are not available in your browser.</div>');
