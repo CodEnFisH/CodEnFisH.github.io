@@ -347,8 +347,6 @@ var Terminal = Terminal || function(containerId) {
           output('<p>I am a software engineer at Google Search Analytics team </p>');
           output('<p>I graduated from University of Florida in Aug 2015, with a PHinally.Done degree in Computer Engineering. Before joining UF, I got my M.S. degree from Tsinghua University and my B.S. degree from Northeastern University.</p>');
 
-          output('<p>I </p>');
-
           break;
 
         case 'fun':
@@ -371,14 +369,9 @@ var Terminal = Terminal || function(containerId) {
           output((new Date()).toLocaleString());
           break;
         case 'exit':
-          if (is3D_) {
-            toggle3DView_();
-          }
-          if (timer_ != null) {
-            magicWord_.stop();
-            clearInterval(timer_);
-          }
+          output('Sorry you can\'t exit :P');
           break;
+
         case 'help':
           output('<div class="ls-files">' + CMDS_.join('<br>') + '</div>');
           break;
