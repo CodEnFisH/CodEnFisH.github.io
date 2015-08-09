@@ -91,7 +91,7 @@ var Terminal = Terminal || function(containerId) {
 
   const VERSION_ = '1.0.0';
   const CMDS_ = [
-    'info', 'bio', 'publication', 'photo', 'fun', 'clear', 'exit', 'help'
+    'contact', 'about', 'publication', 'photo', 'fun', 'clear', 'exit', 'help'
   ];
   const THEMES_ = ['default', 'cream'];
 
@@ -276,14 +276,14 @@ var Terminal = Terminal || function(containerId) {
           output('<b>Palantir: Reseizing Network Proximity in Large-scale Distributed Computing Frameworks Using SDN</b>');
           output('</b>');
           output('<br>');
-          output('2014 IEEE 7th International Conference on Cloud Computing');
+          output('2014 IEEE International Conference on Cloud Computing');
           output('</p>');
 
           output('<p>');
           output('<b>Taming Computation Skews of Block-Oriented Iterative Scientific Applications in MapReduce Systems</b>');
           output('</b>');
           output('<br>');
-          output('2014 IEEE 7th International Conference on Cloud Computing');
+          output('2014 IEEE International Conference on Cloud Computing');
           output('</p>');
 
           output('<p>');
@@ -293,24 +293,61 @@ var Terminal = Terminal || function(containerId) {
           output('2013 ACM Cloud and Autonomic Computing Conference');
           output('</p>');
 
+          output('<p>');
+          output('<b>GatorCloud: A Fine-Grained and Dynamic Resource Sharing Architecture for Multiple Cloud Services</b>');
+          output('</b>');
+          output('<br>');
+          output('2014 ACM BigSystem Workshop');
+          output('</p>');
+
+          output('<p>');
+          output('<b>Apala: Adaptive Partitioning and Load Balancing for State-Transition Applications</b>');
+          output('</b>');
+          output('<br>');
+          output('2013 IEEE International Conference on Parallel and Distributed Systems');
+          output('</p>');
+
+          output('<p>');
+          output('<b>MyCloud: On-Demand Virtual Cluster Provisioning on HPC Resources</b>');
+          output('</b>');
+          output('<br>');
+          output('2013 IEEE International Conference on High Performance Computing and Communications');
+          output('</p>');
+
+          output('<p>');
+          output('<b>CloudBay: Enabling an Online Resource Market Place for Open Clouds</b>');
+          output('</b>');
+          output('<br>');
+          output('2012 IEEE/ACM International Conference on Utility and Cloud Computing');
+          output('</p>');
+
+          output('<p>');
+          output('<b>IncMR: Incremental Data Processing based on MapReduce</b>');
+          output('</b>');
+          output('<br>');
+          output('2012 IEEE International Conference on Cloud Computing');
+          output('</p>');
+
           break;
 
-        case 'info':
+        case 'contact':
           output('<h2>Info</h2>');
           output('<h2>Ze Yu, 于泽</h2>');
           output('<p>');
-          output('406, 1046 Center Drive<br>');
-          output('Gainesville, FL 32603<br>');
-          output('Contact: zeyu at ufl dot edu<br>');
+          //output('406, 1046 Center Drive<br>');
+          //output('Gainesville, FL 32603<br>');
+          output('Email: zeyu at ufl dot edu<br>');
           output('Github: <a href="https://github.com/CodEnFisH" target="_blank">My Code Repository</a><br>')
           output('Linkedin: <a href="https://www.linkedin.com/in/codefish" target="_blank">My linkedin</a><br>')
           output('</p>');
           break;
 
-        case 'bio':
-          output('<h2>Short Bio</h2>');
-          output('<p>I am joining Google search team as a software engineer. </p>');
-          output('<p>I am graduating from University of Florida in Aug 2015, with a Phinally.Done degree in Computer Engineering. Before joining UF, I got my M.S. degree from Tsinghua University and my B.S. degree from Northeastern University.</p>');
+        case 'about':
+          output('<h2>About Me</h2>');
+          output('<p>I am a software engineer at Google Search Analytics team </p>');
+          output('<p>I graduated from University of Florida in Aug 2015, with a PHinally.Done degree in Computer Engineering. Before joining UF, I got my M.S. degree from Tsinghua University and my B.S. degree from Northeastern University.</p>');
+
+          output('<p>I </p>');
 
           break;
 
@@ -319,6 +356,7 @@ var Terminal = Terminal || function(containerId) {
           output('<p><a href="http://the-big-bang-theory.com/" target="_blank">TBBT</a></p>');
           output('<p><a href="https://en.wikipedia.org/wiki/Zinedine_Zidane" target="_blank">Zidane</a></p>');
           output('<p><a href="http://www.hbo.com/game-of-thrones" target="_blank">GoT</a></p>');
+          output('<p><a href="http://www.amazon.com/Hobbit-Lord-Rings-Fellowship-Towers/dp/0345538374/ref=sr_1_1?s=books&ie=UTF8&qid=1439085542&sr=1-1&keywords=the+lord+of+the+rings"  target="_blank">TOTR</a></p>');
           output('<p><a href="http://icpc.baylor.edu/" target="_blank">ICPC</a></p>');
 
           break
