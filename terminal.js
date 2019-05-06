@@ -344,10 +344,10 @@ var Terminal = Terminal || function(containerId) {
 
         case 'about':
           output('<h2>About Me</h2>');
-          output('<p>I am a software engineer at Google Play Core Serving Team </p>');
-          output('<p>I also work on TensorFlow in my spare time. </p>');
-          output('<p>I was a software engineer at Google Search Growth Data Infra Team </p>');
-          output('<p>I graduated from University of Florida in Aug 2015, with a PHinally.Done degree in Computer Engineering. Before joining UF, I got my M.S. degree from Tsinghua University and my B.S. degree from Northeastern University.</p>');
+          output('<p>I am a software engineer at <a href="https://www.weride.ai/" target="_blank"> WeRide.ai</a>, working on autonomous driving </p>');
+          output('<p>I was a software engineer at Google Play Core Serving Team and Google Search Data Infra Team</p>');
+          output('<p>I also worked on TensorFlow in my spare time at Google Brain team. </p>');
+          output('<p>I graduated from University of Florida, with a PHinally.Done degree in Computer Engineering. Before joining UF, I studied at Tsinghua University</p>');
 
           break;
 
